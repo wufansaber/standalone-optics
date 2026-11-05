@@ -58,6 +58,47 @@ def evaluate_model(model, sampling, *, allow_signed_segments=False, use_primary_
         worst_sampled_rms_spot_um=max((r['spot_rms_um']for r in calculated),default=None),rows=rows)
 
 
+def evaluate_optional(model, report, args):
+    system = OpticalSystem(model, allow_signed_segments=args.allow_signed_segments)
+    if args.aberrations:
+        from .standalone_aberrations import analyze_aberrations
+
+        pupil, weights = (disk_quadrature(20, 64) if args.sampling == 'gq20'
+                          else rectangular_pupil(int(args.sampling[4:])))
+        try:
+            report['aberrations'] = analyze_aberrations(system, pupil=pupil, weights=weights,
+                                                        fan_samples=args.fan_samples)
+        except (ValueError, RuntimeError, np.linalg.LinAlgError) as error:
+            report['aberrations'] = {'status': 'failed', 'error': str(error)}
+    if args.mtf:
+        from .standalone_mtf import diffraction_mtf
+
+        mtf_rows = []
+        spectra = [None, *range(len(system.wavelengths))] if args.mtf_all_waves else [None]
+        for i, field in enumerate(system.fields, 1):
+            for wave in spectra:
+                entry = {'field_index': i, 'field_xy': field.tolist(),
+                         'wave_index': None if wave is None else wave+1}
+                try:
+                    entry.update(diffraction_mtf(system, field, samples=args.mtf_samples, wave=wave),
+                                 status='calculated')
+                except (ValueError, RuntimeError, np.linalg.LinAlgError) as error:
+                    entry.update(status='failed', error=str(error))
+                mtf_rows.append(entry)
+        report['mtf'] = mtf_rows
+    aberrations = report.get('aberrations', {})
+    summary = aberrations.get('summary', {})
+    mtf = report.get('mtf', [])
+    failed = (aberrations.get('status') == 'failed' or summary.get('fan_failures', 0)
+              or summary.get('focus_failures', 0) or any(row['status'] == 'failed' for row in mtf))
+    signed = (summary.get('signed_comparison_only')
+              or any('signed_comparison_only' in row.get('warnings', []) for row in mtf))
+    if failed:
+        report['status'] = 'incomplete'
+    elif signed and report['status'] == 'calculated':
+        report['status'] = 'signed_comparison_only'
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     source = parser.add_mutually_exclusive_group(required=True)
@@ -68,6 +109,11 @@ def main(argv=None):
     parser.add_argument('--field-reference',choices=('measurement','primary'),default='measurement')
     parser.add_argument('--allow-signed-segments',action='store_true',help='Replay signed paths for numerical comparison and flag geometry')
     parser.add_argument('--optimize',action='store_true',help='Refine the synthetic demo using optional SciPy')
+    parser.add_argument('--aberrations', action='store_true', help='Evaluate axial and lateral color, ray fans, field curvature, astigmatism, and distortion')
+    parser.add_argument('--fan-samples', type=int, default=101, help='Odd number of samples per transverse ray fan')
+    parser.add_argument('--mtf', action='store_true', help='Calculate scalar FFT MTF curves')
+    parser.add_argument('--mtf-samples', type=int, default=256, help='Even pupil grid size per MTF axis')
+    parser.add_argument('--mtf-all-waves', action='store_true', help='Include every monochromatic MTF curve as well as the polychromatic curve')
     parser.add_argument('--out',type=Path,help='Write the evaluation report')
     parser.add_argument('--neutral-out',type=Path,help='Explicitly export a private normalized model JSON')
     args = parser.parse_args(argv)
@@ -78,6 +124,14 @@ def main(argv=None):
         parser.error('--optimize is for the synthetic demo')
     if args.demo and args.neutral_out:
         parser.error('--neutral-out requires an input model')
+    if args.demo and (args.aberrations or args.mtf):
+        parser.error('--aberrations and --mtf require an input model')
+    if args.mtf_all_waves and not args.mtf:
+        parser.error('--mtf-all-waves requires --mtf')
+    if args.aberrations and (args.fan_samples < 3 or args.fan_samples % 2 != 1):
+        parser.error('--fan-samples must be an odd number of at least 3')
+    if args.mtf and (not 16 <= args.mtf_samples <= 1024 or args.mtf_samples % 2):
+        parser.error('--mtf-samples must be an even number from 16 to 1024')
     try:
         if args.demo:
             from .standalone_demo import run
@@ -96,6 +150,8 @@ def main(argv=None):
                 parser.error('Use a text ZMX or normalized JSON file')
             report = evaluate_model(model,args.sampling,allow_signed_segments=args.allow_signed_segments,
                                     use_primary_field=args.field_reference=='primary')
+            if args.aberrations or args.mtf:
+                evaluate_optional(model, report, args)
             report['input_file_sha256'] = hashlib.sha256(args.model.read_bytes()).hexdigest()
             if args.neutral_out:
                 write_json(args.neutral_out,model)
@@ -104,7 +160,7 @@ def main(argv=None):
             print(f"{report['status']} | {args.out}")
         else:
             print(json.dumps(report,indent=2,ensure_ascii=False,allow_nan=False))
-        return 2 if report['failed_groups'] else 0
+        return 2 if report['status'] == 'incomplete' else 0
     except (OSError,ValueError,KeyError,TypeError,RuntimeError,ImportError) as error:
         print(f'Optical calculation error: {error}',file=sys.stderr)
         return 2

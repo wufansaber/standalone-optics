@@ -49,3 +49,15 @@ python standalone-optics/scripts/standalone_optics.py --model model.json --out e
 - 子午与弧矢最佳焦点的差。两套程序使用同一像方焦面定义，场曲以同波长轴上平均焦面作基准。
 
 当前适用范围为脚本支持的同轴顺序折射几何与参考球波前。模型转换时应逐项核对光阑、材料和曲面，留存结构一致性的证据。用表中的计算差异描述数值复现精度。衍射像质、偏振、公差与制造放行分别使用各自的模型、门槛和验证数据。
+
+## 常用像差与 MTF
+
+```text
+python standalone-optics/scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --out analysis.json
+```
+
+- `aberrations.axial` 包含轴向色差、轴上光线与光轴交点、以同波长近轴焦点为基准的纵向球差。
+- `aberrations.fields` 包含固定物方发射下相对主波长的横向色差、光线扇形图、畸变和焦面数据。径向 T/S 扇形图以各波长主光线为基准。用于原生 Ray Fan 对照的固定 X/Y 图以主波长主光线为基准。径向 T/S 扇形的偶对称分量可用于观察彗差与更高阶偶对称项。
+- 几何场曲以同波长轴上的 T/S 平均焦面为零。像散取 T−S。有限共轭的物方等效值使用逐波长的一阶轴向放大率换算。近轴 T/S 焦面单独保留，零点为固定像面。UV355 项目的 0.493 µm 限值应应用到物方几何值和项目规定的视场网格。
+- `mtf` 各行包含 `frequency_lpmm`、`tangential`、`sagittal` 和采样诊断。默认输出多色曲线，`--mtf-all-waves` 同时输出单色，`--mtf-samples 512` 可复核采样收敛，变化仍明显时可提高到 1024。MTF 基于标量 FFT，使用固定像面和相干瞳函数，多色按波长权重合成复 OTF。比较时须统一单位、参考位置和轴方向。出瞳映射明显非线性、采样混叠或高倾角等情况应查看诊断，并与原生分析交叉检查。
+- 解析范围和有效性以输出的状态、警告和失败光线记录为准。出现带符号光路时将结果保留为数值对照。MTF 曲线供判读。
