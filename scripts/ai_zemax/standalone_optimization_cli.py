@@ -97,31 +97,69 @@ def screen_rounds(screen, initial, variables, rounds, random_seed):
                 ranked=[row['id'] for row in ranked], results=ranked+rejected, rounds=history), candidates
 
 
+def verify_cuda_scores(reference, actual):
+    expected = {row['id']: row for row in reference['results']}
+    measured = {row['id']: row for row in actual['results']}
+    if expected.keys() != measured.keys() or reference['ranked'] != actual['ranked']:
+        raise RuntimeError('CPU and CUDA candidate identities or ranking disagree')
+    max_wfe_delta = max_spot_delta = 0.
+    for identity, left in expected.items():
+        right = measured[identity]
+        if (left['status'] != right['status']
+                or [reason['code'] for reason in left['reasons']] != [reason['code'] for reason in right['reasons']]):
+            raise RuntimeError(f'CPU and CUDA screening status disagrees for {identity}')
+        if len(left['groups']) != len(right['groups']):
+            raise RuntimeError(f'CPU and CUDA field/wavelength coverage disagrees for {identity}')
+        for a, b in zip(left['groups'], right['groups']):
+            if (a['field_index'], a['wave_index']) != (b['field_index'], b['wave_index']):
+                raise RuntimeError(f'CPU and CUDA group order disagrees for {identity}')
+            max_wfe_delta = max(max_wfe_delta, abs(a['wfe_waves']-b['wfe_waves']))
+            max_spot_delta = max(max_spot_delta, abs(a['spot_um']-b['spot_um']))
+    if max_wfe_delta > 2e-8 or max_spot_delta > 1e-6:
+        raise RuntimeError(f'CUDA score disagreement exceeds tolerance: {max_wfe_delta} waves, {max_spot_delta} um')
+    return {'serial_cuda_rank_identical': True, 'max_wfe_delta_waves': max_wfe_delta,
+            'max_spot_delta_um': max_spot_delta, 'wfe_tolerance_waves': 2e-8,
+            'spot_tolerance_um': 1e-6}
+
+
 def evaluate_batch(model, candidates, args, screening, *, variables=None, random_seed=0):
     supported = {'field_indices', 'wave_indices', 'wfe_limit_waves', 'spot_limit_um'}
     if unsupported := screening.keys()-supported:
         raise ValueError(f'Unknown screening settings: {", ".join(sorted(unsupported))}')
     coarse_settings = dict(screening, radial=args.radial, azimuthal=args.azimuthal)
     rounds = getattr(args, 'rounds', 1)
-    timing = {}
+    timing = {'coarse_backend': args.backend}
     if args.verify_serial:
         start = perf_counter()
         with CandidateScreen(model, workers=1, **coarse_settings) as serial:
             serial_result, _ = screen_rounds(serial, candidates, variables, rounds, random_seed)
         timing['serial_seconds'] = perf_counter()-start
-    with CandidateScreen(model, workers=args.workers, **coarse_settings) as screen:
-        if args.verify_serial and args.workers > 1:
-            start = perf_counter()
-            screen.screen(candidates[:args.workers])
-            timing['pool_start_and_warmup_seconds'] = perf_counter()-start
+    backend_start = perf_counter()
+    if args.backend == 'cuda':
+        from .standalone_gpu_screen import CudaCandidateScreen
+
+        engine = CudaCandidateScreen(model, device=args.cuda_device or 0, **coarse_settings)
+        warmup_size = 8
+        warmup_label = 'cuda_start_and_warmup_seconds'
+    else:
+        engine = CandidateScreen(model, workers=args.workers, **coarse_settings)
+        warmup_size = args.workers if args.workers > 1 else 0
+        warmup_label = 'pool_start_and_warmup_seconds'
+    with engine as screen:
+        if args.verify_serial and warmup_size:
+            screen.screen(candidates[:warmup_size])
+            timing[warmup_label] = perf_counter()-backend_start
         start = perf_counter()
         coarse, evaluated = screen_rounds(screen, candidates, variables, rounds, random_seed)
         timing['coarse_seconds'] = perf_counter()-start
     if args.verify_serial:
-        same = serial_result['results'] == coarse['results'] and serial_result['ranked'] == coarse['ranked']
-        if not same:
-            raise RuntimeError('Serial and parallel screening results disagree')
-        timing['serial_parallel_scores_identical'] = True
+        if args.backend == 'cuda':
+            timing['cuda_verification'] = verify_cuda_scores(serial_result, coarse)
+        else:
+            same = serial_result['results'] == coarse['results'] and serial_result['ranked'] == coarse['ranked']
+            if not same:
+                raise RuntimeError('Serial and parallel screening results disagree')
+            timing['serial_parallel_scores_identical'] = True
         timing['warmed_speedup'] = timing['serial_seconds']/timing['coarse_seconds']
     dense = None
     if args.dense_top and coarse['ranked']:
@@ -257,11 +295,15 @@ def group_report(args):
 
 
 def add_scoring_arguments(parser):
-    parser.add_argument('--workers', type=int, default=min(8, os.cpu_count() or 1))
+    parser.add_argument('--workers', type=int, default=min(8, os.cpu_count() or 1),
+                        help='Worker count for CPU screening and dense finalist review')
+    parser.add_argument('--backend', choices=('cpu', 'cuda'), default='cpu',
+                        help='Coarse screening backend; dense finalist review always uses CPU')
+    parser.add_argument('--cuda-device', type=int, help='CUDA device index (default 0)')
     parser.add_argument('--radial', type=int, default=8, help='Coarse radial pupil quadrature order')
     parser.add_argument('--azimuthal', type=int, default=32, help='Coarse pupil azimuthal samples')
     parser.add_argument('--dense-top', type=int, default=0, help='Rescore top candidates on all fields and waves')
-    parser.add_argument('--verify-serial', action='store_true', help='Also benchmark exact serial/parallel agreement')
+    parser.add_argument('--verify-serial', action='store_true', help='Also verify against serial CPU scores and report timing')
     parser.add_argument('--out', type=Path, required=True)
 
 
@@ -280,7 +322,7 @@ def main(argv=None):
     screen.add_argument('--glass-dir', type=Path)
     screen.add_argument('--config', type=Path, required=True)
     screen.add_argument('--rounds', type=int, choices=range(1, 17), default=1,
-                        metavar='1-16', help='Refine around the leading candidate using the same CPU pool')
+                        metavar='1-16', help='Refine around the leading candidate using the same backend')
     add_scoring_arguments(screen)
 
     groups = commands.add_parser('groups', help='Search multi-element group gaps with optional bounded curvature modes')
@@ -291,6 +333,8 @@ def main(argv=None):
     add_scoring_arguments(groups)
 
     args = parser.parse_args(argv)
+    if args.cuda_device is not None and (args.backend != 'cuda' or args.cuda_device < 0):
+        parser.error('--cuda-device requires --backend cuda and a nonnegative index')
     if not 0 <= args.dense_top < MAX_CANDIDATES_PER_BATCH:
         parser.error(f'--dense-top must be between 0 and {MAX_CANDIDATES_PER_BATCH-1}')
     paths = [path.resolve() for path in (getattr(args, 'model', None), args.config, args.out,

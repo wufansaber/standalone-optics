@@ -111,3 +111,18 @@ python scripts/optimize_optics.py groups --model lens.zmx --glass-dir Glasscat -
 以上键加入上一节示例的 `search` 对象。每个曲率模式组合先重新提取完整组矩阵，再求空气间距。所有组合匹配同一个主波长 A、B 和总长目标，默认取原处方值。以 `count` 控制送入实光线复排的候选数。报告区分实际曲率改变量、目标残差、各波长矩阵和波前排名。视场、玻璃、光阑及组内厚度由输入处方继承，所有曲率变化都由模式显式给出。
 
 密采样波前仍可能改变粗筛排名。最终保留候选前，应按项目要求另查曲面实体、通光口径、近轴排序、像高与远心。高像差阶段可直接比较瞳面 OPD 和 RMS 波前。
+
+## 可选的 NVIDIA CUDA 粗筛
+
+CPU 入口保持默认。要用 NVIDIA GPU，在带可用 CUDA 驱动的电脑单独建立 Python 环境，再安装与驱动匹配的 CuPy。以下 CUDA 13 命令适用于支持相应运行时的设备。
+
+```powershell
+python -m pip install "cupy-cuda13x[ctk]>=14.2,<15"
+python scripts/optimize_optics.py screen --model lens.zmx --glass-dir Glasscat --config screen-config.json --backend cuda --verify-serial --dense-top 8 --out screening-gpu.json
+```
+
+`seed`、`screen` 和 `groups` 都支持 `--backend cuda`。用 `--cuda-device` 指定设备编号。CUDA 粗筛以双精度批量求交、折射和累计光程，再在设备上计算 RMS 波前和光斑。候选的矩阵生成、物方发射准备和高密度决选仍使用 CPU。CPU 会复核失败或接近门槛的特殊组。报告记录回退次数和实际后端。
+
+用 `--verify-serial` 对同一候选集复核 CPU 串行的状态、排名及数值差。记录中区分 CUDA 初始化预热、粗筛、CPU 密采样。小批次应以实际端到端耗时判断收益。CUDA 环境缺失时，显式请求会报告错误，可用默认 CPU 模式运行。
+
+[CuPy 官方安装说明](https://docs.cupy.dev/en/stable/install.html)
