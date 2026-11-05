@@ -27,3 +27,11 @@ python scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aber
 
 - [安装与使用](references/install-and-use.md)
 - [验证结果与适用范围](references/validated-scope.md)
+
+## 生成初始结构和并行粗筛
+
+```powershell
+python scripts/optimize_optics.py seed --demo --workers 4 --dense-top 8 --out seed-report.json --best-model-out best-seed.json
+```
+
+按有限共轭的总长、倍率、组功率和间距生成三组初值。支持把已有处方的曲率候选分批并行追迹，再以密采样复核入围结果。[初始结构与多核筛选](references/optimization.md)
