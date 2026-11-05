@@ -13,4 +13,4 @@ description: Evaluate coaxial sequential refractive lens prescriptions with stan
 4. 做同处方对照时，先比像面截点和方向，再比同一采样下的 RMS 波前与光斑。分别报告原始 OPD 和对齐符号、活塞、倾斜后的差值。T/S 焦面和场曲必须使用同一评价定义。
 5. 默认拦截负传播段。用户要复现带符号的 Zemax 计算时，可用 `--allow-signed-segments` 并报告最短路径、目标面和 `signed_comparison_only`。把数值复现结论与实体间隙分开。检查 MTF 的方法字段、频率范围、采样收敛和输出警告，按相同频率、参考位置与坐标约定对比曲线。偏振和公差使用各自的独立验证。
 
-需要建立初始结构或加速候选粗筛时，按[初始结构和 CPU 粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。先固定规格和可调范围，再用低采样筛选、稠密追迹复排。已有多片组使用 `groups`，先回算全系统矩阵，再用实光线波前复排。保存基线和淘汰原因。
+需要建立初始结构或加速候选粗筛时，按[初始结构和 CPU 粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。先固定规格和可调范围，再用低采样筛选、稠密追迹复排。已有多片组使用 `groups`，可选有界曲率模式联动搜索光焦度和间距。先回算全系统矩阵，再用实光线波前复排。保存基线和淘汰原因。

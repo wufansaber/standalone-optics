@@ -229,9 +229,17 @@ def group_report(args):
     model = load_model(args.model, args.glass_dir)
     config = read_json(args.config)
     start = perf_counter()
-    search = search_group_gaps(model, **config['search'])
+    controls = config['search']
+    if 'curvature_modes' in controls:
+        from .standalone_coupled_group_search import search_coupled_group_gaps
+
+        search = search_coupled_group_gaps(model, **controls)
+        mode = 'coupled_groups'
+    else:
+        search = search_group_gaps(model, **controls)
+        mode = 'groups'
     candidates = search.pop('candidates')
-    report = {'mode': 'groups', 'search': search, 'search_seconds': perf_counter()-start,
+    report = {'mode': mode, 'search': search, 'search_seconds': perf_counter()-start,
               'input_sha256': before,
               'candidate_geometry': [{key: value for key, value in candidate.items() if key != 'model'}
                                      for candidate in candidates]}
@@ -275,7 +283,7 @@ def main(argv=None):
                         metavar='1-16', help='Refine around the leading candidate using the same CPU pool')
     add_scoring_arguments(screen)
 
-    groups = commands.add_parser('groups', help='Search gaps between rigid multi-element groups')
+    groups = commands.add_parser('groups', help='Search multi-element group gaps with optional bounded curvature modes')
     groups.add_argument('--model', type=Path, required=True)
     groups.add_argument('--glass-dir', type=Path)
     groups.add_argument('--config', type=Path, required=True)
