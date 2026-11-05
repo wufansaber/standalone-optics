@@ -53,11 +53,21 @@ python standalone-optics/scripts/standalone_optics.py --model model.json --out e
 ## 常用像差与 MTF
 
 ```text
-python standalone-optics/scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --out analysis.json
+python standalone-optics/scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --plot-dir plots --out analysis.json
 ```
 
 - `aberrations.axial` 包含轴向色差、轴上光线与光轴交点、以同波长近轴焦点为基准的纵向球差。
 - `aberrations.fields` 包含固定物方发射下相对主波长的横向色差、光线扇形图、畸变和焦面数据。径向 T/S 扇形图以各波长主光线为基准。用于原生 Ray Fan 对照的固定 X/Y 图以主波长主光线为基准。径向 T/S 扇形的偶对称分量可用于观察彗差与更高阶偶对称项。
 - 几何场曲以同波长轴上的 T/S 平均焦面为零。像散取 T−S。有限共轭的物方等效值使用逐波长的一阶轴向放大率换算。近轴 T/S 焦面单独保留，零点为固定像面。UV355 项目的 0.493 µm 限值应应用到物方几何值和项目规定的视场网格。
-- `mtf` 各行包含 `frequency_lpmm`、`tangential`、`sagittal` 和采样诊断。默认输出多色曲线，`--mtf-all-waves` 同时输出单色，`--mtf-samples 512` 可复核采样收敛，变化仍明显时可提高到 1024。MTF 基于标量 FFT，使用固定像面和相干瞳函数，多色按波长权重合成复 OTF。比较时须统一单位、参考位置和轴方向。出瞳映射明显非线性、采样混叠或高倾角等情况应查看诊断，并与原生分析交叉检查。
+- `mtf` 各行包含 `frequency_lpmm`、`tangential`、`sagittal` 和采样诊断。默认输出多色曲线，`--mtf-all-waves` 同时输出单色，`--mtf-samples 512` 可复核采样收敛，变化仍明显时可提高到 1024。衍射 MTF 基于标量 FFT，使用固定像面和相干瞳函数。高像差或相位欠采样时默认切换为基于实际像面截点的几何 MTF，按像斑大小选取低频段。多色均合成复 OTF，再求调制度。比较时须统一单位、参考位置和轴方向。出瞳映射明显非线性、采样混叠或高倾角等情况应查看诊断，并与原生分析交叉检查。
 - 解析范围和有效性以输出的状态、警告和失败光线记录为准。出现带符号光路时将结果保留为数值对照。MTF 曲线供判读。
+
+### 选择 MTF 方法和频段
+
+- `--mtf-method auto` 是默认设置。大横向像差或高像差下的相位欠采样会触发几何近似。单独的高 OPD 诊断不会触发切换。
+- `--mtf-method fft` 强制标量衍射 FFT，可用于追查采样。以 `method` 和 `selection.fft_diagnostics` 确认曲线口径。
+- `--mtf-method geometric` 直接用加权光线截点。光斑与色间质心差决定默认频带；`--mtf-max-frequency` 可指定像方上限。若报告光线网格可能混叠，增加采样或缩小频带。几何 MTF 用于高像差系统低频判断，其输出范围和精度与衍射算法分开记录。
+
+### 点阵图和光线扇形图
+
+`--plot-dir` 为每个保存视场输出两张 SVG，并在 JSON 的 `field_plots` 保留路径和点阵数据。点阵图使用固定像面和主波长主光线基准，保留不同颜色之间的位移。两轴统一为 µm 并使用等比例刻度。`--spot-samples 64` 加密点阵图。扇形图采用与 Zemax Ray Fan 一致的固定 Y/Py 和 X/Px 曲线。JSON 同时保留沿实际视场方向的子午和弧矢扇形。`--fan-samples` 可调整瞳面点数。无效光线在曲线上留空，带符号路径复现会标明状态。

@@ -43,3 +43,13 @@ MTF 采用标量 FFT，原生对照使用固定 Y/X 轴定义的 T/S。该验证
 
 - [OpticStudio 场曲与畸变](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Field_Curvature_and_Distortion.html)
 - [OpticStudio FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v252/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html)
+
+### 高像差几何 MTF
+
+SLS 远心非球面和 Projector 在原生 FFT 不稳定时，分别以 0–3 lp/mm 和 0–0.02 lp/mm 比较低频几何 MTF。独立端使用 256×256 网格，基准端用 Zemax 批量追迹和独立极坐标积分。各处方含 3 个视场、3 个单色和一组多色，共 12 对 T/S 曲线。81 个频点上的最大调制度差分别为 0.000416 和 0.000281。另用原生 GMTT 网格操作数复核轴上采样点。Projector 旧图表的 0.1 lp/mm 首个非零点跨过了低频主瓣。使用窄频带和单频点复核可解析该结构。
+
+- [OpticStudio 几何 MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Geometric_MTF.html)
+
+### 点阵图和光线扇形图
+
+Doublet、双高斯和 20X 的点阵按相同的 RECT32 瞳面和主波长物方发射条件对照 Zemax 批量追迹，共 57 个视场波长组合。点阵坐标分量最大差小于 1.0×10⁻¹⁰ µm，各波长 RMS 半径最大差小于 1.8×10⁻¹¹ µm。固定轴光线扇形图直接使用已对照原生 Ray Fan 的数据。20X 原生曲线在带符号模式复现，严格模式的失败组保留为空或分段。

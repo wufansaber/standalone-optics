@@ -20,10 +20,10 @@ python scripts/standalone_optics.py --demo --out demo.json
 ## 计算常用像差
 
 ```powershell
-python scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --out analysis.json
+python scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --plot-dir plots --out analysis.json
 ```
 
-`--aberrations` 输出几何像差曲线。`--mtf` 输出像方频率（lp/mm）上的多色 MTF，追加 `--mtf-all-waves` 可同时输出各单色曲线。两类分析可独立运行。计算受支持的 ZMX 时请提供自己的 AGF 材料目录。也可使用预先导出的中性模型 JSON。仓库包含技能代码、说明和验证摘要。
+`--aberrations` 输出几何像差曲线。`--mtf` 输出像方频率（lp/mm）上的多色 MTF，追加 `--mtf-all-waves` 可同时输出各单色曲线。高像差时，MTF 自动切换到带独立方法标记的低频几何计算。`--plot-dir plots` 输出各视场的点阵图和光线扇形图 SVG。各类分析可独立运行。计算受支持的 ZMX 时请提供自己的 AGF 材料目录。也可使用预先导出的中性模型 JSON。仓库包含技能代码、说明和验证摘要。
 
 - [安装与使用](references/install-and-use.md)
 - [验证结果与适用范围](references/validated-scope.md)
