@@ -34,4 +34,4 @@ python scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aber
 python scripts/optimize_optics.py seed --demo --workers 4 --dense-top 8 --out seed-report.json --best-model-out best-seed.json
 ```
 
-按有限共轭的总长、倍率、组功率和间距生成三组初值。支持把已有处方的曲率候选分批并行追迹，再以密采样复核入围结果。[初始结构与多核筛选](references/optimization.md)
+按有限共轭的总长、倍率、组功率和间距生成三组初值。支持把已有处方的曲率候选分批并行追迹，再以密采样复核入围结果。已有多片组可用 `groups` 保留完整组矩阵并搜索组间空气间距。[初始结构与多核筛选](references/optimization.md)

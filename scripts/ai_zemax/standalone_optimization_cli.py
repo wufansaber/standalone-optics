@@ -222,6 +222,32 @@ def screen_report(args):
                 coarse=coarse, dense=dense, timing=timing, candidate_definitions=candidates)
 
 
+def group_report(args):
+    from .standalone_group_search import search_group_gaps
+
+    before = hashlib.sha256(args.model.read_bytes()).hexdigest()
+    model = load_model(args.model, args.glass_dir)
+    config = read_json(args.config)
+    start = perf_counter()
+    search = search_group_gaps(model, **config['search'])
+    candidates = search.pop('candidates')
+    report = {'mode': 'groups', 'search': search, 'search_seconds': perf_counter()-start,
+              'input_sha256': before,
+              'candidate_geometry': [{key: value for key, value in candidate.items() if key != 'model'}
+                                     for candidate in candidates]}
+    if not candidates:
+        return dict(report, status='no_group_candidates'), None
+    tasks = [{'id': candidate['id'], 'model': candidate['model']} for candidate in candidates]
+    coarse, dense, timing, _ = evaluate_batch(None, tasks, args, config.get('screening', {}))
+    if hashlib.sha256(args.model.read_bytes()).hexdigest() != before:
+        raise RuntimeError('Input model changed during group screening')
+    ranking = (dense if dense is not None else coarse)['ranked']
+    best_id = ranking[0] if ranking else None
+    best_model = next((candidate['model'] for candidate in candidates if candidate['id'] == best_id), None)
+    return dict(report, status='calculated' if ranking else 'no_viable_candidates',
+                best_id=best_id, coarse=coarse, dense=dense, timing=timing), best_model
+
+
 def add_scoring_arguments(parser):
     parser.add_argument('--workers', type=int, default=min(8, os.cpu_count() or 1))
     parser.add_argument('--radial', type=int, default=8, help='Coarse radial pupil quadrature order')
@@ -249,6 +275,13 @@ def main(argv=None):
                         metavar='1-16', help='Refine around the leading candidate using the same CPU pool')
     add_scoring_arguments(screen)
 
+    groups = commands.add_parser('groups', help='Search gaps between rigid multi-element groups')
+    groups.add_argument('--model', type=Path, required=True)
+    groups.add_argument('--glass-dir', type=Path)
+    groups.add_argument('--config', type=Path, required=True)
+    groups.add_argument('--best-model-out', type=Path, help='Write the leading group candidate as a normalized model')
+    add_scoring_arguments(groups)
+
     args = parser.parse_args(argv)
     if not 0 <= args.dense_top < MAX_CANDIDATES_PER_BATCH:
         parser.error(f'--dense-top must be between 0 and {MAX_CANDIDATES_PER_BATCH-1}')
@@ -259,12 +292,14 @@ def main(argv=None):
     try:
         if args.command == 'seed':
             report, best = seed_report(args)
+        elif args.command == 'groups':
+            report, best = group_report(args)
         else:
             report, best = screen_report(args), None
         write_json(args.out, report)
         if getattr(args, 'best_model_out', None):
             if best is None:
-                print('No traced seed available for --best-model-out', file=sys.stderr)
+                print('No traced candidate available for --best-model-out', file=sys.stderr)
                 return 2
             write_json(args.best_model_out, best)
         print(f"{report['status']} | {args.out}")

@@ -60,3 +60,28 @@ python scripts/optimize_optics.py screen --model lens.zmx --glass-dir Glasscat -
 - 首轮包含原处方、单变量边界和分层样本。后续轮次在当前领先者周围缩小扰动窗口，继续使用已预载数据的进程池。排序依次看最坏 RMS 波前、平均 RMS 波前和最坏 RMS 光斑。报告保留失败原因、每轮领先候选和改变量。
 - `--dense-top` 使用 GQ20×64 复核入围处方的所有保存视场和波长，原处方作为对照一并计算。`--verify-serial` 额外重算串行结果并核对逐项一致性，单列进程启动和预热时间。
 - 当前局部迭代固定曲面顶点和像面。筛选结果用于挑选下一步候选，完整倍率、场曲、机械间隙和制造约束按项目口径另行复核。命令将结果写入单独的 JSON。
+
+## 重排已有多片组
+
+```powershell
+python scripts/optimize_optics.py groups --model lens.zmx --glass-dir Glasscat --config groups-config.json --workers 8 --dense-top 12 --verify-serial --out group-report.json --best-model-out group-leader.json
+```
+
+每个组保留全部曲面、组内厚度、材料和光阑关系。切点必须位于空气间隔，面号为切点前的 1 基光学面。可把无光焦度的光阑和隔圈作为独立块。在逐波长提取各组完整 ABCD 后，用原始间距回算整镜矩阵。搜索只平移这些刚性组并改变选定的空气间距。
+
+```json
+{
+  "search": {
+    "split_after_surfaces": [2, 4],
+    "gap_bounds_mm": [[15, 70], [15, 110], [15, 110], [15, 100]],
+    "samples": 2048,
+    "count": 32,
+    "random_seed": 0
+  },
+  "screening": {"field_indices": [0, 1], "wave_indices": [0]}
+}
+```
+
+间距区间按物面至首组、各组间、末组至像面的顺序填写。每个区间均可用相同上下限固定对应间距。默认匹配原处方总长和主波长矩阵的 A、B。可用 `track_mm`、`magnification` 和 `defocus_b_mm` 显式设定目标。原处方的 B 可以非零。高 NA 设计的名义倍率应另外检查实光线像高。
+
+报告按实光线 RMS 波前优先排序，包含全部采样波长的组矩阵、候选间距和逐视场评分。高像差筛选无需计算 MTF。导出的模型适合进一步独立追迹。组间空气距离是顶点间距，实体间隙、口径、远心和密集视场像质需按项目验收口径复核。
