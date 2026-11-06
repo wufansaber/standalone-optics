@@ -1,6 +1,19 @@
 # standalone-optics
 
-用于 Codex 的独立光学计算技能。用 Python 和 NumPy 对同轴顺序折射系统做光线追迹、RMS 波前、RMS 光斑、轴向和横向色差、球差、场曲、像散、光线扇形图与衍射 MTF。运行计算无需安装 Zemax。
+用于 Codex 的成像光学设计与独立验证技能。从项目规格出发，建立候选结构、优化实光线像质，并按统一口径复核。适用于物镜、相机镜头、中继与投影、望远成像和变焦等项目的设计规划。具体结构由可表达该模型的求解器计算。
+
+## 通用设计流程
+
+1. **写清验收口径。** 定义共轭、视场、光谱、NA 或 F 数、探测器、包络和制造约束。把验收项、优化目标和诊断量分开。
+2. **建立多个结构起点。** 用一阶成像条件解组功率、间距和光阑位置，再用实光线检查通光、像面和结构可行性。
+3. **分级优化。** 低采样筛结构，保留多个结构分支。用多视场、多波长残差精修入围方案，先处理占主导的像差和硬约束。
+4. **独立复核与交付。** 加密视场和瞳面，复核最坏工况、实体几何和公差。冻结处方、求解设置及验收结果。
+
+完整方法包括结构搜索、删片和缩短总长、评价函数、CPU/GPU 粗筛、求解器选择和验收模板。UV355 物镜是其中一个应用例子。[通用成像光学设计方法](references/imaging-design-method.md)
+
+## 当前计算覆盖
+
+独立内核使用 Python 和 NumPy 计算受支持的同轴顺序折射系统，运行计算无需安装 Zemax。支持有限和无限物距分析，可输出 RMS 波前、光斑、常用几何像差、点阵图、扇形图及 MTF。内置初始结构生成器面向有限共轭三组模型。离轴、反射、自由曲面和多构型等项目可沿用设计流程，由支持相应模型的求解器承担追迹与验收。[已验证的计算范围](references/validated-scope.md)
 
 ## 安装
 
@@ -23,7 +36,7 @@ python scripts/standalone_optics.py --demo --out demo.json
 python scripts/standalone_optics.py --model lens.zmx --glass-dir Glasscat --aberrations --mtf --mtf-all-waves --plot-dir plots --out analysis.json
 ```
 
-`--aberrations` 输出几何像差曲线。`--mtf` 输出像方频率（lp/mm）上的多色 MTF，追加 `--mtf-all-waves` 可同时输出各单色曲线。高像差时，MTF 自动切换到带独立方法标记的低频几何计算。`--plot-dir plots` 输出各视场的点阵图和光线扇形图 SVG。各类分析可独立运行。计算受支持的 ZMX 时请提供自己的 AGF 材料目录。也可使用预先导出的中性模型 JSON。仓库包含技能代码、说明和验证摘要。
+`--aberrations` 输出几何像差曲线。`--mtf` 输出像方频率（lp/mm）上的多色 MTF，追加 `--mtf-all-waves` 可同时输出各单色曲线。自动模式在衍射计算触发回退条件时使用低频几何计算，并标记所用方法。`--plot-dir plots` 输出各视场的点阵图和光线扇形图 SVG。各类分析可独立运行。计算受支持的 ZMX 时请提供自己的 AGF 材料目录。也可使用预先导出的中性模型 JSON。仓库包含技能代码、说明和验证摘要。
 
 - [安装与使用](references/install-and-use.md)
 - [验证结果与适用范围](references/validated-scope.md)

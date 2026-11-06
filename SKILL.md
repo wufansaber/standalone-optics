@@ -1,11 +1,22 @@
 ---
 name: standalone-optics
-description: Evaluate coaxial sequential refractive lens prescriptions with standalone NumPy ray tracing, reference-sphere wavefront, geometric aberrations, spot and ray fan plots, diffraction/geometric MTF, and screen finite-conjugate starting structures on multiple CPU cores. Use for Zemax-free lens checks, same-prescription comparisons, or independent optical calculation and verification (独立光线追迹、波前、像差、同处方复核).
+description: Plan, initialize, optimize, and verify geometric imaging systems from project specifications (成像光学设计、初始结构、镜头优化、独立光线追迹、波前、像差、同处方复核). Use for new designs, lens redesigns, or independent checks. The standalone backend evaluates supported coaxial sequential refractive models and screens finite-conjugate seeds and lens candidates. Route other geometries and configurations to a compatible optical solver.
 ---
 
-# 独立光学计算
+# 成像光学设计与独立验证
 
-使用 [standalone_optics.py](scripts/standalone_optics.py) 进行可复现的光线追迹和像差评价。脚本在普通 Python 环境中使用 NumPy。跨电脑安装见[安装与使用](references/install-and-use.md)，结构和指标范围见[验证记录](references/validated-scope.md)。
+从任务类型选择路径。新设计和结构重构按[通用成像光学设计方法](references/imaging-design-method.md)执行。已有处方的计算和同处方对照按下列独立验证流程执行。跨电脑安装见[安装与使用](references/install-and-use.md)。
+
+## 从规格建立和优化设计
+
+1. 固定共轭、视场坐标和半径或全幅口径、光谱、NA 或 F 数、像面和机械要求。把验收限值、优化目标和诊断量分开。对缺失规格标注假设，单独记录影响选型或验收的未决项。
+2. 用一阶模型生成多个可行结构，保留不同组功率、光阑位置和镜组布局。重构已有处方时，以同一基准面上的光线映射为参照，先恢复成像、通光和实体间隙，再恢复像质。
+3. 先做低采样可行性和像质粗筛，再精修入围结构。锁定已有硬约束，用精确实光线重算候选。最后独立加密视场、波长和瞳面，复核最坏工况、实体几何及项目要求的公差。
+4. 按[验证记录](references/validated-scope.md)选求解器。独立 NumPy 内核用于受支持的同轴顺序折射模型。离轴、反射、自由曲面、多构型或其他超出范围的模型，调用能够完整表示相关特性的求解器。当前没有适用求解器时，交付一阶结构和待验证项，并标明完成阶段。
+
+## 已有处方的独立验证
+
+使用 [standalone_optics.py](scripts/standalone_optics.py) 进行可复现的光线追迹和像差评价。脚本在普通 Python 环境中使用 NumPy。
 
 1. 确认任务是独立计算还是与原生软件对照。对照需要同一处方的参考结果，记录其来源、版本、配置和文件哈希。读取源处方并把输出写入独立工作目录。
 2. 核对顺序、同轴、折射模型是否可由脚本表达。固定材料或每波长折射率、曲面顶点与面型、孔径光阑、像面、物方发射条件和波长。遇到坐标断点、镜面反射、非顺序部件或其他未实现的面型时，先说明对应系统超出当前验证范围。
@@ -13,4 +24,6 @@ description: Evaluate coaxial sequential refractive lens prescriptions with stan
 4. 做同处方对照时，先比像面截点和方向，再比同一采样下的 RMS 波前与光斑。分别报告原始 OPD 和对齐符号、活塞、倾斜后的差值。T/S 焦面和场曲必须使用同一评价定义。
 5. 默认拦截负传播段。用户要复现带符号的 Zemax 计算时，可用 `--allow-signed-segments` 并报告最短路径、目标面和 `signed_comparison_only`。把数值复现结论与实体间隙分开。检查 MTF 的方法字段、频率范围、采样收敛和输出警告，按相同频率、参考位置与坐标约定对比曲线。偏振和公差使用各自的独立验证。
 
-需要建立初始结构或加速候选粗筛时，按[初始结构和 CPU 粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。先固定规格和可调范围，再用低采样筛选、稠密追迹复排。已有多片组使用 `groups`，可选有界曲率模式联动搜索光焦度和间距。先回算全系统矩阵，再用实光线波前复排。保存基线和淘汰原因。NVIDIA CUDA 环境可使用 `--backend cuda` 做粗筛，密采样决选走 CPU。先以 `--verify-serial` 核对同一候选集。
+## 内置初始结构和粗筛
+
+按[初始结构与并行粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。用 `seed` 搜索有限共轭三组种子，用 `screen` 粗筛已有处方的曲率候选，用 `groups` 搜索多片组间距和配置的有界曲率模式。先固定可调范围，再低采样筛选、密采样复排。保存基线和淘汰原因。NVIDIA CUDA 环境可使用 `--backend cuda` 做粗筛，密采样决选走 CPU。先以 `--verify-serial` 核对同一候选集。
