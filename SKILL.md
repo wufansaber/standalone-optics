@@ -1,6 +1,6 @@
 ---
 name: standalone-optics
-description: Plan, initialize, optimize, and verify geometric imaging systems from project specifications (成像光学设计、初始结构、镜头优化、独立光线追迹、波前、像差、同处方复核). Use for new designs, lens redesigns, or independent checks. The standalone backend evaluates supported coaxial sequential refractive models and screens finite-conjugate seeds and lens candidates. Route other geometries and configurations to a compatible optical solver.
+description: Plan, initialize, optimize, and verify geometric imaging systems with project manufacturing boundaries (成像光学设计、初始结构、镜头优化、加工边界、实体避碰、独立光线追迹、波前、像差、同处方复核). Use for new designs, redesigns, or independent checks. The standalone backend handles supported coaxial sequential refractive models and finite-conjugate seed screening. Route other geometries to a compatible solver.
 ---
 
 # 成像光学设计与独立验证
@@ -9,10 +9,12 @@ description: Plan, initialize, optimize, and verify geometric imaging systems fr
 
 ## 从规格建立和优化设计
 
-1. 固定共轭、视场坐标和半径或全幅口径、光谱、NA 或 F 数、像面和机械要求。把验收限值、优化目标和诊断量分开。对缺失规格标注假设，单独记录影响选型或验收的未决项。
+1. 固定共轭、视场坐标和半径或全幅口径、光谱、NA 或 F 数、像面和机械要求。把验收限值、优化目标和诊断量分开。先读[加工与装配边界](references/manufacturing-boundaries.md)，建立有来源的项目加工配置，确定实体、机械口径、CT/全径最薄厚度、净距、材料、面型和公差余量。对缺失规格标注假设，单独记录影响选型或验收的未决项。
 2. 用一阶模型生成多个可行结构，保留不同组功率、光阑位置和镜组布局。重构已有处方时，以同一基准面上的光线映射为参照，先恢复成像、通光和实体间隙，再恢复像质。
 3. 先做低采样可行性和像质粗筛，再精修入围结构。锁定已有硬约束，用精确实光线重算候选。最后独立加密视场、波长和瞳面，复核最坏工况、实体几何及项目要求的公差。
 4. 按[验证记录](references/validated-scope.md)选求解器。独立 NumPy 内核用于受支持的同轴顺序折射模型。离轴、反射、自由曲面、多构型或其他超出范围的模型，调用能够完整表示相关特性的求解器。当前没有适用求解器时，交付一阶结构和待验证项，并标明完成阶段。
+
+候选的接受和回退使用硬几何门槛，复核完整机械径向域和内部极值。用户要求全球面时，逐面锁定圆锥常数和全部非球面项为零。通光口径扩大后重新检查实体和支承域。原项目的 0.30 mm 空气隙、厚度分档和限定材料分别保留在原项目配置，跨项目按实际工艺选择。输出光学、名义几何、安装路径及制造验收各自的完成状态。
 
 ## 已有处方的独立验证
 
@@ -26,4 +28,4 @@ description: Plan, initialize, optimize, and verify geometric imaging systems fr
 
 ## 内置初始结构和粗筛
 
-按[初始结构与并行粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。用 `seed` 搜索有限共轭三组种子，用 `screen` 粗筛已有处方的曲率候选，用 `groups` 搜索多片组间距和配置的有界曲率模式。先固定可调范围，再低采样筛选、密采样复排。保存基线和淘汰原因。NVIDIA CUDA 环境可使用 `--backend cuda` 做粗筛，密采样决选走 CPU。先以 `--verify-serial` 核对同一候选集。
+按[初始结构与并行粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。用 `seed` 搜索有限共轭三组种子，用 `screen` 粗筛已有处方的曲率候选，用 `groups` 搜索多片组间距和配置的有界曲率模式。在 `screening.manufacturing_policy` 提供项目配置，使 CPU、CUDA 和密采样复排执行相同几何门槛。缺少机械数据的探索结果保留未完成标记。保存基线和淘汰原因。NVIDIA CUDA 环境可使用 `--backend cuda` 做粗筛，密采样决选走 CPU。先以 `--verify-serial` 核对同一候选集。

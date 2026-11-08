@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "policy_id": "ILLUSTRATIVE_12MM_AIR_SPACED_SINGLET",
+  "notes": "仅展示字段与命令。面号和数值用于直径12mm的合成单片示例，实际项目按工艺、材料、供应商及机械包络替换。",
+  "sources": [
+    "本文件数值均为演示性工程分配，非行业或厂商保证",
+    "通用规则出处见 manufacturing-boundaries.md"
+  ],
+  "all_spherical": true,
+  "ambient_index": 1.0,
+  "radial_samples": 2049,
+  "defaults": {
+    "minimum_center_thickness_mm": 1.0,
+    "minimum_radial_thickness_mm": 0.7,
+    "minimum_air_gap_mm": 0.3,
+    "minimum_rim_gap_mm": 0.3,
+    "maximum_diameter_mm": 30.0,
+    "minimum_clear_to_mechanical_radial_margin_mm": 0.3,
+    "center_thickness_budget_mm": 0.05,
+    "radial_thickness_budget_mm": 0.05,
+    "air_gap_budget_mm": 0.02,
+    "rim_gap_budget_mm": 0.02
+  },
+  "surfaces": {
+    "1": {"mechanical_radius_mm": 6.0, "clear_radius_mm": 5.0},
+    "2": {"mechanical_radius_mm": 6.0, "clear_radius_mm": 5.0}
+  },
+  "lenses": [
+    {"front_surface": 1, "rear_surface": 2}
+  ]
+}

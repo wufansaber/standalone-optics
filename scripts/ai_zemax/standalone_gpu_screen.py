@@ -9,7 +9,8 @@ import numpy as np
 
 from .standalone import directions_from_slopes, disk_quadrature
 from .standalone_parallel_screen import (MAX_CANDIDATES_PER_BATCH, _OPTICAL_ERRORS, _candidate_model,
-                                         _limit, _rank_key, _score_candidate, _selection_indices)
+                                         _limit, _manufacturing_policy, _manufacturing_preflight,
+                                         _rank_key, _score_candidate, _selection_indices)
 from .standalone_system import OpticalSystem
 
 # A bundle always includes its chief in addition to the quadrature rays.
@@ -149,7 +150,8 @@ class CudaCandidateScreen:
     """Score sequential prescriptions on one CUDA GPU, with the CPU report schema."""
 
     def __init__(self, model, *, device=0, radial=6, azimuthal=24, field_indices=None,
-                 wave_indices=None, wfe_limit_waves=None, spot_limit_um=None):
+                 wave_indices=None, wfe_limit_waves=None, spot_limit_um=None,
+                 manufacturing_policy=None):
         if type(device) is not int or device < 0:
             raise ValueError('CUDA device must be a nonnegative integer')
         if (type(radial) is not int or not 1 <= radial <= 128
@@ -161,7 +163,8 @@ class CudaCandidateScreen:
                              field_indices=_selection_indices(field_indices,'Field indices'),
                              wave_indices=_selection_indices(wave_indices,'Wavelength indices'),
                              wfe_limit_waves=_limit(wfe_limit_waves,'Wavefront limit'),
-                             spot_limit_um=_limit(spot_limit_um,'Spot limit'))
+                             spot_limit_um=_limit(spot_limit_um,'Spot limit'),
+                             manufacturing_policy=_manufacturing_policy(manufacturing_policy))
         self._cp = None
 
     def __enter__(self):
@@ -252,7 +255,10 @@ class CudaCandidateScreen:
             row = _new_result(index,candidate)
             rows.append(row)
             try:
-                system = OpticalSystem(_candidate_model(self.model,candidate))
+                model = _candidate_model(self.model,candidate)
+                if not _manufacturing_preflight(model, self.settings, row):
+                    continue
+                system = OpticalSystem(model)
                 fields = self.settings['field_indices'] or range(len(system.fields))
                 waves = self.settings['wave_indices'] or range(len(system.wavelengths))
                 if max(fields) >= len(system.fields) or max(waves) >= len(system.wavelengths):

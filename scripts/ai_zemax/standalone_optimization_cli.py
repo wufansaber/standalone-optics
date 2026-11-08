@@ -108,6 +108,8 @@ def verify_cuda_scores(reference, actual):
         if (left['status'] != right['status']
                 or [reason['code'] for reason in left['reasons']] != [reason['code'] for reason in right['reasons']]):
             raise RuntimeError(f'CPU and CUDA screening status disagrees for {identity}')
+        if left.get('manufacturing') != right.get('manufacturing'):
+            raise RuntimeError(f'CPU and CUDA nominal-geometry audits disagree for {identity}')
         if len(left['groups']) != len(right['groups']):
             raise RuntimeError(f'CPU and CUDA field/wavelength coverage disagrees for {identity}')
         for a, b in zip(left['groups'], right['groups']):
@@ -123,7 +125,8 @@ def verify_cuda_scores(reference, actual):
 
 
 def evaluate_batch(model, candidates, args, screening, *, variables=None, random_seed=0):
-    supported = {'field_indices', 'wave_indices', 'wfe_limit_waves', 'spot_limit_um'}
+    supported = {'field_indices', 'wave_indices', 'wfe_limit_waves', 'spot_limit_um',
+                 'manufacturing_policy'}
     if unsupported := screening.keys()-supported:
         raise ValueError(f'Unknown screening settings: {", ".join(sorted(unsupported))}')
     coarse_settings = dict(screening, radial=args.radial, azimuthal=args.azimuthal)
@@ -167,7 +170,8 @@ def evaluate_batch(model, candidates, args, screening, *, variables=None, random
         finalists = coarse['ranked'][:args.dense_top]
         if 'baseline' in by_id and 'baseline' not in finalists:
             finalists.append('baseline')
-        dense_settings = {key: screening[key] for key in ('wfe_limit_waves', 'spot_limit_um') if key in screening}
+        dense_settings = {key: screening[key] for key in
+                          ('wfe_limit_waves', 'spot_limit_um', 'manufacturing_policy') if key in screening}
         start = perf_counter()
         with CandidateScreen(model, workers=min(args.workers, len(finalists)), radial=20, azimuthal=64,
                              **dense_settings) as screen:

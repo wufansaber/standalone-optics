@@ -2,6 +2,8 @@
 
 这里说明内置命令的模型和参数。不同共轭、结构重构、计算后端选择及最终验收见[通用成像光学设计方法](imaging-design-method.md)。
 
+用 `screening.manufacturing_policy` 配置[加工与装配边界](manufacturing-boundaries.md)，结构粗筛、CPU/CUDA 评分及入围密采样共用几何硬门槛。每个候选报告保存 `manufacturing`。默认允许有未完成机械项的探索性光学排名，显式配置加工边界后要求完整通过。
+
 ## 从规格生成可追迹的起点
 
 ```powershell

@@ -11,6 +11,7 @@ from threading import Lock
 import numpy as np
 
 from .standalone import disk_quadrature
+from .standalone_manufacturing import audit_manufacturing
 from .standalone_system import OpticalSystem
 
 
@@ -82,6 +83,28 @@ def _candidate_model(model, candidate):
     return dict(model, surface_rows=rows)
 
 
+def _manufacturing_policy(value):
+    if value is not None and not isinstance(value, dict):
+        raise ValueError('Manufacturing policy must be an object')
+    return deepcopy(value)
+
+
+def _manufacturing_preflight(model, settings, result):
+    """Block impossible solids and enforce an explicitly selected project policy."""
+    policy = settings['manufacturing_policy']
+    report = audit_manufacturing(model, policy)
+    result['manufacturing'] = report
+    if not report['eligible']:
+        result['reasons'].append({'code': 'manufacturing_failed',
+                                  'detail': 'Candidate violates physical geometry or configured limits'})
+        return False
+    if policy is not None and not report['passed']:
+        result['reasons'].append({'code': 'manufacturing_incomplete',
+                                  'detail': 'Configured nominal-geometry checks have missing inputs'})
+        return False
+    return True
+
+
 def _score_candidate(model, settings, pupil, weights, task):
     input_index, candidate = task
     result = {'id': candidate['id'], 'input_index': input_index, 'status': 'rejected',
@@ -89,7 +112,10 @@ def _score_candidate(model, settings, pupil, weights, task):
               'worst_spot_um': None, 'mean_spot_um': None, 'groups': [], 'reasons': []}
     reasons = result['reasons']
     try:
-        system = OpticalSystem(_candidate_model(model, candidate))
+        candidate_model = _candidate_model(model, candidate)
+        if not _manufacturing_preflight(candidate_model, settings, result):
+            return result
+        system = OpticalSystem(candidate_model)
         fields = settings['field_indices'] or range(len(system.fields))
         waves = settings['wave_indices'] or range(len(system.wavelengths))
         if max(fields) >= len(system.fields) or max(waves) >= len(system.wavelengths):
@@ -152,7 +178,8 @@ class CandidateScreen:
     """
 
     def __init__(self, model, *, workers=1, radial=6, azimuthal=24, field_indices=None,
-                 wave_indices=None, wfe_limit_waves=None, spot_limit_um=None):
+                 wave_indices=None, wfe_limit_waves=None, spot_limit_um=None,
+                 manufacturing_policy=None):
         if type(workers) is not int or not 1 <= workers <= 61:
             raise ValueError('Worker count must be an integer from 1 to 61')
         if (type(radial) is not int or not 1 <= radial <= 128
@@ -164,7 +191,8 @@ class CandidateScreen:
                              field_indices=_selection_indices(field_indices, 'Field indices'),
                              wave_indices=_selection_indices(wave_indices, 'Wavelength indices'),
                              wfe_limit_waves=_limit(wfe_limit_waves, 'Wavefront limit'),
-                             spot_limit_um=_limit(spot_limit_um, 'Spot limit'))
+                             spot_limit_um=_limit(spot_limit_um, 'Spot limit'),
+                             manufacturing_policy=_manufacturing_policy(manufacturing_policy))
         self._pool = None
         self._pupil = None
 
@@ -218,9 +246,11 @@ class CandidateScreen:
 
 
 def screen_candidates(model, candidates, *, workers=1, radial=6, azimuthal=24,
-                      field_indices=None, wave_indices=None, wfe_limit_waves=None, spot_limit_um=None):
+                      field_indices=None, wave_indices=None, wfe_limit_waves=None, spot_limit_um=None,
+                      manufacturing_policy=None):
     """Run one coarse screening batch with the same results as a reusable pool."""
     with CandidateScreen(model, workers=workers, radial=radial, azimuthal=azimuthal,
                          field_indices=field_indices, wave_indices=wave_indices,
-                         wfe_limit_waves=wfe_limit_waves, spot_limit_um=spot_limit_um) as screen:
+                         wfe_limit_waves=wfe_limit_waves, spot_limit_um=spot_limit_um,
+                         manufacturing_policy=manufacturing_policy) as screen:
         return screen.screen(candidates)

@@ -159,10 +159,26 @@ def _surface_row(number, records):
     if surface_type == "STANDARD" and any(parameters.values()):
         raise ValueError(f"Unsupported standard-surface parameters at surface {number}")
     coefficients = tuple(parameters.get(i,0.0) for i in range(1,max(parameters,default=0)+1)) if surface_type == "EVENASPH" else ()
-    return ({"curvature_mm_inv":_finite(records.get("CURV",["0"])[0]),
-             "conic":_finite(records.get("CONI",["0"])[0]),
-             "even_coefficients":coefficients, "aperture_radius_mm":aperture_radius},
-            (name,explicit_catalog), thickness, surface_type)
+    row = {"curvature_mm_inv":_finite(records.get("CURV",["0"])[0]),
+           "conic":_finite(records.get("CONI",["0"])[0]),
+           "even_coefficients":coefficients, "aperture_radius_mm":aperture_radius}
+    # Saved display/mechanical radii describe the solid geometry. CLAP alone
+    # continues to control the existing optical ray-clipping convention.
+    for record, key in (("DIAM", "clear_radius"), ("MEMA", "mechanical_radius")):
+        values = records.get(record)
+        if values is None:
+            continue
+        if not values:
+            raise ValueError(f"Missing {record} radius at surface {number}")
+        radius = _finite(values[0])
+        if radius < 0.:
+            raise ValueError(f"Negative {record} radius at surface {number}")
+        if radius:
+            row[key+"_mm"] = radius
+            mode = values[1] if len(values) > 1 else None
+            row[key+"_source"] = "zmx_saved_automatic" if mode == "0" else "zmx_saved_declared"
+            row[key+"_mode"] = mode
+    return row, (name,explicit_catalog), thickness, surface_type
 
 
 def load_zmx(path, glass_directory):

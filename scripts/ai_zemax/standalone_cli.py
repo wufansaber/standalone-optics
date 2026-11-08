@@ -151,16 +151,25 @@ def main(argv=None):
                         help='RECT sampling parameter for the spot diagram (2n by 2n grid)')
     parser.add_argument('--out',type=Path,help='Write the evaluation report')
     parser.add_argument('--neutral-out',type=Path,help='Explicitly export a private normalized model JSON')
+    parser.add_argument('--manufacturing-policy', type=Path,
+                        help='Apply a project nominal-geometry policy before optical evaluation')
+    parser.add_argument('--manufacturing-only', action='store_true',
+                        help='Write the nominal-geometry audit without tracing optical performance')
     args = parser.parse_args(argv)
-    paths = [path.resolve() for path in (args.model,args.out,args.neutral_out) if path is not None]
+    paths = [path.resolve() for path in (args.model,args.out,args.neutral_out,args.manufacturing_policy)
+             if path is not None]
     if len(paths)!=len(set(paths)):
-        parser.error('Input model, report, and model export must be different files')
+        parser.error('Input model, policy, report, and model export must be different files')
     if args.optimize and not args.demo:
         parser.error('--optimize is for the synthetic demo')
     if args.demo and args.neutral_out:
         parser.error('--neutral-out requires an input model')
     if args.demo and (args.aberrations or args.mtf or args.plot_dir):
         parser.error('--aberrations, --mtf, and --plot-dir require an input model')
+    if args.demo and (args.manufacturing_only or args.manufacturing_policy):
+        parser.error('Manufacturing audit requires an input model')
+    if args.manufacturing_only and (args.aberrations or args.mtf or args.plot_dir or args.allow_signed_segments):
+        parser.error('--manufacturing-only cannot be combined with optical analyses or signed-path replay')
     if not args.mtf and (args.mtf_all_waves or args.mtf_method != 'auto' or args.mtf_max_frequency is not None):
         parser.error('MTF options require --mtf')
     if (args.aberrations or args.plot_dir) and (args.fan_samples < 3 or args.fan_samples % 2 != 1):
@@ -183,11 +192,28 @@ def main(argv=None):
                 model.setdefault('source_sha256',hashlib.sha256(raw).hexdigest())
             else:
                 parser.error('Use a text ZMX or normalized JSON file')
-            report = evaluate_model(model,args.sampling,allow_signed_segments=args.allow_signed_segments,
-                                    use_primary_field=args.field_reference=='primary')
-            if args.aberrations or args.mtf or args.plot_dir:
-                evaluate_optional(model, report, args)
+            manufacturing = None
+            policy_raw = None
+            if args.manufacturing_only or args.manufacturing_policy:
+                from .standalone_manufacturing import audit_manufacturing
+
+                policy_raw = args.manufacturing_policy.read_bytes() if args.manufacturing_policy else None
+                policy = json.loads(policy_raw.decode('utf-8-sig')) if policy_raw is not None else None
+                manufacturing = audit_manufacturing(model, policy)
+            if args.manufacturing_only:
+                report = {'status': manufacturing['status'], 'manufacturing': manufacturing}
+            elif manufacturing is not None and not manufacturing['passed']:
+                report = {'status': 'manufacturing_rejected', 'manufacturing': manufacturing}
+            else:
+                report = evaluate_model(model,args.sampling,allow_signed_segments=args.allow_signed_segments,
+                                        use_primary_field=args.field_reference=='primary')
+                if manufacturing is not None:
+                    report['manufacturing'] = manufacturing
+                if args.aberrations or args.mtf or args.plot_dir:
+                    evaluate_optional(model, report, args)
             report['input_file_sha256'] = hashlib.sha256(args.model.read_bytes()).hexdigest()
+            if policy_raw is not None:
+                report['manufacturing_policy_file_sha256'] = hashlib.sha256(policy_raw).hexdigest()
             if args.neutral_out:
                 write_json(args.neutral_out,model)
         if args.out:
@@ -195,7 +221,7 @@ def main(argv=None):
             print(f"{report['status']} | {args.out}")
         else:
             print(json.dumps(report,indent=2,ensure_ascii=False,allow_nan=False))
-        return 2 if report['status'] == 'incomplete' else 0
+        return 2 if report['status'] in ('incomplete', 'invalid', 'manufacturing_rejected') else 0
     except (OSError,ValueError,KeyError,TypeError,RuntimeError,ImportError) as error:
         print(f'Optical calculation error: {error}',file=sys.stderr)
         return 2
