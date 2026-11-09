@@ -16,6 +16,8 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 
 候选的接受和回退使用硬几何门槛，复核完整机械径向域和内部极值。用户要求全球面时，逐面锁定圆锥常数和全部非球面项为零。通光口径扩大后重新检查实体和支承域。原项目的 0.30 mm 空气隙、厚度分档和限定材料分别保留在原项目配置，跨项目按实际工艺选择。输出光学、名义几何、安装路径及制造验收各自的完成状态。
 
+使用加工配置和候选排名时，先查[当前已知接受风险](references/manufacturing-audit-20261109.md)。六项逐片覆盖和通光包络联动尚未修复，涉及这些条件时需按[当前实现限制](references/manufacturing-boundaries.md)另做检查；名义实体 `passed` 不能推出完整制造或通光验收。
+
 ## 已有处方的独立验证
 
 使用 [standalone_optics.py](scripts/standalone_optics.py) 进行可复现的光线追迹和像差评价。脚本在普通 Python 环境中使用 NumPy。
@@ -29,3 +31,7 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 ## 内置初始结构和粗筛
 
 按[初始结构与并行粗筛](references/optimization.md)使用 `scripts/optimize_optics.py`。用 `seed` 搜索有限共轭三组种子，用 `screen` 粗筛已有处方的曲率候选，用 `groups` 搜索多片组间距和配置的有界曲率模式。在 `screening.manufacturing_policy` 提供项目配置，使 CPU、CUDA 和密采样复排执行相同几何门槛。缺少机械数据的探索结果保留未完成标记。保存基线和淘汰原因。NVIDIA CUDA 环境可使用 `--backend cuda` 做粗筛，密采样决选走 CPU。先以 `--verify-serial` 核对同一候选集。
+
+## 方法案例
+
+结构调整、分级优化、同处方复核和显式工程边界的实际应用见 [UV355 5 mm 案例](examples/uv355-5mm/README.md)。案例区分已验证的名义性能和待完成的制造验收，处方保持私有。

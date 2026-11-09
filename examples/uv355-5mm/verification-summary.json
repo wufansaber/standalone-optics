@@ -1,0 +1,102 @@
+{
+  "case": "UV355 5 mm F engineering revision",
+  "verification_date": "2026-11-08",
+  "published_date": "2026-11-09",
+  "prescription_sha256": "049e5b39a476154eafe5b75a28b519f2ae7f863195c3af1ecc463c954ed5a055",
+  "design": {
+    "center_wavelength_nm": 355.0,
+    "unique_wavelengths_nm": [
+      355.0,
+      354.99,
+      355.01
+    ],
+    "full_object_field_diameter_mm": 5.0,
+    "object_na": 0.6,
+    "nominal_magnification": -10.0,
+    "total_track_mm": 849.99,
+    "lens_count": 13,
+    "group_lens_counts": [
+      5,
+      3,
+      5
+    ],
+    "even_aspheric_surfaces": 4
+  },
+  "optical_maxima": {
+    "wfe_worst_waves": 0.04803798585442112,
+    "axis_wfe_worst_waves": 0.039222117069218396,
+    "rms_over_airy_worst": 0.9791654205576967,
+    "front_divergence_mrad": 0.9852411063996911,
+    "object_chief_deg": 0.019969999997824322,
+    "image_chief_deg": 0.07989795789973107,
+    "height_error_um": 14.976003473154975,
+    "field_curvature_object_um": 0.2699028278430499,
+    "astigmatism_object_um": 0.27252926341412437,
+    "individual_focus_shift_object_um": 0.35698717345731973,
+    "individual_image_depth_fraction": 0.7243311247411505,
+    "sine_error_um": 99.71403433389528,
+    "axis_ordering": {
+      "minimum_off_axis_wfe_minus_axis_waves": 1.6050436674186486e-09,
+      "minimum_off_axis_airy_minus_axis": 9.070764361851502e-08
+    },
+    "near_axis_magnifications": [
+      -9.980558138036256,
+      -9.980562747103434,
+      -9.980553529004391
+    ],
+    "image_na": [
+      0.060130327984700735,
+      0.06013041629388233,
+      0.060130239654238755
+    ],
+    "front_middle_efl_mm": 81.57197163352485
+  },
+  "acceptance_limits": {
+    "wfe_worst_waves": 0.055,
+    "axis_wfe_worst_waves": 0.04,
+    "rms_over_airy_worst": 1.0,
+    "front_divergence_mrad": 1.0,
+    "object_chief_deg": 0.02,
+    "image_chief_deg": 0.08,
+    "height_error_um": 15.0,
+    "field_curvature_object_um": 0.493,
+    "astigmatism_object_um": 0.493,
+    "individual_focus_shift_object_um": 0.493,
+    "individual_image_depth_fraction": 1.0,
+    "sine_error_um": 100.0
+  },
+  "verification": {
+    "independent_field_points": 689,
+    "native_field_points": 244,
+    "native_wavefront_samples": 2196,
+    "native_rim_ray_count": 9408,
+    "pupil_methods": [
+      "GQ20",
+      "RECT32",
+      "RECT64"
+    ],
+    "max_native_vs_standalone_wfe_delta_waves": 5.500687266790649e-10,
+    "strict_axis_ordering_pass": true
+  },
+  "nominal_geometry": {
+    "work_clearance_mm": 4.15000000000008,
+    "minimum_air_gap_mm": 0.3999999999999986,
+    "minimum_radial_thickness_reserve_mm": 0.08000000004400665,
+    "maximum_surface_normal_angle_deg": 59.79999997330712,
+    "spacer_ray_count": 106260,
+    "minimum_spacer_radial_clearance_mm": 0.9453275601429052
+  },
+  "completion": {
+    "nominal_optical_verified": true,
+    "project_explicit_solids_and_spacers_verified": true,
+    "supplier_manufacturing_approved": false,
+    "full_tolerance_yield_verified": false,
+    "complete_preload_thermal_housing_verified": false,
+    "actual_serrated_filter_diffraction_verified": false
+  },
+  "public_scope": "performance aggregates and raster diagrams; prescription, material catalogues, solid meshes and per-surface dimensions are private",
+  "provenance": {
+    "native_report_sha256": "720262830593d2067a97a2996ef65bbfb3a3b47c863b4e95012b2f3a3d53edf7",
+    "independent_report_sha256": "ac0c4e5f5649b311dcf19b4a5404fe70c98b7ec0fee6dbfc7d259ac6736ceb21"
+  }
+}

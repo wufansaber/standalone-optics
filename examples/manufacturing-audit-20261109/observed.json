@@ -1,0 +1,1807 @@
+{
+  "module": "scripts/ai_zemax/standalone_manufacturing.py",
+  "module_sha256": "97ebf815911b88bd5b0d7de99390c8ee41b8b2972aaac122b9d5ee69063a5113",
+  "audited_commit": "c9a46f168f6750b7187e4167405c2fd08386b30b",
+  "probes": [
+    {
+      "name": "baseline",
+      "expected": "nominal geometry passes",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "per_lens_slope_ignored",
+      "expected": "reject or reject unsupported key; actual slope approximately .024 > .001",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "maximum_surface_slope": 0.001
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "default_slope_control",
+      "expected": "reject",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1,
+          "maximum_surface_slope": 0.001
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ]
+      },
+      "actual": {
+        "status": "invalid",
+        "eligible": false,
+        "passed": false,
+        "violations": [
+          {
+            "code": "surface_slope_above_limit",
+            "detail": "Slope exceeds configured process/metrology capability",
+            "surface": 1,
+            "value": 0.024006914987417995,
+            "limit": 0.001
+          },
+          {
+            "code": "surface_slope_above_limit",
+            "detail": "Slope exceeds configured process/metrology capability",
+            "surface": 2,
+            "value": 0.024006914987417995,
+            "limit": 0.001
+          }
+        ],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "per_lens_radial_margin_ignored",
+      "expected": "reject or reject unsupported key; actual margin .2 < .5",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "minimum_clear_to_mechanical_radial_margin_mm": 0.5
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "default_radial_margin_control",
+      "expected": "reject",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.5,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ]
+      },
+      "actual": {
+        "status": "invalid",
+        "eligible": false,
+        "passed": false,
+        "violations": [
+          {
+            "code": "radial_margin_below_limit",
+            "detail": "Insufficient radial allowance",
+            "surface": 1,
+            "value": 0.19999999999999996,
+            "limit": 0.5
+          },
+          {
+            "code": "radial_margin_below_limit",
+            "detail": "Insufficient radial allowance",
+            "surface": 2,
+            "value": 0.19999999999999996,
+            "limit": 0.5
+          }
+        ],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "per_lens_air_gap_ignored",
+      "expected": "reject or reject unsupported key; actual gap .2 < .5",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          12.2,
+          14.2,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "minimum_air_gap_mm": 0.5
+          },
+          {
+            "front_surface": 3,
+            "rear_surface": 4
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 3,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 4,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          },
+          {
+            "lens": 2,
+            "front_surface": 3,
+            "rear_surface": 4,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          }
+        ],
+        "gaps": [
+          {
+            "left_lens": 1,
+            "right_lens": 2,
+            "kind": "separated_solids",
+            "left_rear_surface": 2,
+            "right_front_surface": 3,
+            "minimum_gap_mm": 0.1999999999999993,
+            "minimum_at_radius_mm": 0.0,
+            "common_radius_mm": 1.2,
+            "separate_rim_axial_gap_mm": 0.1999999999999993
+          }
+        ],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "per_lens_air_budget_ignored",
+      "expected": "reject or reject unsupported key; .2-.2 < .1",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          12.2,
+          14.2,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "air_gap_budget_mm": 0.2
+          },
+          {
+            "front_surface": 3,
+            "rear_surface": 4
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 3,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 4,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          },
+          {
+            "lens": 2,
+            "front_surface": 3,
+            "rear_surface": 4,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          }
+        ],
+        "gaps": [
+          {
+            "left_lens": 1,
+            "right_lens": 2,
+            "kind": "separated_solids",
+            "left_rear_surface": 2,
+            "right_front_surface": 3,
+            "minimum_gap_mm": 0.1999999999999993,
+            "minimum_at_radius_mm": 0.0,
+            "common_radius_mm": 1.2,
+            "separate_rim_axial_gap_mm": 0.1999999999999993
+          }
+        ],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "default_air_gap_control",
+      "expected": "reject",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          12.2,
+          14.2,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.5,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          },
+          {
+            "front_surface": 3,
+            "rear_surface": 4
+          }
+        ]
+      },
+      "actual": {
+        "status": "invalid",
+        "eligible": false,
+        "passed": false,
+        "violations": [
+          {
+            "code": "air_gap_below_limit",
+            "detail": "Air separation less budget misses limit",
+            "left_lens": 1,
+            "right_lens": 2,
+            "value": 0.1999999999999993,
+            "limit": 0.5
+          }
+        ],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 3,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 4,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          },
+          {
+            "lens": 2,
+            "front_surface": 3,
+            "rear_surface": 4,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          }
+        ],
+        "gaps": [
+          {
+            "left_lens": 1,
+            "right_lens": 2,
+            "kind": "separated_solids",
+            "left_rear_surface": 2,
+            "right_front_surface": 3,
+            "minimum_gap_mm": 0.1999999999999993,
+            "minimum_at_radius_mm": 0.0,
+            "common_radius_mm": 1.2,
+            "separate_rim_axial_gap_mm": 0.1999999999999993
+          }
+        ],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "per_lens_center_budget_control",
+      "expected": "reject",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_budget_mm": 1.5
+          }
+        ]
+      },
+      "actual": {
+        "status": "invalid",
+        "eligible": false,
+        "passed": false,
+        "violations": [
+          {
+            "code": "center_thickness_below_limit",
+            "detail": "Center thickness less budget misses limit",
+            "lens": 1,
+            "value": 0.5,
+            "limit": 1.0
+          }
+        ],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "ray_envelope_is_out_of_scope",
+      "expected": "nominal geometry may pass; actual ray coverage has not been checked",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ],
+        "fields": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            100.0
+          ]
+        ],
+        "field_type": "object_height",
+        "aperture_type": "obna",
+        "aperture_value": 0.6
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "thick_high_aspect_ratio_lens_unbounded",
+      "expected": "currently no maximum CT, overall height, aspect ratio or tool reach policy",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          210.0,
+          300.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 200.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 199.97119585160516,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 199.97119585160516
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      }
+    },
+    {
+      "name": "per_lens_minimum_rim_gap_mm_ignored",
+      "expected": "reject or reject unsupported key",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          12.2,
+          14.2,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "minimum_rim_gap_mm": 0.5
+          },
+          {
+            "front_surface": 3,
+            "rear_surface": 4
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 3,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 4,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          },
+          {
+            "lens": 2,
+            "front_surface": 3,
+            "rear_surface": 4,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          }
+        ],
+        "gaps": [
+          {
+            "left_lens": 1,
+            "right_lens": 2,
+            "kind": "separated_solids",
+            "left_rear_surface": 2,
+            "right_front_surface": 3,
+            "minimum_gap_mm": 0.1999999999999993,
+            "minimum_at_radius_mm": 0.0,
+            "common_radius_mm": 1.2,
+            "separate_rim_axial_gap_mm": 0.1999999999999993
+          }
+        ],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "per_lens_rim_gap_budget_mm_ignored",
+      "expected": "reject or reject unsupported key",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          12.2,
+          14.2,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "aperture_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ]
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2,
+            "rim_gap_budget_mm": 0.5
+          },
+          {
+            "front_surface": 3,
+            "rear_surface": 4
+          }
+        ]
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 3,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          },
+          {
+            "surface": 4,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.0
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          },
+          {
+            "lens": 2,
+            "front_surface": 3,
+            "rear_surface": 4,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 2.0,
+            "minimum_at_radius_mm": 0.0,
+            "edge_thickness_mm": 2.0
+          }
+        ],
+        "gaps": [
+          {
+            "left_lens": 1,
+            "right_lens": 2,
+            "kind": "separated_solids",
+            "left_rear_surface": 2,
+            "right_front_surface": 3,
+            "minimum_gap_mm": 0.1999999999999993,
+            "minimum_at_radius_mm": 0.0,
+            "common_radius_mm": 1.2,
+            "separate_rim_axial_gap_mm": 0.1999999999999993
+          }
+        ],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "finding_reproduced": true
+    },
+    {
+      "name": "policy_clear_radius_does_not_check_trace_envelope",
+      "expected": "nominal geometry passes, but model trace can exit physical lens",
+      "input_model": {
+        "vertices_mm": [
+          10.0,
+          12.0,
+          100.0
+        ],
+        "indices_by_wave": [
+          [
+            1.0,
+            1.5,
+            1.0,
+            1.0
+          ]
+        ],
+        "surface_rows": [
+          {
+            "curvature_mm_inv": 0.02,
+            "aperture_radius_mm": 2.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {
+            "curvature_mm_inv": -0.02,
+            "aperture_radius_mm": 2.0,
+            "mechanical_radius_mm": 1.2
+          },
+          {}
+        ],
+        "fields": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ],
+        "field_type": "object_height",
+        "aperture_type": "obna",
+        "aperture_value": 0.1,
+        "wavelengths_um": [
+          0.55
+        ],
+        "stop_surface": 1,
+        "primary_wave": 0,
+        "object_at_infinity": false,
+        "object_space_telecentric": true
+      },
+      "input_policy": {
+        "schema_version": 1,
+        "defaults": {
+          "minimum_center_thickness_mm": 1.0,
+          "minimum_radial_thickness_mm": 0.5,
+          "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+          "minimum_air_gap_mm": 0.1,
+          "minimum_rim_gap_mm": 0.1
+        },
+        "lenses": [
+          {
+            "front_surface": 1,
+            "rear_surface": 2
+          }
+        ],
+        "surfaces": {
+          "1": {
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          },
+          "2": {
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2
+          }
+        }
+      },
+      "actual": {
+        "status": "passed",
+        "eligible": true,
+        "passed": true,
+        "violations": [],
+        "missing": [],
+        "surfaces": [
+          {
+            "surface": 1,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          },
+          {
+            "surface": 2,
+            "clear_radius_mm": 1.0,
+            "mechanical_radius_mm": 1.2,
+            "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+            "maximum_sampled_surface_slope": 0.024006914987417995
+          }
+        ],
+        "lenses": [
+          {
+            "lens": 1,
+            "front_surface": 1,
+            "rear_surface": 2,
+            "center_thickness_mm": 2.0,
+            "mechanical_diameter_mm": 2.4,
+            "common_radius_mm": 1.2,
+            "minimum_radial_thickness_mm": 1.9711958516051764,
+            "minimum_at_radius_mm": 1.2,
+            "edge_thickness_mm": 1.9711958516051764
+          }
+        ],
+        "gaps": [],
+        "assumptions": [
+          "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+        ],
+        "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+        "method": {
+          "radial_samples": 1025,
+          "extrema": "polynomial candidates plus sampled local refinement",
+          "interval_certified": false
+        }
+      },
+      "ray_probe": {
+        "valid": true,
+        "first_face_hit_radius_mm": 1.5073217988187573,
+        "clear_radius_mm": 1.0,
+        "mechanical_radius_mm": 1.2
+      },
+      "screening_probe": {
+        "status": "calculated",
+        "candidate_count": 1,
+        "ranked_count": 1,
+        "rejected_count": 0,
+        "settings": {
+          "radial": 8,
+          "azimuthal": 32,
+          "field_indices": null,
+          "wave_indices": null,
+          "wfe_limit_waves": null,
+          "spot_limit_um": null,
+          "manufacturing_policy": {
+            "schema_version": 1,
+            "defaults": {
+              "minimum_center_thickness_mm": 1.0,
+              "minimum_radial_thickness_mm": 0.5,
+              "minimum_clear_to_mechanical_radial_margin_mm": 0.1,
+              "minimum_air_gap_mm": 0.1,
+              "minimum_rim_gap_mm": 0.1
+            },
+            "lenses": [
+              {
+                "front_surface": 1,
+                "rear_surface": 2
+              }
+            ],
+            "surfaces": {
+              "1": {
+                "clear_radius_mm": 1.0,
+                "mechanical_radius_mm": 1.2
+              },
+              "2": {
+                "clear_radius_mm": 1.0,
+                "mechanical_radius_mm": 1.2
+              }
+            }
+          },
+          "workers": 1,
+          "pupil_rays": 256
+        },
+        "ranked": [
+          "outside_physical_envelope"
+        ],
+        "results": [
+          {
+            "id": "outside_physical_envelope",
+            "input_index": 0,
+            "status": "calculated",
+            "rank": 1,
+            "worst_wfe_waves": 281.54146127946416,
+            "mean_wfe_waves": 281.5399891546259,
+            "worst_spot_um": 5711.040145269166,
+            "mean_spot_um": 5710.8883129473315,
+            "groups": [
+              {
+                "field_index": 0,
+                "wave_index": 0,
+                "wfe_waves": 281.53851702978767,
+                "spot_um": 5710.736480625497
+              },
+              {
+                "field_index": 1,
+                "wave_index": 0,
+                "wfe_waves": 281.54146127946416,
+                "spot_um": 5711.040145269166
+              }
+            ],
+            "reasons": [],
+            "manufacturing": {
+              "status": "passed",
+              "eligible": true,
+              "passed": true,
+              "violations": [],
+              "missing": [],
+              "surfaces": [
+                {
+                  "surface": 1,
+                  "clear_radius_mm": 1.0,
+                  "mechanical_radius_mm": 1.2,
+                  "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+                  "maximum_sampled_surface_slope": 0.024006914987417995
+                },
+                {
+                  "surface": 2,
+                  "clear_radius_mm": 1.0,
+                  "mechanical_radius_mm": 1.2,
+                  "clear_to_mechanical_radial_margin_mm": 0.19999999999999996,
+                  "maximum_sampled_surface_slope": 0.024006914987417995
+                }
+              ],
+              "lenses": [
+                {
+                  "lens": 1,
+                  "front_surface": 1,
+                  "rear_surface": 2,
+                  "center_thickness_mm": 2.0,
+                  "mechanical_diameter_mm": 2.4,
+                  "common_radius_mm": 1.2,
+                  "minimum_radial_thickness_mm": 1.9711958516051764,
+                  "minimum_at_radius_mm": 1.2,
+                  "edge_thickness_mm": 1.9711958516051764
+                }
+              ],
+              "gaps": [],
+              "assumptions": [
+                "Unspecified scalar tolerance budgets are zero; a nominal pass does not establish toleranced clearance"
+              ],
+              "scope": "configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated",
+              "method": {
+                "radial_samples": 1025,
+                "extrema": "polynomial candidates plus sampled local refinement",
+                "interval_certified": false
+              }
+            }
+          }
+        ]
+      },
+      "finding_reproduced": true
+    }
+  ]
+}
