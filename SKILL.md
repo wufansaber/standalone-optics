@@ -35,3 +35,9 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 ## 方法案例
 
 结构调整、分级优化、同处方复核和显式工程边界的实际应用见 [UV355 5 mm 案例](examples/uv355-5mm/README.md)。案例区分已验证的名义性能和待完成的制造验收，处方保持私有。
+
+## 显微高精度加工、公差与反射镜评审
+
+显微成像及高精度球面、非球面、反射镜任务，先读[显微加工与结构约束](references/microscope-manufacturing-constraints.md)，按其[项目登记表](references/microscope-constraint-register.example.json)逐片、逐面、逐接口分配有来源的限值。球面检查半径/曲率、面形、粗糙度、楔角与定心；非球面追加偏离、名义斜率与斜率误差、空间频率及检测基准；反射镜追加折返包络、镀后面形、支承/重力/热和反射波前预算。区分教材参考、供应商能力和项目验收限值，不自动套用统一高精度数值。
+
+把当前运行时支持的几何项写入 `manufacturing_policy`；登记表本身不能传给该参数。其余用兼容后端或证据检查，缺失项保持 `incomplete`。名义面形斜率不等于制造斜率误差；面形 PV/RMS、粗糙度、反射波前和系统波前分别报告。此规则覆盖反射镜评审，不扩展当前折射追迹内核的计算范围。

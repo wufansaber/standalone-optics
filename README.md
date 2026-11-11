@@ -70,3 +70,7 @@ python scripts/optimize_optics.py seed --demo --workers 4 --dense-top 8 --out se
 ```
 
 按有限共轭的总长、倍率、组功率和间距生成三组初值。支持把已有处方的曲率候选分批并行追迹，再以密采样复核入围结果。可使用 `--backend cuda` 选择 NVIDIA GPU 粗筛。已有多片组可用 `groups` 保留完整组矩阵并搜索组间空气间距，也可配置联动曲率模式搜索组光焦度。[初始结构与多核筛选](references/optimization.md)
+
+## 显微高精度加工与公差约束
+
+新增基于用户本机资料库原页核查的[球面、非球面及反射镜约束总结](references/microscope-manufacturing-constraints.md)和[项目检查登记表](references/microscope-constraint-register.example.json)。涵盖结构厚度/净距、定心与楔角、面形/粗糙度、非球面斜率与检测、反射镜支承与镀后验收，以及系统公差与补偿。数字保留来源和适用范围；未完成项不会变为制造通过。运行时仅执行其已有几何字段，反射与三维装配由兼容后端复核。

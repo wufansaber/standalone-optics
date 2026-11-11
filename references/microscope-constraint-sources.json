@@ -1,0 +1,48 @@
+{
+  "review_date": "2026-11-11",
+  "retrieval": "Read-only local SQLite; source PDFs remain private; only listed pages reviewed",
+  "documents": [
+    {
+      "id": "D-3D9D2F2D11",
+      "title": "Optical Specification, Fabrication, and Testing",
+      "sha256": "3d9d2f2d11c05100ceccf41ede4ca6280f3d5171eba1c609fc8873d9a8afa521",
+      "pdf_physical_pages": [
+        133,
+        134,
+        155
+      ],
+      "verification": "SHA-256 matched; listed pages rendered and visually inspected on 2026-11-11"
+    },
+    {
+      "id": "D-6D823FC568",
+      "title": "非球面光学元件的先进制造和应用技术",
+      "sha256": "6d823fc56804d0207b5de8d2c5be79e92b3376af8569cd2bea71a475379b5f93",
+      "pdf_physical_pages": [
+        38,
+        44,
+        45
+      ],
+      "verification": "SHA-256 matched; listed pages rendered and visually inspected on 2026-11-11"
+    },
+    {
+      "id": "D-2F277B99B6",
+      "title": "Opto-Mechanical Systems Design, Volume 2 Design and Analysis of Large Mirrors and Structures (Paul Yoder, Daniel Vukobratovich)",
+      "sha256": "c293452ee6a564d049d2001d1ec48d1468ae4a171aef97b9fc8868232f424790",
+      "pdf_physical_pages": [
+        26,
+        29
+      ],
+      "verification": "SHA-256 matched; listed pages rendered and visually inspected on 2026-11-11"
+    },
+    {
+      "id": "D-5347402C7F",
+      "title": "Opto-Mechanical Systems Design, Volume 1 Design and Analysis of Opto-Mechanical Assemblies (Paul Yoder, Daniel Vukobratovich)",
+      "sha256": "fa4e8657c7f96feebb077990f4d12bbf9202a5351cb04f036981815a44365f25",
+      "pdf_physical_pages": [
+        284,
+        285
+      ],
+      "verification": "SHA-256 matched; listed pages rendered and visually inspected on 2026-11-11"
+    }
+  ]
+}
