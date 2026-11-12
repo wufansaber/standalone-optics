@@ -1,0 +1,114 @@
+{
+  "schema": "anonymous_joint_optical_minimax_case_v1",
+  "final_all_declared_goals_passed": true,
+  "history": [
+    {
+      "checkpoint_index": 0,
+      "normalized": {
+        "WFE": 1.1261418955148952,
+        "LCA": 1.104991510100976,
+        "FC": 0.47088835104490684
+      },
+      "Phi": 1.1261418955148952,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 1,
+      "normalized": {
+        "WFE": 1.1118790017362108,
+        "LCA": 1.0916950310811513,
+        "FC": 0.41968535558154246
+      },
+      "Phi": 1.1118790017362108,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 2,
+      "normalized": {
+        "WFE": 1.0976012681492098,
+        "LCA": 1.0780668949331418,
+        "FC": 0.3950090105203006
+      },
+      "Phi": 1.0976012681492098,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 3,
+      "normalized": {
+        "WFE": 1.08501181762829,
+        "LCA": 1.0660229552124938,
+        "FC": 0.3975042730492189
+      },
+      "Phi": 1.08501181762829,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 4,
+      "normalized": {
+        "WFE": 1.069932366251724,
+        "LCA": 1.0519551677071604,
+        "FC": 0.40438254246346494
+      },
+      "Phi": 1.069932366251724,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 5,
+      "normalized": {
+        "WFE": 1.0432400043485854,
+        "LCA": 1.028114756873773,
+        "FC": 0.3792834873762381
+      },
+      "Phi": 1.0432400043485854,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 6,
+      "normalized": {
+        "WFE": 1.0299656161163442,
+        "LCA": 1.0150034934526035,
+        "FC": 0.35733301393954936
+      },
+      "Phi": 1.0299656161163442,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 7,
+      "normalized": {
+        "WFE": 1.013686620076802,
+        "LCA": 0.9993814069700326,
+        "FC": 0.32154699873318987
+      },
+      "Phi": 1.013686620076802,
+      "original_physical_checks_passed": true
+    },
+    {
+      "checkpoint_index": 8,
+      "normalized": {
+        "WFE": 0.9785218531378252,
+        "LCA": 0.9642693397518635,
+        "FC": 0.3011305562617515
+      },
+      "Phi": 0.9785218531378252,
+      "original_physical_checks_passed": true
+    }
+  ],
+  "native_validation": {
+    "original_same_prescription_verification_passed": true,
+    "focus_sampling": [
+      20,
+      64
+    ],
+    "spectral_nodes": 51,
+    "FC_grid_fields": 65,
+    "local_extrema_searched": true,
+    "no_failed_or_vignetted_rays": true,
+    "normalized_WFE_RWCE20_max": 0.9619652457032645,
+    "normalized_WFE_RWRE32_max": 0.9684729311342352,
+    "native_vs_standalone_focus_max_um": 2.8990915570958897e-11,
+    "actual_magnification_max_absolute_error": 1.0658141036401503e-14
+  },
+  "contains_prescription_or_catalog": false,
+  "global_optimum_claimed": false,
+  "hardware_performance_claimed": false
+}
