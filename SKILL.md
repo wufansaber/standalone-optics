@@ -24,6 +24,8 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 
 ## 可执行局部优化与材料搜索
 
+原生 MF 膨胀、工作集简化或评价预算任务按 [MF 工作集与预算](references/merit-function-budget.md) 执行。用 `scripts/compact_merit.py` 统计并编译有序行图，区分保持目标/权重的等价编译与显式停用约束的工作集；保留行依赖和配置/主波长状态。预算超限时停止生成，不能静默删除硬门。球面冗余需匹配表达式并附证明，完整实体、物理通光及独立密采样验收始终保留。[绿光精简案例](examples/green8-mf-compact/README.md)提供可运行构建、原生核对及工作版 Zemax/MF。
+
 接入连续精修时按[局部优化接口](references/local-optimization.md)使用 `EfficientSolveMixin`。需要直接SOCP时选择 `subproblem_backend="clarabel"` 或有记录回退的 `"auto"`，并安装可选依赖。指定 `hard_gate_keys` 保护全过程硬门；几何投影或校正后的点必须在原信赖盒内并重新追迹。解析导数要覆盖当前发射、参考球及倾斜基底变化，并做独立方向差分。
 
 需要公差优化时用 `ScenarioProblem` 明确全部场景和可实现的补偿器行程；各场景保留全部光学与实体门，任一失败不能过滤。独立密采样通过与统计良率分别报告。工作集加密可用 `run_constraint_exchange`，更新后重建局部模型。[可运行的后端及补偿器案例](examples/runtime-upgrade-20261113/README.md)提供接口示范。

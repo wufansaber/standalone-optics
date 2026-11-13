@@ -1,0 +1,331 @@
+{
+  "native_version": "OpticStudio 2022 R2.02",
+  "source_ZMX_sha256": "fa0ca0bd6c72759ed6945f79bd702265b5752600c6c3a7f72db0ded91aa51945",
+  "source_model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+  "optimization_started": false,
+  "new_optical_design_accepted": false,
+  "manufacturing_release": false,
+  "physical_prescription_unchanged": true,
+  "verifier_sha256": "5cee4c62e504fffa524538d9946d8596abed34137a0d872a4cfe3a6741ff0624",
+  "points": [
+    {
+      "point": "baseline",
+      "radius_scale": 1.0,
+      "comparisons": [
+        {
+          "name": "CORE_EQUIVALENT",
+          "mapped_noncontrol_rows": 22223,
+          "weighted_roots_checked": 6573,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.0977846000023419,
+            "evaluation_seconds": 1.2258551999984775,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.04159639999852516,
+            "evaluation_seconds": 1.2162103000009665,
+            "merit": 1.2703186573770286e-15,
+            "rows": 22126
+          }
+        },
+        {
+          "name": "WORKING_CORE",
+          "mapped_noncontrol_rows": 5783,
+          "weighted_roots_checked": 1248,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.0977846000023419,
+            "evaluation_seconds": 1.2258551999984775,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.013208199990913272,
+            "evaluation_seconds": 0.2158876000030432,
+            "merit": 3.655630905621533e-15,
+            "rows": 6375
+          }
+        },
+        {
+          "name": "FULL_EQUIVALENT",
+          "mapped_noncontrol_rows": 202609,
+          "weighted_roots_checked": 9255,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.7663733999943361,
+            "evaluation_seconds": 1.3369850000017323,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.3562392000021646,
+            "evaluation_seconds": 1.3253021000127774,
+            "merit": 4.952713870656088e-16,
+            "rows": 202523
+          }
+        },
+        {
+          "name": "WORKING",
+          "mapped_noncontrol_rows": 17851,
+          "weighted_roots_checked": 1274,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.7663733999943361,
+            "evaluation_seconds": 1.3369850000017323,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.03410099999746308,
+            "evaluation_seconds": 0.20760490000247955,
+            "merit": 3.0380754734865107e-15,
+            "rows": 18454
+          }
+        }
+      ],
+      "CORE_published_cache_max_error": 2.2104000574341143e-10,
+      "FULL_published_cache_max_error": 2.2104000574341143e-10
+    },
+    {
+      "point": "radius_plus",
+      "radius_scale": 1.00001,
+      "comparisons": [
+        {
+          "name": "CORE_EQUIVALENT",
+          "mapped_noncontrol_rows": 22223,
+          "weighted_roots_checked": 6573,
+          "maximum_absolute_error": 1.000159954855917e-10,
+          "source": {
+            "load_seconds": 0.09078430000226945,
+            "evaluation_seconds": 1.2238964999996824,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.04181179999432061,
+            "evaluation_seconds": 1.2186654999968596,
+            "merit": 1.2703186573770286e-15,
+            "rows": 22126
+          }
+        },
+        {
+          "name": "WORKING_CORE",
+          "mapped_noncontrol_rows": 5783,
+          "weighted_roots_checked": 1248,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.09078430000226945,
+            "evaluation_seconds": 1.2238964999996824,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.012526200007414445,
+            "evaluation_seconds": 0.20214780000969768,
+            "merit": 3.655630905621533e-15,
+            "rows": 6375
+          }
+        },
+        {
+          "name": "FULL_EQUIVALENT",
+          "mapped_noncontrol_rows": 202609,
+          "weighted_roots_checked": 9255,
+          "maximum_absolute_error": 1.000159954855917e-10,
+          "source": {
+            "load_seconds": 0.7348536000063177,
+            "evaluation_seconds": 1.3397906000027433,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.35984479999751784,
+            "evaluation_seconds": 1.3824217000073986,
+            "merit": 4.952713870656088e-16,
+            "rows": 202523
+          }
+        },
+        {
+          "name": "WORKING",
+          "mapped_noncontrol_rows": 17851,
+          "weighted_roots_checked": 1274,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.7348536000063177,
+            "evaluation_seconds": 1.3397906000027433,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.03404250000312459,
+            "evaluation_seconds": 0.21437600000353996,
+            "merit": 3.0380754734865107e-15,
+            "rows": 18454
+          }
+        }
+      ]
+    },
+    {
+      "point": "radius_minus",
+      "radius_scale": 0.99999,
+      "comparisons": [
+        {
+          "name": "CORE_EQUIVALENT",
+          "mapped_noncontrol_rows": 22223,
+          "weighted_roots_checked": 6573,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.08741659999941476,
+            "evaluation_seconds": 1.2166983999923104,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.04227079999691341,
+            "evaluation_seconds": 1.2558909999934258,
+            "merit": 1.2703186573770286e-15,
+            "rows": 22126
+          }
+        },
+        {
+          "name": "WORKING_CORE",
+          "mapped_noncontrol_rows": 5783,
+          "weighted_roots_checked": 1248,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.08741659999941476,
+            "evaluation_seconds": 1.2166983999923104,
+            "merit": 2.2321313551052263e-14,
+            "rows": 23030
+          },
+          "compiled": {
+            "load_seconds": 0.012402100008330308,
+            "evaluation_seconds": 0.20336569999926724,
+            "merit": 3.655630905621533e-15,
+            "rows": 6375
+          }
+        },
+        {
+          "name": "FULL_EQUIVALENT",
+          "mapped_noncontrol_rows": 202609,
+          "weighted_roots_checked": 9255,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.7256364000058966,
+            "evaluation_seconds": 1.322612100004335,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.34223509998992085,
+            "evaluation_seconds": 1.30404419999104,
+            "merit": 4.952713870656088e-16,
+            "rows": 202523
+          }
+        },
+        {
+          "name": "WORKING",
+          "mapped_noncontrol_rows": 17851,
+          "weighted_roots_checked": 1274,
+          "maximum_absolute_error": 1.000088900582341e-11,
+          "source": {
+            "load_seconds": 0.7256364000058966,
+            "evaluation_seconds": 1.322612100004335,
+            "merit": 8.702625801294506e-15,
+            "rows": 203427
+          },
+          "compiled": {
+            "load_seconds": 0.034134800007450394,
+            "evaluation_seconds": 0.21903000000747852,
+            "merit": 3.0380754734865107e-15,
+            "rows": 18454
+          }
+        }
+      ]
+    }
+  ],
+  "timings": {
+    "CORE": {
+      "paired_repetitions": [
+        {
+          "original": 1.2522177999926498,
+          "working": 0.21197579998988658
+        },
+        {
+          "working": 0.20846789999632165,
+          "original": 1.2438236000016332
+        },
+        {
+          "original": 1.2250193999934709,
+          "working": 0.20380969998950604
+        }
+      ],
+      "original_median_seconds": 1.2438236000016332,
+      "working_median_seconds": 0.20846789999632165,
+      "speed_ratio": 5.966499398821497,
+      "scope": "CalculateMeritFunction only; baseline, same native instance; no Jacobian measured"
+    },
+    "FULL": {
+      "paired_repetitions": [
+        {
+          "original": 1.3217798000114271,
+          "working": 0.2119375000038417
+        },
+        {
+          "working": 0.20951999998942483,
+          "original": 1.3035112000070512
+        },
+        {
+          "original": 1.2693952999979956,
+          "working": 0.20808620000025257
+        }
+      ],
+      "original_median_seconds": 1.3035112000070512,
+      "working_median_seconds": 0.20951999998942483,
+      "speed_ratio": 6.221416571558056,
+      "scope": "CalculateMeritFunction only; baseline, same native instance; no Jacobian measured"
+    }
+  },
+  "reloads": [
+    {
+      "name": "CORE_EQUIVALENT",
+      "rows": 22126,
+      "configurations": 13,
+      "merit": 1.2703186573770286e-15,
+      "sha256": "a8df1fbf3638acb4a23f8ddddc6bc3755495854a6a40a23c7ece643d34e10531",
+      "passed": true
+    },
+    {
+      "name": "FULL_EQUIVALENT",
+      "rows": 202523,
+      "configurations": 13,
+      "merit": 4.952713870656088e-16,
+      "sha256": "67d44d212aaba103c0031b59a67ba90c85f6ae2bb7b3e23335bf2811e18a372c",
+      "passed": true
+    },
+    {
+      "name": "WORKING_CORE",
+      "rows": 6375,
+      "configurations": 13,
+      "merit": 3.655630905621533e-15,
+      "sha256": "c883b2bca784b7e6ec5e5a510a614d77a19e20e2aebbe5ebff5007fe5839ceb7",
+      "passed": true
+    },
+    {
+      "name": "WORKING",
+      "rows": 18454,
+      "configurations": 13,
+      "merit": 3.0380754734865107e-15,
+      "sha256": "92ab8eaeac47da5d0c86079d5a1319139b1610a68293bf8a1c6d04c96c49c4b2",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "source_files_unchanged": true,
+  "total_seconds": 48.921999999991385,
+  "published_verifier_sha256": "6d3a02240b528c68494f505af38b2405543b0d1193bd6775ba648a7a0ca3ae54",
+  "published_verifier_differs_only_in_line_endings": true,
+  "public_rebuild_MF_bytes_identical_to_native_verified_inputs": true,
+  "private_paths_in_input_metadata_redacted": true
+}

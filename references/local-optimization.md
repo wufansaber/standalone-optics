@@ -1,5 +1,7 @@
 # 有约束局部精修、自动最坏点与设计余量
 
+与 Zemax MF 对接时按 [MF 工作集与预算](merit-function-budget.md) 编译行依赖、保护制造根并测量代价。工作 MF 通过后仍调用固定的完整审计；新增极值由项目适配器生成相应行后再编译，不能凭求解器返回值接受候选。
+
 `scripts/ai_zemax/standalone_local_solver.py` 提供 `EfficientSolveMixin`，把光学问题的实光线评价与求解器分开。它可接入独立追迹、CUDA 批量追迹或能够给出同一定义评价量的其他后端，不内置具体处方与项目验收值。初始结构生成和多结构粗筛继续使用 [optimization.md](optimization.md)；局部精修不能代替结构拓扑搜索。
 
 ## 适配器接口

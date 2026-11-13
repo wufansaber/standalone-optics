@@ -10,6 +10,7 @@
 - [优化算法、数学表达与执行策略](../../references/green8-constrained-design-strategy.md)
 - [机器可读结果与证据摘要](evidence.json)
 - [策略记录示例](strategy.example.json) · [证据文件身份](source-manifest.json)
+- [下一版：精简工作MF、原生耗时和新Zemax/MF下载](../green8-mf-compact/README.md)。本页原始审计包保持原字节。
 
 ## 1. 设计过程与路线选择
 
