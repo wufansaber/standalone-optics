@@ -15,7 +15,7 @@
 
 ## 优化算法总结
 
-[阅读成像光学优化算法总结](references/reusable-optimization-method.md)：多结构与真实材料筛选、有符号OPD范数、波前/场曲/轴向色差联合评价、解析导数、信赖域与二阶修正、CPU/GPU分工，以及复消色差研究的有限实测证据。文档明确区分公开实现、本地研究验证和待完成的设计验收；本次为方法总结，不新增完整研究求解器运行时。
+[阅读成像光学优化算法总结](references/reusable-optimization-method.md)：多结构与真实材料筛选、有符号OPD范数、波前/场曲/轴向色差联合评价、解析导数、信赖域与二阶修正、CPU/GPU分工，以及复消色差研究的有限实测证据。2026-11-13新增[14片绿光设计过程与Zemax/MF案例](examples/green8-14element/README.md)，原始绿光目标及增强名义实体已通过独立与原生复核；制造放行未完成。文档明确区分公开实现、本地研究验证和待完成的设计验收；本次为方法总结，不新增完整研究求解器运行时。
 
 ## 加工检查的已知限制
 
@@ -74,3 +74,7 @@ python scripts/optimize_optics.py seed --demo --workers 4 --dense-top 8 --out se
 ## 显微高精度加工与公差约束
 
 新增基于用户本机资料库原页核查的[球面、非球面及反射镜约束总结](references/microscope-manufacturing-constraints.md)和[项目检查登记表](references/microscope-constraint-register.example.json)。涵盖结构厚度/净距、定心与楔角、面形/粗糙度、非球面斜率与检测、反射镜支承与镀后验收，以及系统公差与补偿。数字保留来源和适用范围；未完成项不会变为制造通过。运行时仅执行其已有几何字段，反射与三维装配由兼容后端复核。
+
+## 14片绿光案例与算法策略
+
+[设计过程、下载Zemax与完整MF](examples/green8-14element/README.md) · [受约束搜索策略与数学模型](references/green8-constrained-design-strategy.md)。内容覆盖真实材料替换、解析导数、直接SOCP与QR压缩、工程延拓、非线性修正、真实瞳OTF、最坏点加密和原生保存重载。已授权公开的案例文件与研究求解器运行时分别说明；本次未改动现有追迹CLI。

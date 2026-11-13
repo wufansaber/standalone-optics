@@ -1,0 +1,125 @@
+{
+  "description": "Private source identity map for published summaries; these source paths are provenance labels, not repository links or portable execution dependencies.",
+  "records": [
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/MODEL.json",
+      "sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+      "bytes": 96055
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/VERIFY_RESULT.json",
+      "sha256": "0975f8b433a18ed310e7a4d03f56b392baf436bcb132cca2f81dbaf6836474a1",
+      "bytes": 475
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/QUALITY.json",
+      "sha256": "47babe8db508b3ec40691a9ef19c08b490910287732f1cf53232e908199a4783",
+      "bytes": 521193
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/BODY_ENGINEERING_EXACT.json",
+      "sha256": "72e9272d2d3ad5866e608f8792c70127df87f922ac2f8345aa958d1d5beb24f8",
+      "bytes": 464419
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/CONTINUOUS_GUARDS.json",
+      "sha256": "4e998310d00dbd419e7a43429ee913189cc82b7592c9fbd2d913b74abd14cfa4",
+      "bytes": 9672
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/CANDIDATE14_B/FORMAL_FOCUS_ACCEPTANCE.json",
+      "sha256": "70f09bccb8125bffc34944443762e1e670fc9ab15eb71d68855ea83f614db35f",
+      "bytes": 63219
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/NATIVE_DELIVERY_B5/NATIVE_EXPORT_RESULT.json",
+      "sha256": "7d3a8ae96a6b3f9aa10d135b2497c3854e29a537376a990c6102c8e9cdf0a3c2",
+      "bytes": 1015
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/NATIVE_DELIVERY_B5/NATIVE_ALL15_PHYSICAL_PARITY.json",
+      "sha256": "0c5c390544721c24ef2fa8fcb7101b2d424a852b713446f428edfda9a19a67a3",
+      "bytes": 6766
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/NATIVE_DELIVERY_B5/NATIVE_GREEN8_MTF_REFERENCE.json",
+      "sha256": "bb9427a6073cdca7c49e7bcdad56d67c27b91dbfd103d8813719432d90a37989",
+      "bytes": 1068
+    },
+    {
+      "private_record": "joint_outer_v1/ENGINEERING_GREEN8_20261112_v1/TOLERANCE_SCREEN_B/RESULT.json",
+      "sha256": "903e813283a4e84aa7aa42d532b2ba4827a515cd423bf00936442300028556dd",
+      "bytes": 128165
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/USER_GREEN14_A/RESULT.json",
+      "sha256": "da837e0062f919ec7b5b80eb23828209964c459f1b642386099a0424c019727d",
+      "bytes": 3119
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/USER_GREEN14_SECONDARY_MTF_B/RESULT.json",
+      "sha256": "3250ee1a0a229af28a2e77888f25160a3b443c1c247c4653dc0f3df4d6d47ac1",
+      "bytes": 2002
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/REAL_MATERIAL_SCREEN_C1/RESULT.json",
+      "sha256": "78f976079f6062a6ce3bf766ea1db33075cffe6e8f07c139c746c7292cb4de7a",
+      "bytes": 8952
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/MATERIAL_RANK_FINAL_A/RESULT.json",
+      "sha256": "c4275ffb6e2ccc515ee80c98ce68cfab2ce562c214b776265fe8296de64a669f",
+      "bytes": 22026
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/MATERIAL_BANK_FINAL_A/RESULT.json",
+      "sha256": "3a04c0bd1e91cd37e775460f225e9a7ece78e93ee543bb8f3e08f8b9219490ec",
+      "bytes": 522
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/OTF_TANGENT_CONTROL_C/RESULT.json",
+      "sha256": "5737a647675f7dd79846589c00bf205c0de60abb719f89e41dcb73aa90d1a9f8",
+      "bytes": 1121
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/homotopy_user_green_mtf_v1.py",
+      "sha256": "17e95cee379cf3345c1bde0f99190f9012a997b406bd1c297aaabb21428fc440",
+      "bytes": 11492
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/spectral_refine_user_green_mtf.py",
+      "sha256": "bbfbb1854894411341569c4a8cafc05606bcad7692c346faeaa483a129b974f0",
+      "bytes": 990
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/spectral_refine_user_green.py",
+      "sha256": "6bd3b218d28aef11591604ab457c8afb0cfe4e0058277d8c763b1abd3b5d9100",
+      "bytes": 13579
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/clarabel_step_flex.py",
+      "sha256": "17469b7977d1776a8b118260f62efc40077a10f7f8b6f2bf0b8f203c1abd7196",
+      "bytes": 1931
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/rank_real_materials.py",
+      "sha256": "e651af4ce20c86a9d3de5de1b57209a7759197a965ba2edcaa36b412ebadcaeb",
+      "bytes": 6661
+    },
+    {
+      "private_record": "joint_outer_v1/ROBUST_FULLSPECTRUM_20261112_v1/rank_material_round2.py",
+      "sha256": "d04b9cae03d88f1e514d1ba63455f198c415d5baa11c89fe209227874aa4c951",
+      "bytes": 7875
+    },
+    {
+      "private_record": "project_native_reference.py",
+      "sha256": "e8f5bfab291853c036a1cabfa2aae8b13be7f5abd1ba8df41a002dabc36d4f03",
+      "bytes": 7979
+    },
+    {
+      "private_record": "USER_SPECTRAL_SCOPE_GREEN_20261110.json",
+      "sha256": "4d38ed9da3edb6afa7c0c97ddef897a911c9194b41189b81fb5e0ecc9961ac83",
+      "bytes": 3878
+    }
+  ]
+}

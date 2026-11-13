@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "format_role": "Strategy documentation example; NOT a CLI or manufacturing_policy input",
+  "case_only_values": true,
+  "scope": {
+    "user_hard_conditions": [
+      "green8 fixed-image WFE",
+      "original chief-relative green6 lateral color",
+      "focus definitions and0.7um object limits",
+      "first-order/interfaces",
+      "all15 full-NA forward unclipped physical rays"
+    ],
+    "monitor_only": [
+      "blue WFE",
+      "790nm WFE"
+    ],
+    "secondary_comparison": [
+      "green8 MTF100 T/S at h0,.625,1.25"
+    ]
+  },
+  "search": {
+    "outer": [
+      "diverse real-catalog single/pair replacements",
+      "topology alternatives within budget"
+    ],
+    "inner": "analytic signed-OPD sequential SOCP with Clarabel; SLSQP exact-body projection and bounded nonlinear correction",
+    "final_branch_dimension": 48,
+    "trust": "scaled box; adaptive; invalidate cache on scope/material/topology/sampling/parameter-order change",
+    "material_response": [
+      "actual wavelength index derivative",
+      "primary index derivative"
+    ],
+    "global_optimum_claim": false
+  },
+  "engineering": {
+    "homotopy": "baseline floors mandatory at all stages; new allocations ramp with alpha; accept final only at alpha1",
+    "tube_OD_mm": 44,
+    "tube_CA_mm": 42,
+    "tube_nominal_fullbody_floors_mm": [
+      2.03,
+      2.67,
+      2.67,
+      2.03
+    ],
+    "provisional_thickness_budget_mm": 0.03,
+    "nominal_air_and_rim_mm": 0.25,
+    "tube_solid_span_limit_mm": 61.8,
+    "not_universal_manufacturing_limits": true
+  },
+  "verification": {
+    "working": {
+      "WFE": [
+        4,
+        16
+      ],
+      "fields": 9,
+      "MTF_overlap": [
+        10,
+        10
+      ],
+      "MF_focus": [
+        4,
+        12
+      ]
+    },
+    "independent_final": {
+      "WFE": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "fields": 65,
+      "local_extrema": true,
+      "physical_rim": 128,
+      "focus": [
+        20,
+        64
+      ],
+      "focus_wave_nodes_nm": [
+        570,
+        571,
+        572,
+        573,
+        574,
+        575,
+        576,
+        577,
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609,
+        610,
+        611,
+        612,
+        613,
+        614,
+        615,
+        616,
+        617,
+        618,
+        619,
+        620
+      ]
+    },
+    "native_final": {
+      "WFE": [
+        "RWCE20",
+        "RWRE32"
+      ],
+      "green_fields": 65,
+      "local_extrema": true,
+      "all15_physical_rays": 687375,
+      "MTF": "sparse Grid0 sampling5, no FFT",
+      "saved_reload_required": true
+    }
+  },
+  "acceptance_logic": [
+    "every original metric passes its own limit",
+    "all requested physical rays valid; invalid trial rejected without filtering",
+    "nominal full mechanical domains and all-body separations pass",
+    "same source identity for ordinary/native/file gates",
+    "manufacturing release remains separate"
+  ],
+  "cpu_case": {
+    "compute_logical_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "UI_logical_ids": [
+      18,
+      19
+    ],
+    "BLAS_threads_per_worker": 1,
+    "native_max_concurrent_owned_apps": 1
+  },
+  "portable_policy": "Redetermine wavelengths, geometry, limits, process budgets, compensators, backend and native reference for each new project."
+}

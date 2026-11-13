@@ -1,0 +1,32 @@
+{
+  "archive": "ZEMAX_AND_MF.zip",
+  "archive_sha256": "8ee501034ca5ef9dc0ca272c987adc9b22f3813ae6bef9263f70cc987998bc63",
+  "archive_bytes": 4537735,
+  "native_files": {
+    "Zemax/GREEN8_CORE_GEOMETRY.MF": {
+      "sha256": "397b47655fb56426484c5a558eccb0c75d2a1c3d308f45a00977420fcd54cdff",
+      "bytes": 8608720
+    },
+    "Zemax/GREEN8_FULL_TARGETS_13CFG.ZMX": {
+      "sha256": "fa0ca0bd6c72759ed6945f79bd702265b5752600c6c3a7f72db0ded91aa51945",
+      "bytes": 16460400
+    },
+    "Zemax/GREEN8_MANUFACTURING_FOCUS_13CFG.MF": {
+      "sha256": "fd4ef3849fdc29e2dc41ee6ea78df44ad1ac8fca37586ba759fbdb24295bfe61",
+      "bytes": 77030960
+    },
+    "Zemax/GREEN8_MTF_REFERENCE_ONLY.MF": {
+      "sha256": "4f4efa297ee14d28985ddbf4398c83ebfcb5529b11e9958170d1828a445588fd",
+      "bytes": 4468
+    },
+    "Zemax/GREEN8_MTF_REFERENCE_ONLY.ZMX": {
+      "sha256": "6a22361c07a95c115c748826c831d2dc5b7fe792fa3dff2201e96cc34a51ee87",
+      "bytes": 23036
+    },
+    "Zemax/GLASSCAT/FIXWIN.AGF": {
+      "sha256": "d4389b0403904891f4010f668960ad4357d64fd724f7ac50c7ac88cda97e3f41",
+      "bytes": 1114
+    }
+  },
+  "factory_release": false
+}

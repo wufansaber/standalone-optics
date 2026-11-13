@@ -18,6 +18,10 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 
 使用加工配置和候选排名时，先查[当前已知接受风险](references/manufacturing-audit-20261109.md)。六项逐片覆盖和通光包络联动尚未修复，涉及这些条件时需按[当前实现限制](references/manufacturing-boundaries.md)另做检查；名义实体 `passed` 不能推出完整制造或通光验收。
 
+## 优化算法与案例策略
+
+需要结构/材料联合搜索、受约束精修或优化方法总结时，阅读[优化算法总结](references/reusable-optimization-method.md)。需要处理移动参考、真实材料切线、直接SOCP、工程延拓或真实瞳多色MTF时，再读[绿光案例算法与策略](references/green8-constrained-design-strategy.md)。[14片Zemax/MF案例](examples/green8-14element/README.md)给出已验证的原始绿光范围、文件下载和制造未完成项；案例数值不作为其他项目默认规格，未发布的研究求解器不能当作现有CLI。
+
 ## 已有处方的独立验证
 
 使用 [standalone_optics.py](scripts/standalone_optics.py) 进行可复现的光线追迹和像差评价。脚本在普通 Python 环境中使用 NumPy。

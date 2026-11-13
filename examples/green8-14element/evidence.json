@@ -1,0 +1,816 @@
+{
+  "schema_version": 1,
+  "case_date": "2026-11-12",
+  "published_summary_date": "2026-11-13",
+  "source_model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+  "scope_sha256": "4d38ed9da3edb6afa7c0c97ddef897a911c9194b41189b81fb5e0ecc9961ac83",
+  "acceptance": {
+    "status": "complete",
+    "design_accepted": true,
+    "accepted_scope": "Original user green8 optical targets + strengthened nominal engineering; all15 full-NA physical validity. Blue/790 image quality monitor only.",
+    "scope_sha256": "4d38ed9da3edb6afa7c0c97ddef897a911c9194b41189b81fb5e0ecc9961ac83",
+    "model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+    "independent_actual_scope_passed": true,
+    "continuous_local_guards_passed": true,
+    "native_actual_scope_passed": true,
+    "native_saved_reload_verified": true,
+    "native_owned_application_closed": true,
+    "native_source_and_export_hashes_matched": true,
+    "report_visual_QA_passed": true,
+    "green8_WFE_worst_normalized": 0.9743643139740245,
+    "native_RWCE20_norm": 0.9546151841417828,
+    "native_RWRE32_norm": 0.9670742313197803,
+    "LCA_object_um": 0.5815189079862655,
+    "FC595_object_um": 0.5333637591935374,
+    "MTF6_all_at_least_blackbox": true,
+    "imaging_pieces": 14,
+    "global_minimum_lens_count_proven": false,
+    "manufacturing_factory_release": false,
+    "tolerance_screen_optical_failed": 6,
+    "tolerance_screen_perturbed_cases": 22
+  },
+  "specification": {
+    "NA": 0.5,
+    "object_field_radius_mm": 1.25,
+    "magnification": -8.9,
+    "imaging_glass_count": 14,
+    "all_spherical": true,
+    "WFE_limits_waves": {
+      "0.51": 0.06723036845265126,
+      "0.536": 0.06723036845265126,
+      "0.556": 0.06723036845265126,
+      "0.573": 0.06723036845265126,
+      "0.593": 0.06723036845265126,
+      "0.62": 0.06723036845265126,
+      "0.595": 0.04568539236791058,
+      "0.61": 0.08
+    },
+    "blue_790_image_quality": "monitor_only",
+    "all15_physical_required": true,
+    "focus_limits_object_um": {
+      "LCA570_620_PV": 0.7,
+      "FC595_meanTS": 0.7
+    }
+  },
+  "native_final": {
+    "status": "complete",
+    "source_model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+    "all_actual_user_native_goals_passed": true,
+    "green8_native_RWCE20_norm": 0.9546151841417828,
+    "green8_native_RWRE32_norm": 0.9670742313197803,
+    "LCA_object_um": 0.5815189079862655,
+    "FC595_object_um": 0.5333637591935374,
+    "native_mft_all6_at_least_reference": true,
+    "core_rows": 23030,
+    "full_rows": 203427,
+    "core_MF_value": 1.8147409391100407e-16,
+    "full_MF_value": 7.075305529508696e-17,
+    "MF_D_value": -0.0019393821349090851,
+    "MF_working_LCA_um": 0.5814712035668252,
+    "MF_working_FC_um": 0.5333869687141626,
+    "MF_body_parity_max_mm": 8.526512829121202e-14,
+    "MF_focus_parity_max_mm": 2.0816681711721685e-17,
+    "saved_reload_verified": true,
+    "private_catalogs": [
+      "OH9AD9D2",
+      "FIXWIN"
+    ],
+    "all15_physical_rays": 687375,
+    "no_ray_filtering": true,
+    "optimizer_started": false,
+    "FFT_started": false
+  },
+  "wavefront_table": [
+    {
+      "wavelength_nm": 460,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.10186000261322417,
+        0.10991500384094838,
+        0.14638471691499108
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.14923817999736644,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.15150419550700597,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 469,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.07906085831996366,
+        0.09074917655852174,
+        0.12353434287706087
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.12569478906017623,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.12723986479909244,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 475,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.06763038097310864,
+        0.08091523865487421,
+        0.11100661526394494
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.11283215154197858,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.11405251922769806,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 480,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.05977295132603589,
+        0.07391156371591086,
+        0.10178365278042253
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.1033896558629173,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.10440927210107463,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 490,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.04762785492313452,
+        0.06229485696870508,
+        0.08606515669930098
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.08734991826446203,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.08810101979793966,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 495,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.04309130588789734,
+        0.057484226557182924,
+        0.07943470900915163
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.08060033122982824,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.08126253455177825,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 510,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.034847325738381806,
+        0.0466230527248988,
+        0.06411836941825522
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.06501675689269333,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.06550687183558844,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 536,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.03342810214574405,
+        0.03862274766844565,
+        0.05126588376384988
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.05181015636801036,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.0520998915908377,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 556,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.03516179293053132,
+        0.03790805215863087,
+        0.047913569210872115
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.04823397463188474,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.048381511075505694,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 573,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.035982019200339756,
+        0.03871384102636923,
+        0.04600849741911755
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.04618348902853764,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.04622971898925218,
+      "independent_worst_field_mm": 1.25
+    },
+    {
+      "wavelength_nm": 593,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.03684775325020951,
+        0.04106779327993442,
+        0.04353966663125466
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.04359303223112785,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.043795840924095775,
+      "independent_worst_field_mm": 0.8061753197267999
+    },
+    {
+      "wavelength_nm": 595,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.04568539236791058,
+      "native_RWCE20_axis_mid_edge": [
+        0.03700451835264214,
+        0.041420725618748745,
+        0.04329053888671775
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.04379696590478779,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.044133233871644514,
+      "independent_worst_field_mm": 0.8051197194126664
+    },
+    {
+      "wavelength_nm": 610,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.08,
+      "native_RWCE20_axis_mid_edge": [
+        0.03906049087851672,
+        0.044979714602269516,
+        0.04170128138571222
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.047256181070099254,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.04759053094863543,
+      "independent_worst_field_mm": 0.7976748124026173
+    },
+    {
+      "wavelength_nm": 620,
+      "role": "imaging_acceptance",
+      "limit_waves": 0.06723036845265126,
+      "native_RWCE20_axis_mid_edge": [
+        0.041555819560014744,
+        0.04835818985496971,
+        0.04121550739048689
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.05055099879872084,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.05089127704665432,
+      "independent_worst_field_mm": 0.7928178812153253
+    },
+    {
+      "wavelength_nm": 790,
+      "role": "monitor_only",
+      "limit_waves": null,
+      "native_RWCE20_axis_mid_edge": [
+        0.06489907314367496,
+        0.06378263648605918,
+        0.04161966524617366
+      ],
+      "native_17field_RWCE20_RWRE32_max_waves": 0.06489907314367496,
+      "independent_65field_local_GQ12x48_RECT16_max_waves": 0.06489907306707143,
+      "independent_worst_field_mm": 0.0
+    }
+  ],
+  "wavefront_methods": {
+    "native_17": "RWCE20 and RWRE32 max, fixed image; axis/mid/edge columns are RWCE20",
+    "independent": "65 radial fields plus local extrema; max(GQ12x48, RECT16), fixed image; no refocus or defocus removal",
+    "native_green_final": "65 fields plus saved local extrema, RWCE20 and RWRE32; norms in native_final"
+  },
+  "tube_pieces": [
+    {
+      "front_surface": 21,
+      "rear_surface": 22,
+      "material": "S-FPM2",
+      "OD_mm": 44.0,
+      "CT_mm": 7.773095199440576,
+      "minimum_fullbody_mm": 2.031000089976892,
+      "frozen_floor_mm": 2.03,
+      "actual_role": "positive",
+      "actual_role_floor_mm": 2.03,
+      "required_floor_mm": 2.03,
+      "passed": true
+    },
+    {
+      "front_surface": 22,
+      "rear_surface": 23,
+      "material": "S-NBH51",
+      "OD_mm": 44.0,
+      "CT_mm": 2.6710000500000035,
+      "minimum_fullbody_mm": 2.67100005,
+      "frozen_floor_mm": 2.67,
+      "actual_role": "negative",
+      "actual_role_floor_mm": 2.6699999999999995,
+      "required_floor_mm": 2.67,
+      "passed": true
+    },
+    {
+      "front_surface": 24,
+      "rear_surface": 25,
+      "material": "S-NBH5",
+      "OD_mm": 44.0,
+      "CT_mm": 3.091299995769589,
+      "minimum_fullbody_mm": 2.6710000500000866,
+      "frozen_floor_mm": 2.67,
+      "actual_role": "positive",
+      "actual_role_floor_mm": 2.03,
+      "required_floor_mm": 2.67,
+      "passed": true
+    },
+    {
+      "front_surface": 25,
+      "rear_surface": 26,
+      "material": "S-PHM52Q",
+      "OD_mm": 44.0,
+      "CT_mm": 2.0657102728150107,
+      "minimum_fullbody_mm": 2.0310000499999235,
+      "frozen_floor_mm": 2.03,
+      "actual_role": "positive",
+      "actual_role_floor_mm": 2.03,
+      "required_floor_mm": 2.03,
+      "passed": true
+    }
+  ],
+  "tube_solid_span_mm": 56.36145438258754,
+  "MTF100_green8": [
+    {
+      "field_mm": 0.0,
+      "axis": "T",
+      "row": 1,
+      "reference": 0.36577546242516995,
+      "native_MTF": 0.3665028182712738,
+      "at_least_reference": true
+    },
+    {
+      "field_mm": 0.0,
+      "axis": "S",
+      "row": 2,
+      "reference": 0.3657754624199048,
+      "native_MTF": 0.3665028182712738,
+      "at_least_reference": true
+    },
+    {
+      "field_mm": 0.625,
+      "axis": "T",
+      "row": 5,
+      "reference": 0.33863884333672584,
+      "native_MTF": 0.33939842864189895,
+      "at_least_reference": true
+    },
+    {
+      "field_mm": 0.625,
+      "axis": "S",
+      "row": 6,
+      "reference": 0.3593576180031368,
+      "native_MTF": 0.3698225143821248,
+      "at_least_reference": true
+    },
+    {
+      "field_mm": 1.25,
+      "axis": "T",
+      "row": 9,
+      "reference": 0.29838580780148344,
+      "native_MTF": 0.33180013095982924,
+      "at_least_reference": true
+    },
+    {
+      "field_mm": 1.25,
+      "axis": "S",
+      "row": 10,
+      "reference": 0.34443905985644546,
+      "native_MTF": 0.3468551384783052,
+      "at_least_reference": true
+    }
+  ],
+  "material_search": {
+    "catalog_materials": 166,
+    "single_proposals": 2310,
+    "shortlisted_pair_proposals": 1045,
+    "conic_proposals": 32,
+    "scope": "These are particular exploratory rounds, some before user-scope reconciliation; no claim of full combinatorial coverage or accepted counts."
+  },
+  "derivative_controls": {
+    "material_actual_primary_relative_error": 2.517989213826337e-06,
+    "OTF_direction_relative_error": 2.4032054600434804e-06,
+    "OTF_native_max_absolute_difference": 3.298168712551064e-05,
+    "OTF_10_to_20_max_difference": 3.346709992746444e-05,
+    "not_final_design_acceptance": true
+  },
+  "working_continuation": {
+    "phases": [
+      {
+        "iteration": 5,
+        "accepted": 3,
+        "calls": 10,
+        "seconds": 31.93800000000192,
+        "alpha": 1.0,
+        "worst_WFE_norm": 0.9298852185028662,
+        "LCA_um": 0.6627136839383323,
+        "FC_um": 0.6649992938749705,
+        "history": [
+          {
+            "iteration": 0,
+            "accepted": true,
+            "trust": 0.02,
+            "before": 19.786434968746494,
+            "actual": 1.1362548759495816,
+            "prediction": 0.9443243197128766,
+            "rho": 0.9898137443404437,
+            "step_Linf": 0.0199999953371202,
+            "prediction_mode": "penalty",
+            "predicted_reduction": 18.842110649033618,
+            "solver": "AlmostSolved",
+            "solver_rows": 373,
+            "original_physical": true,
+            "error": null
+          },
+          {
+            "iteration": 1,
+            "accepted": false,
+            "trust": 0.03,
+            "before": 1.1362548759495816,
+            "actual": 1.1899328565568283,
+            "prediction": 1.1390139026788966,
+            "rho": -53677980607.24671,
+            "step_Linf": 0.030000000000000002,
+            "prediction_mode": "penalty",
+            "predicted_reduction": -0.0027590267293149395,
+            "solver": "Solved",
+            "solver_rows": 451,
+            "original_physical": true,
+            "error": null
+          },
+          {
+            "iteration": 2,
+            "accepted": true,
+            "trust": 0.015,
+            "before": 1.1362548759495816,
+            "actual": 0.9725707043241403,
+            "prediction": 0.9788124209190261,
+            "rho": 1.0396444313172992,
+            "step_Linf": 0.015000000000000003,
+            "prediction_mode": "penalty",
+            "predicted_reduction": 0.15744245503055554,
+            "solver": "Solved",
+            "solver_rows": 322,
+            "original_physical": true,
+            "error": null
+          },
+          {
+            "iteration": 3,
+            "accepted": false,
+            "trust": 0.0225,
+            "before": 0.9725707043241403,
+            "actual": 1.0016784238600673,
+            "prediction": 0.9235998397200007,
+            "rho": -0.594388515931298,
+            "step_Linf": 0.0225,
+            "prediction_mode": "objective_on_exactly_feasible_retraction",
+            "predicted_reduction": 0.048970864604139575,
+            "solver": "Solved",
+            "solver_rows": 412,
+            "original_physical": true,
+            "error": null
+          },
+          {
+            "iteration": 4,
+            "accepted": true,
+            "trust": 0.01125,
+            "before": 0.9725707043241403,
+            "actual": 0.9320072080524423,
+            "prediction": 0.918797442617125,
+            "rho": 0.7543432364714836,
+            "step_Linf": 0.01125,
+            "prediction_mode": "objective_on_exactly_feasible_retraction",
+            "predicted_reduction": 0.05377326170701524,
+            "solver": "Solved",
+            "solver_rows": 252,
+            "original_physical": true,
+            "error": null
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "accepted": 2,
+        "calls": 5,
+        "seconds": 11.0,
+        "alpha": 1.0,
+        "worst_WFE_norm": 0.9159386453627032,
+        "LCA_um": 0.5814712035931644,
+        "FC_um": 0.5249922141210434,
+        "history": [
+          {
+            "iteration": 0,
+            "accepted": true,
+            "trust": 0.005,
+            "before": 30.13325692000587,
+            "actual": 7.065973406932375,
+            "prediction": 0.924009220320946,
+            "rho": 0.789725355142314,
+            "step_Linf": 0.005,
+            "prediction_mode": "penalty",
+            "predicted_reduction": 29.209247699684923,
+            "solver": "Solved",
+            "solver_rows": 187,
+            "original_physical": true,
+            "error": null
+          },
+          {
+            "iteration": 1,
+            "accepted": true,
+            "trust": 0.0075,
+            "before": 7.065973406932375,
+            "actual": 0.9177906122119688,
+            "prediction": 0.9569322508307695,
+            "rho": 1.006407165644924,
+            "step_Linf": 0.007500000000000001,
+            "prediction_mode": "penalty",
+            "predicted_reduction": 6.109041156101606,
+            "solver": "Solved",
+            "solver_rows": 201,
+            "original_physical": true,
+            "error": null
+          }
+        ]
+      }
+    ],
+    "sampling": "Final two alpha=1 batches only;9 radial fields,GQ4x16 for WFE; final MTF10x10 overlap. Working focus has sparse actual catalog nodes.",
+    "timing_scope": "31.938s and11.0s refer only to these two batches, not total design/search/verification time; no overall speedup benchmark.",
+    "independent_acceptance_norm": 0.9743643139740245,
+    "do_not_merge_with_old_full15_scores": true
+  },
+  "tolerance_screen": {
+    "perturbed_cases": 22,
+    "optical_failures": 6,
+    "basic_geometry_failures": 0,
+    "scope": "Single parameter probes: six R ±0.01%, four CT ±0.02mm, inter-doublet air ±0.02mm. Fixed image, no compensator. Not statistical yield or factory certification.",
+    "not_yield": true,
+    "rows": [
+      {
+        "task": {
+          "name": "AIR_+1",
+          "kind": "air",
+          "axial_error_mm": 0.02
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.002720023452706,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "AIR_-1",
+          "kind": "air",
+          "axial_error_mm": -0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9776208642978037,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T1_+1",
+          "kind": "CT",
+          "piece": "T1",
+          "rear_surface": 22,
+          "axial_error_mm": 0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9755907380434684,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T1_-1",
+          "kind": "CT",
+          "piece": "T1",
+          "rear_surface": 22,
+          "axial_error_mm": -0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9732710707164604,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T2_+1",
+          "kind": "CT",
+          "piece": "T2",
+          "rear_surface": 23,
+          "axial_error_mm": 0.02
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.0343027822357234,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T2_-1",
+          "kind": "CT",
+          "piece": "T2",
+          "rear_surface": 23,
+          "axial_error_mm": -0.02
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.0044160961368844,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T3_+1",
+          "kind": "CT",
+          "piece": "T3",
+          "rear_surface": 25,
+          "axial_error_mm": 0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.975175363877278,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T3_-1",
+          "kind": "CT",
+          "piece": "T3",
+          "rear_surface": 25,
+          "axial_error_mm": -0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9736066714336332,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T4_+1",
+          "kind": "CT",
+          "piece": "T4",
+          "rear_surface": 26,
+          "axial_error_mm": 0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.975270965646135,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "CT_T4_-1",
+          "kind": "CT",
+          "piece": "T4",
+          "rear_surface": 26,
+          "axial_error_mm": -0.02
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9735232347711941,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S21_+1",
+          "kind": "radius",
+          "surface": 21,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.1305467789811456,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S21_-1",
+          "kind": "radius",
+          "surface": 21,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.0910693763498016,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S22_+1",
+          "kind": "radius",
+          "surface": 22,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9736582941622575,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S22_-1",
+          "kind": "radius",
+          "surface": 22,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9969435207995236,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S23_+1",
+          "kind": "radius",
+          "surface": 23,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9725041032064864,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S23_-1",
+          "kind": "radius",
+          "surface": 23,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9765608553234205,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S24_+1",
+          "kind": "radius",
+          "surface": 24,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": false,
+        "worst_normalized": 1.0000756416498433,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S24_-1",
+          "kind": "radius",
+          "surface": 24,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9753536637007476,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S25_+1",
+          "kind": "radius",
+          "surface": 25,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9740295148653493,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S25_-1",
+          "kind": "radius",
+          "surface": 25,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9747085782406851,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S26_+1",
+          "kind": "radius",
+          "surface": 26,
+          "relative_R_error": 0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9703823408434538,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "R_S26_-1",
+          "kind": "radius",
+          "surface": 26,
+          "relative_R_error": -0.0001
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9834572760680198,
+        "baseline_geometric_passed": true
+      },
+      {
+        "task": {
+          "name": "nominal",
+          "kind": "nominal"
+        },
+        "wavefront_passed": true,
+        "worst_normalized": 0.9743643139740245,
+        "baseline_geometric_passed": true
+      }
+    ]
+  },
+  "public_runtime_scope": "Documentation and licensed-native Zemax/MF case; complete private research optimizer is not newly installed into CLI",
+  "source_records": "source-manifest.json"
+}
