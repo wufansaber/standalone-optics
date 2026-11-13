@@ -1,0 +1,3 @@
+-r ../../requirements-optimize.txt
+mpmath>=1.3,<2
+psutil>=5.9,<8

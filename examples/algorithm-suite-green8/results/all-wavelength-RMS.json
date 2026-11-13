@@ -1,0 +1,610 @@
+{
+  "baseline": [
+    {
+      "wavelength_nm": 510.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.06550687183558844,
+      "RMS_nm": 33.408504636150106,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.9743643139740245,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 536.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.0520998915908377,
+      "RMS_nm": 27.925541892689008,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7749457988993531,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 556.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.048381511075505694,
+      "RMS_nm": 26.90012015798117,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7196377498597175,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 593.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.043795840924095775,
+      "RMS_nm": 25.970933667988795,
+      "field_mm": 0.8061753197267999,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6514294348236412,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 573.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04622971898925218,
+      "RMS_nm": 26.4896289808415,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6876314982835572,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 620.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.05089127704665432,
+      "RMS_nm": 31.552591768925677,
+      "field_mm": 0.7928178812153253,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7569685875289501,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 460.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.15150419550700597,
+      "RMS_nm": 69.69192993322275,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 469.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.12723986479909244,
+      "RMS_nm": 59.67549659077435,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 475.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.11405251922769806,
+      "RMS_nm": 54.17494663315658,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 480.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.10440927210107463,
+      "RMS_nm": 50.11645060851582,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 490.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08810101979793966,
+      "RMS_nm": 43.169499700990436,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 495.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08126253455177825,
+      "RMS_nm": 40.224954603130236,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 595.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.044133233871644514,
+      "RMS_nm": 26.259274153628485,
+      "field_mm": 0.8051197194126664,
+      "cap_waves": 0.04568539236791058,
+      "normalized": 0.9660250593063462,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 790.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.06489907306707143,
+      "RMS_nm": 51.27026772298644,
+      "field_mm": 0.0,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 610.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04759053094863543,
+      "RMS_nm": 29.030223878667616,
+      "field_mm": 0.7976748124026173,
+      "cap_waves": 0.08,
+      "normalized": 0.5948816368579429,
+      "physical_passed": true
+    }
+  ],
+  "native-adaptive": [
+    {
+      "wavelength_nm": 510.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.06522510209507937,
+      "RMS_nm": 33.26480206849048,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.9701732058930459,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 536.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.052579893063825454,
+      "RMS_nm": 28.182822682210443,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7820854514705837,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 556.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.049200129704941566,
+      "RMS_nm": 27.35527211594751,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7318140720825,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 593.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.044215617298563374,
+      "RMS_nm": 26.21986105804808,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6576732853948789,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 573.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04709190276203436,
+      "RMS_nm": 26.983660282645683,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.700455818492205,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 620.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04963773762475246,
+      "RMS_nm": 30.775397327346525,
+      "field_mm": 0.791230802763112,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.73832315317015,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 460.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.15125172463490252,
+      "RMS_nm": 69.57579333205516,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 469.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.1266923402696164,
+      "RMS_nm": 59.41870758645009,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 475.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.11339303893186818,
+      "RMS_nm": 53.861693492637386,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 480.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.1037037253239392,
+      "RMS_nm": 49.77778815549082,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 490.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08741772653562302,
+      "RMS_nm": 42.83468600245528,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 495.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08064079067668718,
+      "RMS_nm": 39.917191384960155,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 595.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.043916933880846075,
+      "RMS_nm": 26.130575659103414,
+      "field_mm": 1.25,
+      "cap_waves": 0.04568539236791058,
+      "normalized": 0.9612905045704133,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 790.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.06418341560128464,
+      "RMS_nm": 50.70489832501487,
+      "field_mm": 0.0,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 610.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.046540155229972846,
+      "RMS_nm": 28.389494690283435,
+      "field_mm": 0.7954602090322289,
+      "cap_waves": 0.08,
+      "normalized": 0.5817519403746606,
+      "physical_passed": true
+    }
+  ],
+  "robust-returned-nominal": [
+    {
+      "wavelength_nm": 510.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.06272847184626833,
+      "RMS_nm": 31.991520641596846,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.9330377519862395,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 536.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.05208166214412064,
+      "RMS_nm": 27.915770909248664,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7746746499061731,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 556.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04877204343528435,
+      "RMS_nm": 27.1172561500181,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.725446618214406,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 593.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.0428960094991845,
+      "RMS_nm": 25.437333633016404,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6380451347577416,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 573.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04622379920347751,
+      "RMS_nm": 26.48623694359261,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6875434460251668,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 620.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04912076137091171,
+      "RMS_nm": 30.454872049965257,
+      "field_mm": 0.7980284169752251,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7306335291841556,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 460.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.1415885169456766,
+      "RMS_nm": 65.13071779501122,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 469.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.11845964182240658,
+      "RMS_nm": 55.55757201470868,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 475.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.10605738571197497,
+      "RMS_nm": 50.37725821318811,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 480.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.09709908120392294,
+      "RMS_nm": 46.60755897788301,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 490.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08225168578645432,
+      "RMS_nm": 40.303326035362616,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 495.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.07618070716534678,
+      "RMS_nm": 37.709450046846655,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 595.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04273941386838674,
+      "RMS_nm": 25.42995125169011,
+      "field_mm": 0.78984505007468,
+      "cap_waves": 0.04568539236791058,
+      "normalized": 0.9355159637067472,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 790.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.06948513331741803,
+      "RMS_nm": 54.89325532076025,
+      "field_mm": 0.0,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 610.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.045845294918347164,
+      "RMS_nm": 27.96562990019177,
+      "field_mm": 0.7956839506648236,
+      "cap_waves": 0.08,
+      "normalized": 0.5730661864793395,
+      "physical_passed": true
+    }
+  ],
+  "branch-current-base": [
+    {
+      "wavelength_nm": 510.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.06272847184626833,
+      "RMS_nm": 31.991520641596846,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.9330377519862395,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 536.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.05208166214412064,
+      "RMS_nm": 27.915770909248664,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7746746499061731,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 556.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04877204343528435,
+      "RMS_nm": 27.1172561500181,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.725446618214406,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 593.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.0428960094991845,
+      "RMS_nm": 25.437333633016404,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6380451347577416,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 573.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04622379920347751,
+      "RMS_nm": 26.48623694359261,
+      "field_mm": 1.25,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.6875434460251668,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 620.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04912076137091171,
+      "RMS_nm": 30.454872049965257,
+      "field_mm": 0.7980284169752251,
+      "cap_waves": 0.06723036845265126,
+      "normalized": 0.7306335291841556,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 460.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.1415885169456766,
+      "RMS_nm": 65.13071779501122,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 469.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.11845964182240658,
+      "RMS_nm": 55.55757201470868,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 475.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.10605738571197497,
+      "RMS_nm": 50.37725821318811,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 480.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.09709908120392294,
+      "RMS_nm": 46.60755897788301,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 490.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.08225168578645432,
+      "RMS_nm": 40.303326035362616,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 495.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.07618070716534678,
+      "RMS_nm": 37.709450046846655,
+      "field_mm": 1.25,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 595.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.04273941386838674,
+      "RMS_nm": 25.42995125169011,
+      "field_mm": 0.78984505007468,
+      "cap_waves": 0.04568539236791058,
+      "normalized": 0.9355159637067472,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 790.0,
+      "role": "image_monitor_only",
+      "RMS_waves": 0.06948513331741803,
+      "RMS_nm": 54.89325532076025,
+      "field_mm": 0.0,
+      "cap_waves": null,
+      "normalized": null,
+      "physical_passed": true
+    },
+    {
+      "wavelength_nm": 610.0,
+      "role": "hard_green_cap",
+      "RMS_waves": 0.045845294918347164,
+      "RMS_nm": 27.96562990019177,
+      "field_mm": 0.7956839506648236,
+      "cap_waves": 0.08,
+      "normalized": 0.5730661864793395,
+      "physical_passed": true
+    }
+  ]
+}

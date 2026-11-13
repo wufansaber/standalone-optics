@@ -6,7 +6,7 @@ re-aim a launch automatically, or certify manufacturing constraints. Use dense
 independent tracing for candidate acceptance. All lengths are in millimetres.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 import numpy as np
 
@@ -39,6 +39,7 @@ class TraceDerivativeResult:
     differentiable: np.ndarray
     derivative_reason: np.ndarray
     parameters: tuple[RayParameter, ...]
+    path_jacobians: np.ndarray | None = None
 
 
 @dataclass
@@ -48,6 +49,42 @@ class WavefrontDerivativeResult:
     rms_jacobian: np.ndarray
     residual_jacobian: np.ndarray
     rms_differentiable: bool
+
+
+@dataclass(frozen=True)
+class PrimalTraceCache:
+    """A recorded primal path tied to exact surfaces, launch and object index."""
+    surfaces: tuple
+    origins: np.ndarray
+    directions: np.ndarray
+    object_index: float
+    result: TraceResult
+
+
+def cache_primal_trace(surfaces,origins,directions,object_index=1.):
+    surfaces=tuple(surfaces);raw=np.array(directions,dtype=float,copy=True)
+    launched=np.broadcast_to(np.asarray(origins,dtype=float),raw.shape).copy()
+    result=trace(surfaces,launched,raw,object_index,record_path=True)
+    raw.flags.writeable=False;launched.flags.writeable=False
+    for value in vars(result).values():
+        if isinstance(value,np.ndarray):value.flags.writeable=False
+    return PrimalTraceCache(surfaces,launched,raw,float(object_index),result)
+
+
+def subset_primal_cache(cache,indices):
+    """Select complete previously launched rays without retracing or reweighting."""
+    if not isinstance(cache,PrimalTraceCache):raise TypeError('Require a recorded primal cache')
+    indices=np.asarray(indices)
+    if indices.ndim!=1 or not len(indices)or not np.issubdtype(indices.dtype,np.integer)or np.any(indices<0)or np.any(indices>=len(cache.directions)):
+        raise ValueError('Use a nonempty valid integer ray-index vector')
+    values={}
+    for key,value in vars(cache.result).items():
+        if isinstance(value,np.ndarray):
+            values[key]=(value[:,indices]if key=='surface_points'else value[indices]).copy()
+            values[key].flags.writeable=False
+    origins=cache.origins[indices].copy();directions=cache.directions[indices].copy()
+    origins.flags.writeable=False;directions.flags.writeable=False
+    return PrimalTraceCache(cache.surfaces,origins,directions,cache.object_index,replace(cache.result,**values))
 
 
 def _parameter_table(surfaces, parameters):
@@ -112,7 +149,7 @@ def _sag_terms(surface, rho, dc, dk, da):
 def trace_with_jacobian(surfaces, origins, directions, parameters, object_index=1., *,
                         origin_jacobian=None, direction_jacobian=None,
                         object_index_jacobian=None, boundary_tolerance_mm=1e-7,
-                        angular_tolerance=1e-10, record_path=False):
+                        angular_tolerance=1e-10, record_path=False, primal_cache=None):
     """Trace fixed launched rays and propagate analytic parameter tangents.
 
     Jacobian axes are (ray, XYZ, parameter), or (ray, parameter) for OPL.
@@ -127,7 +164,16 @@ def trace_with_jacobian(surfaces, origins, directions, parameters, object_index=
     if (not np.isfinite(boundary_tolerance_mm) or boundary_tolerance_mm < 0
             or not np.isfinite(angular_tolerance) or angular_tolerance <= 0):
         raise ValueError('Use nonnegative distance and positive angular boundary tolerances')
-    primal = trace(surfaces, origins, directions, object_index, record_path=True)
+    if primal_cache is None:
+        primal = trace(surfaces, origins, directions, object_index, record_path=True)
+    else:
+        if (not isinstance(primal_cache,PrimalTraceCache) or primal_cache.surfaces!=surfaces
+            or primal_cache.object_index!=float(object_index)
+            or not np.array_equal(primal_cache.directions,np.asarray(directions))
+            or not np.array_equal(primal_cache.origins,np.broadcast_to(np.asarray(origins),primal_cache.origins.shape))):
+            raise ValueError('Cached primal path belongs to a different prescription/launch/index')
+        primal=replace(primal_cache.result,**{key:value.copy() for key,value in vars(primal_cache.result).items()
+                                               if isinstance(value,np.ndarray)})
     raw = np.asarray(directions, dtype=float)
     count, width = len(raw), len(parameters)
     length = np.linalg.norm(raw, axis=1)
@@ -142,6 +188,7 @@ def trace_with_jacobian(surfaces, origins, directions, parameters, object_index=
     good = primal.valid.copy()
     reasons = np.where(good, '', 'invalid_primal').astype('U32')
     n_before = float(object_index)
+    paths = [] if record_path else None
 
     def mark(mask, reason):
         newly = good & mask
@@ -206,12 +253,21 @@ def trace_with_jacobian(surfaces, origins, directions, parameters, object_index=
             mark(edge, 'aperture_boundary')
         dopl[active] += n_before*ds+distance[:, None]*dn_before
         points[active], dp[active] = hit, hd
+        if paths is not None:
+            paths.append(dp.copy())
         outgoing[active], dd[active] = new_d, new_dd
         n_before, dn_before = sf.index_after, dn_after
     dp[~good], dd[~good], dopl[~good] = np.nan, np.nan, np.nan
     if not record_path:
         primal.surface_points = None
-    return TraceDerivativeResult(primal, dp, dd, dopl, good, reasons, parameters)
+    path_jacobian = None
+    if paths is not None:
+        if len(paths) == len(surfaces):
+            path_jacobian = np.stack(paths)
+            path_jacobian[:,~good] = np.nan
+        else:
+            path_jacobian = np.full((len(surfaces),count,3,width),np.nan)
+    return TraceDerivativeResult(primal, dp, dd, dopl, good, reasons, parameters,path_jacobian)
 
 
 def paraxial_transfer_with_jacobian(surfaces, origin_z_mm, parameters, object_index=1., *,

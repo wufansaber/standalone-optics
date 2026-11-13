@@ -116,3 +116,9 @@ QR压缩的向量范数直接进入二阶锥，标量门按原雅可比进入线
 有解析导数时提供 `local_jacobian`，最后一轴按“共同设计变量+该场景局部控制量”排列，`problem.jacobian`负责映射全局列。独立差分测试覆盖变量映射和不会串用其他场景的控制量。任一场景无效或含非有限量，整个候选失败；约束布局改变须新建问题。
 
 完整实际使用见[公开运行案例](../examples/runtime-upgrade-20261113/README.md)及其 `scenario_compensation.py`。合成镜头示例给每个扰动装配一个±0.02mm像面控制量，名义装配没有补偿；这是案例假设，不是任何物镜都允许的装调自由度。所有指定场景通过仍不代表统计良率或制造放行。
+
+## 自适应、流式解析响应、零空间与分支预算
+
+新版支持`compressed_vectors`返回`[J|r]`的仿射范数因子、`qr_block_rows`分块和可选`norm_rank_tolerance`保守尾项界。场景适配器可混合稠密/压缩响应并映射独立控制列。`AffineReducedProblem`用于显式仿射消元；`SpanEpigraphProblem`将焦点跨度写成线性数量的门。`run_constraint_exchange`新增保护点、滞后删除、移动最坏点、显式工作点预算和完整域回退过滤。
+
+这些接口的数学边界、运行约定和实际复消色差验证见[六项算法实现](algorithm-suite.md)。`run_budgeted_branches`负责真实材料/几何分支的继续与淘汰，`run_robust_exchange`负责固定误差场景全集；它们均保留独立最终验收。

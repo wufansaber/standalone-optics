@@ -9,7 +9,7 @@ MF 行数是结构成本之一。一次波前或 MTF 计算通常比一行加法
 - **等价编译**：默认保留所有源行的映射，包括诊断行；复用相同状态下相同的测量和表达式。每个有权重根保持独立，目标、权重及约束不变。`CONF` 和 `PRIM` 的作用域进入测量缓存身份；状态不完整时不跨控制段复用。零权重行可能是后续算式的依赖，不能直接删除。
 - **工作集编译**：显式列出 `active_rows`、`protected_rows`，保留其传递依赖及全部控制行。未选中的源权重停用并写入报告。必须附完整外部验收的身份；编译器始终输出 `final_acceptance=false`。少量工作点通过不能代表完整设计通过。
 
-一般数学操作数也不能按外观猜依赖：`SUMM` 是两行相加，`OSUM` 是范围求和，`MAXX/MINN` 操作连续行区间。当前编译器不支持这些范围操作数，不能把它们当作两个引用重新编号。[Ansys 官方数学操作数说明](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v26102/en/OpticStudio_User_Guide/OpticStudio_Help/topics/General_Math_Operands.html)
+一般数学操作数也不能按外观猜依赖：`SUMM` 是两行相加，`OSUM` 是范围求和，`MAXX/MINN` 操作连续行区间。当前支持`MAXX/MINN`的闭区间依赖，固定区间内部行并只重映射端点，防止公共子表达式合并破坏连续范围。`OSUM`尚不支持，遇到时停止，不能猜作两个引用。[Ansys 官方数学操作数说明](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v26102/en/OpticStudio_User_Guide/OpticStudio_Help/topics/General_Math_Operands.html)
 
 ```powershell
 python scripts/compact_merit.py --graph source_rows.json --out output/equivalent
@@ -41,6 +41,6 @@ API 为 `ai_zemax.standalone_merit_graph.compact`。`audit` 可接收 `evaluatio
 
 焦面范数和统计量优先由独立后端批量算出；不为每个中间算式无限展开原生行。使用约束活跃集、同指标极值交换或等价的 epigraph 表达时，必须标明可行集合与目标罚函数是否改变。
 
-本版本提供依赖编译、预算、球面支持点证明及案例工作集构建；没有新增通用 Zemax 原生优化服务。固定案例的工作集构建不是动态极值跟踪。现有约束交换控制器需要由项目适配器接入真实求解与完整验收。
+新增`standalone_merit_exchange.run_merit_exchange`把动态样点交换接到预算编译和独立最终验收；[算法案例](../examples/algorithm-suite-green8/README.md)已接入实际原生MF评价与受约束求解，并原生验证MAXX/MINN焦点跨度。该CLI的发射、配置和规格限于冻结案例；通用项目仍需实现对应求解、样点行生成和完整审计回调。接口、保护/删除策略及O(N)跨度证明见[算法实现](algorithm-suite.md)。
 
 [绿光案例的实际行数、原生对照、耗时及下载](../examples/green8-mf-compact/README.md)。原始大 MF 保留作为审计和对照资料。

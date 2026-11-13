@@ -1,0 +1,3594 @@
+{
+  "q": [
+    -0.1616831914582768,
+    -0.035041661575214496,
+    -0.19612069014570674,
+    0.002257878552043995,
+    0.1456192287681476,
+    -0.16526573943585154,
+    0.15074608019075647,
+    0.05270025152283124,
+    0.20719148339013813,
+    -0.20585161559973375,
+    0.06802567465261311,
+    0.04062583747587549,
+    -0.13590300594616858,
+    -0.16574718565507313,
+    0.13234063862364956,
+    0.2068421080804252,
+    -0.19742675777594543,
+    -0.0729234356744283,
+    -0.20876067324108785,
+    -0.12951129392961888,
+    -0.19258101387968535,
+    0.16843035522415425,
+    0.03997948427763263,
+    0.17029321403934597,
+    0.20836899612838958,
+    0.2081373660125807,
+    0.20839566877874477,
+    -0.01776114458269725,
+    -0.20846877748539364,
+    0.08075916836862469,
+    -0.20875158461080479,
+    -0.03318561463439425,
+    0.20376870035283245,
+    0.20874761917558868,
+    -0.20854405602387777,
+    -0.20809509925193137,
+    0.20810752390730292,
+    0.2075562344666259,
+    0.1576443866681385,
+    0.11613331154627278,
+    -0.1959554917281856,
+    -0.12225465084962447,
+    0.20854662816891428,
+    -0.21070337842523248,
+    0.21079336668696905,
+    0.13756574035500305
+  ],
+  "passed": false,
+  "termination": "full_audit_filter_stalled",
+  "history": [
+    {
+      "round": 0,
+      "working_samples": 8,
+      "audited_samples": 23,
+      "fixed_audit_samples": 23,
+      "discovered_audit_samples": 0,
+      "failed_samples": 8,
+      "gate_minima": {
+        "wfe": -0.09763976663240803,
+        "first_order": -0.05722564230674718,
+        "physical": 1.0
+      },
+      "added_samples": [
+        {
+          "scenario": "R_S22_-1"
+        },
+        {
+          "scenario": "CT_T1_-1"
+        },
+        {
+          "scenario": "R_S26_-1"
+        }
+      ],
+      "dropped_samples": [],
+      "budget_blocked_samples": [],
+      "next_working_samples": 11,
+      "independent_audit_passed": false,
+      "trial_independent_audit_passed": false,
+      "candidate_accepted": false,
+      "accepted_audit_merit": 1.097639766632408,
+      "trial_audit_merit": 1.1451116018671237,
+      "solver": {
+        "status": "iteration_limit",
+        "q": [
+          -0.14097871579220772,
+          -0.046406296011683196,
+          -0.2433075740775633,
+          -0.001776131062253042,
+          0.09621924693150762,
+          -0.20910908125733924,
+          0.2001460589581445,
+          0.049325396427138284,
+          0.18019113559625088,
+          -0.19888719881064176,
+          0.06508728218314386,
+          -0.006886086243573377,
+          -0.1848807167244144,
+          -0.1811814492496752,
+          0.11610285213833864,
+          0.21558761336496884,
+          -0.16309719178875093,
+          -0.11641986781790176,
+          -0.24948037406102622,
+          -0.12048495676079697,
+          -0.23150022375026175,
+          0.14929862313316417,
+          0.004916109236046193,
+          0.16420831254545476,
+          0.25776894037024806,
+          0.22873729452812314,
+          0.2465223458262607,
+          0.031638789511160045,
+          -0.23546912160821404,
+          0.10902300440053243,
+          -0.18965342096141785,
+          -0.021182245455593114,
+          0.1919399805780364,
+          0.25814758886443495,
+          -0.25794403201341404,
+          -0.15961741788167208,
+          0.15870755192945507,
+          0.19273551345832823,
+          0.14273401807972078,
+          0.09553334421928478,
+          -0.19240241274530595,
+          -0.07285479057361079,
+          0.15914666911208378,
+          -0.2189033880524999,
+          0.26019323151637824,
+          0.08816578155897992
+        ],
+        "worst_slack": -0.015871591389952422,
+        "merit": 0.020064185889481046,
+        "margin": -0.015871591389952422,
+        "strict_feasible": false,
+        "numerical_converged": false,
+        "gates": {
+          "geometry": 0.0,
+          "physical": 1.6822060189269905e-07,
+          "wfe": -0.015871591389952422,
+          "magnification": -0.0012729094679428954,
+          "chief_angle": 0.06428414265729032,
+          "distortion": 0.27099825203915173,
+          "lateral_color": -2.340505013753713e-05,
+          "first_order": 2.402336518514403e-05,
+          "field_curvature": 0.04331572465580813,
+          "lca": 0.0430241170891797,
+          "scenario_first_order": -0.003795066589610263,
+          "nominal_other": 2.402336518514403e-05,
+          "nominal_wfe": 0.03341918965872681
+        },
+        "baseline": {
+          "worst_slack": -0.11763976654008279,
+          "merit": 0.16427423543321149,
+          "margin": -0.11763976654008279,
+          "strict_feasible": false,
+          "numerical_converged": false,
+          "gates": {
+            "geometry": 0.0,
+            "physical": 0.00011686756106854546,
+            "wfe": -0.11763976654008279,
+            "magnification": -0.057225642306747204,
+            "chief_angle": 0.06564554479575635,
+            "distortion": 0.2661129501079764,
+            "lateral_color": -0.0010812933120663004,
+            "first_order": 0.0011492108955337699,
+            "field_curvature": 0.14157624864401075,
+            "lca": 0.17523522757774945,
+            "scenario_first_order": -0.057225642306747204,
+            "nominal_other": 0.0010057380767440893,
+            "nominal_wfe": 0.04696224804002569
+          }
+        },
+        "history": [
+          {
+            "iteration": 0,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 0.9881364321760299,
+            "trust": 0.02,
+            "seconds": 46.71194310000283,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 77,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.023794429473045893,
+              "solve_seconds": 11.5363876,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8343,
+                "maximum_tail_spectral_norm": 1.019100312409808e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.04771046966848047,
+            "merit": 0.06371268904772243,
+            "margin": -0.04771046966848047,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 4.1350873747347805e-05,
+              "wfe": -0.04771046966848047,
+              "magnification": -0.015999138083323317,
+              "chief_angle": 0.06665578847999687,
+              "distortion": 0.26808353325365564,
+              "lateral_color": -0.00030235106108267296,
+              "first_order": 0.0002592557441829513,
+              "field_curvature": 0.0709466540044067,
+              "lca": 0.0806315427958549,
+              "scenario_first_order": -0.015999138083323317,
+              "nominal_other": 0.0002592557441829513,
+              "nominal_wfe": 0.051194304526081647
+            }
+          },
+          {
+            "iteration": 1,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0007001663178605,
+            "trust": 0.02,
+            "seconds": 88.71439790001023,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 67,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.018844303653513077,
+              "solve_seconds": 10.034044,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8343,
+                "maximum_tail_spectral_norm": 1.0005854601738886e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.024119643414168834,
+            "merit": 0.03075683153361828,
+            "margin": -0.024119643414168834,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 1.022345271550762e-05,
+              "wfe": -0.024119643414168834,
+              "magnification": -0.0044911344825990795,
+              "chief_angle": 0.06488337605651473,
+              "distortion": 0.26966642505643534,
+              "lateral_color": -8.402821788022763e-05,
+              "first_order": 7.183497905316472e-05,
+              "field_curvature": 0.047861243227038885,
+              "lca": 0.04278790555294744,
+              "scenario_first_order": -0.0044911344825990795,
+              "nominal_other": 7.183497905316472e-05,
+              "nominal_wfe": 0.04054643582315287
+            }
+          },
+          {
+            "iteration": 2,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0262277800871338,
+            "trust": 0.02,
+            "seconds": 128.73043779999716,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 71,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.016958031410920792,
+              "solve_seconds": 10.8832697,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8337,
+                "maximum_tail_spectral_norm": 9.746657350618037e-08,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.01895306022397647,
+            "merit": 0.02396314905990713,
+            "margin": -0.01895306022397647,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 2.331126971455433e-06,
+              "wfe": -0.01895306022397647,
+              "magnification": -0.0023850636180497986,
+              "chief_angle": 0.06450113902412224,
+              "distortion": 0.2704520917827423,
+              "lateral_color": -4.437134024048994e-05,
+              "first_order": 3.9234523029563206e-05,
+              "field_curvature": 0.04566624205439829,
+              "lca": 0.042655676144157356,
+              "scenario_first_order": -0.0036679489973865387,
+              "nominal_other": 3.9234523029563206e-05,
+              "nominal_wfe": 0.03565023898197617
+            }
+          },
+          {
+            "iteration": 3,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.019035424324987,
+            "trust": 0.02,
+            "seconds": 187.09405330001027,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 70,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.016115504578553378,
+              "solve_seconds": 22.4415011,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8336,
+                "maximum_tail_spectral_norm": 9.826316110383625e-08,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.017173913079108538,
+            "merit": 0.021707785444972937,
+            "margin": -0.017173913079108538,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 7.759085995928672e-07,
+              "wfe": -0.017173913079108538,
+              "magnification": -0.001719586487581637,
+              "chief_angle": 0.06437141496086118,
+              "distortion": 0.27077126166900334,
+              "lateral_color": -3.176947978844602e-05,
+              "first_order": 3.070929948023604e-05,
+              "field_curvature": 0.04464935195946551,
+              "lca": 0.042800498093896536,
+              "scenario_first_order": -0.003744092782843378,
+              "nominal_other": 3.070929948023604e-05,
+              "nominal_wfe": 0.03424932357148036
+            }
+          },
+          {
+            "iteration": 4,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0121204330515547,
+            "trust": 0.02,
+            "seconds": 234.2552265000122,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 75,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.01567659648227923,
+              "solve_seconds": 12.5703122,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8335,
+                "maximum_tail_spectral_norm": 1.022032702168955e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.016486369954113456,
+            "merit": 0.02083928615342634,
+            "margin": -0.016486369954113456,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 4.494341609984076e-07,
+              "wfe": -0.016486369954113456,
+              "magnification": -0.0014794416937533583,
+              "chief_angle": 0.06432446244135981,
+              "distortion": 0.2708947443597056,
+              "lateral_color": -2.7273809284800166e-05,
+              "first_order": 2.710458899457535e-05,
+              "field_curvature": 0.04400603294870442,
+              "lca": 0.04290325002312731,
+              "scenario_first_order": -0.003771495539412806,
+              "nominal_other": 2.710458899457535e-05,
+              "nominal_wfe": 0.03379235618288501
+            }
+          },
+          {
+            "iteration": 5,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.014025462042823,
+            "trust": 0.02,
+            "seconds": 270.0425067000033,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 76,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.01548417505443968,
+              "solve_seconds": 10.6321831,
+              "compression": {
+                "removed_constant_linear_rows": 20730,
+                "constant_norms_to_linear": 672,
+                "norm_rows_before": 36096,
+                "norm_rows_after": 8335,
+                "maximum_tail_spectral_norm": 1.0095894842380738e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.015871591389952422,
+            "merit": 0.020064185889481046,
+            "margin": -0.015871591389952422,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 1.6822060189269905e-07,
+              "wfe": -0.015871591389952422,
+              "magnification": -0.0012729094679428954,
+              "chief_angle": 0.06428414265729032,
+              "distortion": 0.27099825203915173,
+              "lateral_color": -2.340505013753713e-05,
+              "first_order": 2.402336518514403e-05,
+              "field_curvature": 0.04331572465580813,
+              "lca": 0.0430241170891797,
+              "scenario_first_order": -0.003795066589610263,
+              "nominal_other": 2.402336518514403e-05,
+              "nominal_wfe": 0.03341918965872681
+            }
+          }
+        ],
+        "counters": {
+          "batch_calls": 7,
+          "traced_candidates": 37,
+          "linearizations": 6,
+          "derivative_cache_hits": 0,
+          "qr_builds": 12,
+          "svd_builds": 0,
+          "proposals": 6,
+          "rejected_steps": 0,
+          "accepted_steps": 6,
+          "derivative_failures": 0,
+          "cone_linear_fallbacks": 0,
+          "retraction_calls": 0
+        },
+        "timings": {
+          "trace": 46.98123050003778,
+          "derivatives": 133.12666949999402,
+          "compression": 0.05848040003911592,
+          "subproblem": 89.55782260003616,
+          "retraction": 0.0,
+          "validation": 0.0,
+          "optimization_seconds": 270.04498249999597,
+          "seconds": 270.0449843000097
+        },
+        "margin_keys": [
+          "wfe"
+        ],
+        "final_acceptance": {
+          "status": "not_run",
+          "passed": null
+        },
+        "subproblem_backend": "clarabel",
+        "hard_gate_keys": [
+          "geometry",
+          "physical",
+          "nominal_other",
+          "nominal_wfe"
+        ],
+        "derivative_backend": "external",
+        "optimizer_tolerance_summary": {
+          "geometry": {
+            "shape": [
+              8,
+              525
+            ],
+            "count": 4200,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "physical": {
+            "shape": [
+              8,
+              1666
+            ],
+            "count": 13328,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "wfe": {
+            "shape": [
+              8,
+              48
+            ],
+            "count": 384,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "magnification": {
+            "shape": [
+              8,
+              16
+            ],
+            "count": 128,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "chief_angle": {
+            "shape": [
+              8,
+              96
+            ],
+            "count": 768,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "distortion": {
+            "shape": [
+              8,
+              64
+            ],
+            "count": 512,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "lateral_color": {
+            "shape": [
+              8,
+              72
+            ],
+            "count": 576,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "first_order": {
+            "shape": [
+              8,
+              7
+            ],
+            "count": 56,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "field_curvature": {
+            "shape": [
+              8,
+              8
+            ],
+            "count": 64,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "lca": {
+            "shape": [
+              8,
+              1
+            ],
+            "count": 8,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "scenario_first_order": {
+            "shape": [
+              8,
+              748
+            ],
+            "count": 5984,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "nominal_other": {
+            "shape": [
+              8,
+              2876
+            ],
+            "count": 23008,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "nominal_wfe": {
+            "shape": [
+              8,
+              48
+            ],
+            "count": 384,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          }
+        }
+      },
+      "seconds": 288.1789888999774
+    },
+    {
+      "round": 1,
+      "working_samples": 11,
+      "audited_samples": 23,
+      "fixed_audit_samples": 23,
+      "discovered_audit_samples": 0,
+      "failed_samples": 7,
+      "gate_minima": {
+        "wfe": -0.09763976663240803,
+        "first_order": -0.05722564230674718,
+        "physical": 1.0
+      },
+      "added_samples": [],
+      "dropped_samples": [],
+      "budget_blocked_samples": [],
+      "next_working_samples": 11,
+      "independent_audit_passed": false,
+      "trial_independent_audit_passed": false,
+      "candidate_accepted": false,
+      "accepted_audit_merit": 1.097639766632408,
+      "trial_audit_merit": 1.14517687352839,
+      "solver": {
+        "status": "iteration_limit",
+        "q": [
+          -0.1402195266874355,
+          -0.04605331318721059,
+          -0.2432102588692153,
+          -0.0014202507366039337,
+          0.09621927717242888,
+          -0.20899156516017384,
+          0.20014605389388196,
+          0.04960343334940499,
+          0.18019142573110677,
+          -0.19765200246478976,
+          0.06549993273373383,
+          -0.0068035231273269135,
+          -0.18496235642432593,
+          -0.18115088205942256,
+          0.11624447325465917,
+          0.21761426650346302,
+          -0.1630130277252673,
+          -0.11581060250934508,
+          -0.24974331440673542,
+          -0.1183952325457318,
+          -0.23132799891250208,
+          0.14915995201186782,
+          0.004776728386623447,
+          0.16414817551880329,
+          0.2577689307049239,
+          0.22873728321292208,
+          0.24659501489114652,
+          0.03163877681164115,
+          -0.23546912755192273,
+          0.11265662813616541,
+          -0.19071529153485742,
+          -0.02030663343317989,
+          0.19195825996575844,
+          0.2581475848813881,
+          -0.25794402963123997,
+          -0.15942385982423507,
+          0.1587075587402883,
+          0.1933525339665792,
+          0.14335104270028728,
+          0.0955333610294178,
+          -0.19328815130422086,
+          -0.07285479379867618,
+          0.15914666856507192,
+          -0.21890339347466883,
+          0.26019315115329394,
+          0.08816578111212474
+        ],
+        "worst_slack": -0.015944465550054465,
+        "merit": 0.020163029780198995,
+        "margin": -0.015944465550054465,
+        "strict_feasible": false,
+        "numerical_converged": false,
+        "gates": {
+          "geometry": 0.0,
+          "physical": 2.1315724296755434e-07,
+          "wfe": -0.015944465550054465,
+          "magnification": -0.0012729113325846697,
+          "chief_angle": 0.06429357640013456,
+          "distortion": 0.2709280206952075,
+          "lateral_color": -8.619318235902895e-05,
+          "first_order": 2.3791913349668903e-05,
+          "field_curvature": 0.04300176782711507,
+          "lca": 0.04325355332923655,
+          "scenario_first_order": -0.0037892510857244766,
+          "nominal_other": 2.3791913349668903e-05,
+          "nominal_wfe": 0.033434069690151946
+        },
+        "baseline": {
+          "worst_slack": -0.11763976654008279,
+          "merit": 0.164842285674187,
+          "margin": -0.11763976654008279,
+          "strict_feasible": false,
+          "numerical_converged": false,
+          "gates": {
+            "geometry": 0.0,
+            "physical": 0.00011686756106854546,
+            "wfe": -0.11763976654008279,
+            "magnification": -0.057225642306747204,
+            "chief_angle": 0.06564554479575635,
+            "distortion": 0.2661129501079764,
+            "lateral_color": -0.00392154451694382,
+            "first_order": 0.0011492108955337699,
+            "field_curvature": 0.14157624864401075,
+            "lca": 0.17523522757774945,
+            "scenario_first_order": -0.057225642306747204,
+            "nominal_other": 0.0010057380767440893,
+            "nominal_wfe": 0.04696224804002569
+          }
+        },
+        "history": [
+          {
+            "iteration": 0,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 0.9873935198059589,
+            "trust": 0.02,
+            "seconds": 59.70704609999666,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 78,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.023946058152444646,
+              "solve_seconds": 16.0688731,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11124,
+                "maximum_tail_spectral_norm": 1.019100312409808e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.04787769131191855,
+            "merit": 0.06407317222545998,
+            "margin": -0.04787769131191855,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 4.147099927465092e-05,
+              "wfe": -0.04787769131191855,
+              "magnification": -0.016001320003212527,
+              "chief_angle": 0.06675381912247291,
+              "distortion": 0.26803099406260233,
+              "lateral_color": -0.0010970732493635893,
+              "first_order": 0.00026430601123195174,
+              "field_curvature": 0.07080959251753738,
+              "lca": 0.08006007278553746,
+              "scenario_first_order": -0.016001320003212527,
+              "nominal_other": 0.00026430601123195174,
+              "nominal_wfe": 0.05133900195925856
+            }
+          },
+          {
+            "iteration": 1,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0010085343765338,
+            "trust": 0.02,
+            "seconds": 139.87150009998004,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 89,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.018944494634226188,
+              "solve_seconds": 27.6516188,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11123,
+                "maximum_tail_spectral_norm": 1.0004215558252566e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.024215808796616,
+            "merit": 0.03091682547958028,
+            "margin": -0.024215808796616,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 1.0307022844102676e-05,
+              "wfe": -0.024215808796616,
+              "magnification": -0.004491396131967917,
+              "chief_angle": 0.06491508419148073,
+              "distortion": 0.2695733211816589,
+              "lateral_color": -0.00030648235426955495,
+              "first_order": 7.20446129633956e-05,
+              "field_curvature": 0.04733141966215004,
+              "lca": 0.0425142629793813,
+              "scenario_first_order": -0.004491396131967917,
+              "nominal_other": 7.20446129633956e-05,
+              "nominal_wfe": 0.04074031503574038
+            }
+          },
+          {
+            "iteration": 2,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0262790617961126,
+            "trust": 0.02,
+            "seconds": 231.3480357999797,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 77,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.017041037914935702,
+              "solve_seconds": 31.0927327,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11113,
+                "maximum_tail_spectral_norm": 9.747063711111213e-08,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.019034810739544272,
+            "merit": 0.024082671132792877,
+            "margin": -0.019034810739544272,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 2.372818759255324e-06,
+              "wfe": -0.019034810739544272,
+              "magnification": -0.002385216420265124,
+              "chief_angle": 0.06451776476998339,
+              "distortion": 0.27037876407433703,
+              "lateral_color": -0.00016228031522280695,
+              "first_order": 3.91566088211448e-05,
+              "field_curvature": 0.045273139847463284,
+              "lca": 0.04271340026955157,
+              "scenario_first_order": -0.0036569944912108188,
+              "nominal_other": 3.91566088211448e-05,
+              "nominal_wfe": 0.035727958087014344
+            }
+          },
+          {
+            "iteration": 3,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0181056865071632,
+            "trust": 0.02,
+            "seconds": 314.9809041999979,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 76,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.016191064016361466,
+              "solve_seconds": 32.92877,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11113,
+                "maximum_tail_spectral_norm": 9.824124309015994e-08,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.017252442784975286,
+            "merit": 0.021817433786576145,
+            "margin": -0.017252442784975286,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 8.343312707381756e-07,
+              "wfe": -0.017252442784975286,
+              "magnification": -0.0017196013052398484,
+              "chief_angle": 0.06438401046174325,
+              "distortion": 0.2706963470301037,
+              "lateral_color": -0.00011667462985243127,
+              "first_order": 3.0430297059069744e-05,
+              "field_curvature": 0.04430082919497069,
+              "lca": 0.042977523490518914,
+              "scenario_first_order": -0.003736236287936734,
+              "nominal_other": 3.0430297059069744e-05,
+              "nominal_wfe": 0.034288417431420415
+            }
+          },
+          {
+            "iteration": 4,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.0117725933912751,
+            "trust": 0.02,
+            "seconds": 405.7808369999984,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 83,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.01574707899521721,
+              "solve_seconds": 37.6365768,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11112,
+                "maximum_tail_spectral_norm": 1.0222304117689586e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.016562770906850433,
+            "merit": 0.020944216632125555,
+            "margin": -0.016562770906850433,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 5.025022176141647e-07,
+              "wfe": -0.016562770906850433,
+              "magnification": -0.0014794587837272388,
+              "chief_angle": 0.06433501662309005,
+              "distortion": 0.270826354876777,
+              "lateral_color": -0.00010028952437912686,
+              "first_order": 2.686563027509692e-05,
+              "field_curvature": 0.043701376198532094,
+              "lca": 0.043117197976263955,
+              "scenario_first_order": -0.0037647094114188207,
+              "nominal_other": 2.686563027509692e-05,
+              "nominal_wfe": 0.03381772913436076
+            }
+          },
+          {
+            "iteration": 5,
+            "phase": "feasibility",
+            "accepted": true,
+            "rho": 1.014695723111135,
+            "trust": 0.02,
+            "seconds": 472.04276240000036,
+            "subproblem": {
+              "backend": "clarabel",
+              "success": false,
+              "status": "AlmostSolved",
+              "message": "AlmostSolved",
+              "iterations": 87,
+              "model_violation": 0.0,
+              "usable": true,
+              "objective": 0.015552639838026523,
+              "solve_seconds": 15.9386786,
+              "compression": {
+                "removed_constant_linear_rows": 29541,
+                "constant_norms_to_linear": 960,
+                "norm_rows_before": 49632,
+                "norm_rows_after": 11112,
+                "maximum_tail_spectral_norm": 1.0098302288127767e-07,
+                "norm_svd_cache_hits": 0
+              }
+            },
+            "worst_slack": -0.015944465550054465,
+            "merit": 0.020163029780198995,
+            "margin": -0.015944465550054465,
+            "strict_feasible": false,
+            "numerical_converged": false,
+            "gates": {
+              "geometry": 0.0,
+              "physical": 2.1315724296755434e-07,
+              "wfe": -0.015944465550054465,
+              "magnification": -0.0012729113325846697,
+              "chief_angle": 0.06429357640013456,
+              "distortion": 0.2709280206952075,
+              "lateral_color": -8.619318235902895e-05,
+              "first_order": 2.3791913349668903e-05,
+              "field_curvature": 0.04300176782711507,
+              "lca": 0.04325355332923655,
+              "scenario_first_order": -0.0037892510857244766,
+              "nominal_other": 2.3791913349668903e-05,
+              "nominal_wfe": 0.033434069690151946
+            }
+          }
+        ],
+        "counters": {
+          "batch_calls": 7,
+          "traced_candidates": 37,
+          "linearizations": 6,
+          "derivative_cache_hits": 0,
+          "qr_builds": 12,
+          "svd_builds": 0,
+          "proposals": 6,
+          "rejected_steps": 0,
+          "accepted_steps": 6,
+          "derivative_failures": 0,
+          "cone_linear_fallbacks": 0,
+          "retraction_calls": 0
+        },
+        "timings": {
+          "trace": 76.62813830006053,
+          "derivatives": 217.51999500003876,
+          "compression": 0.07713580000563525,
+          "subproblem": 177.4735645999899,
+          "retraction": 0.0,
+          "validation": 0.0,
+          "optimization_seconds": 472.0450763999834,
+          "seconds": 472.0450778999948
+        },
+        "margin_keys": [
+          "wfe"
+        ],
+        "final_acceptance": {
+          "status": "not_run",
+          "passed": null
+        },
+        "subproblem_backend": "clarabel",
+        "hard_gate_keys": [
+          "geometry",
+          "physical",
+          "nominal_other",
+          "nominal_wfe"
+        ],
+        "derivative_backend": "external",
+        "optimizer_tolerance_summary": {
+          "geometry": {
+            "shape": [
+              11,
+              525
+            ],
+            "count": 5775,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "physical": {
+            "shape": [
+              11,
+              1666
+            ],
+            "count": 18326,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "wfe": {
+            "shape": [
+              11,
+              48
+            ],
+            "count": 528,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "magnification": {
+            "shape": [
+              11,
+              16
+            ],
+            "count": 176,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "chief_angle": {
+            "shape": [
+              11,
+              96
+            ],
+            "count": 1056,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "distortion": {
+            "shape": [
+              11,
+              64
+            ],
+            "count": 704,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "lateral_color": {
+            "shape": [
+              11,
+              72
+            ],
+            "count": 792,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "first_order": {
+            "shape": [
+              11,
+              7
+            ],
+            "count": 77,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "field_curvature": {
+            "shape": [
+              11,
+              8
+            ],
+            "count": 88,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "lca": {
+            "shape": [
+              11,
+              1
+            ],
+            "count": 11,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "scenario_first_order": {
+            "shape": [
+              11,
+              748
+            ],
+            "count": 8228,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "nominal_other": {
+            "shape": [
+              11,
+              2876
+            ],
+            "count": 31636,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          },
+          "nominal_wfe": {
+            "shape": [
+              11,
+              48
+            ],
+            "count": 528,
+            "minimum": 1e-08,
+            "maximum": 1e-08
+          }
+        }
+      },
+      "seconds": 769.448284299986
+    }
+  ],
+  "active_samples": [
+    {
+      "scenario": "nominal"
+    },
+    {
+      "scenario": "R_S21_-1"
+    },
+    {
+      "scenario": "R_S21_+1"
+    },
+    {
+      "scenario": "CT_T2_-1"
+    },
+    {
+      "scenario": "CT_T2_+1"
+    },
+    {
+      "scenario": "AIR_-1"
+    },
+    {
+      "scenario": "AIR_+1"
+    },
+    {
+      "scenario": "R_S24_+1"
+    },
+    {
+      "scenario": "R_S22_-1"
+    },
+    {
+      "scenario": "CT_T1_-1"
+    },
+    {
+      "scenario": "R_S26_-1"
+    }
+  ],
+  "seconds": 803.2705867999757,
+  "protected_samples": [
+    {
+      "scenario": "nominal"
+    }
+  ],
+  "worst_set_complete": true,
+  "accepted_audit_merit": 1.097639766632408,
+  "full_domain_filter_enabled": true,
+  "continuous_domain_certified": false,
+  "scenario_controls": {
+    "nominal": [],
+    "R_S21_-1": [],
+    "R_S21_+1": [],
+    "R_S22_-1": [],
+    "R_S22_+1": [],
+    "R_S23_-1": [],
+    "R_S23_+1": [],
+    "R_S24_-1": [],
+    "R_S24_+1": [],
+    "R_S25_-1": [],
+    "R_S25_+1": [],
+    "R_S26_-1": [],
+    "R_S26_+1": [],
+    "CT_T1_-1": [],
+    "CT_T1_+1": [],
+    "CT_T2_-1": [],
+    "CT_T2_+1": [],
+    "CT_T3_-1": [],
+    "CT_T3_+1": [],
+    "CT_T4_-1": [],
+    "CT_T4_+1": [],
+    "AIR_-1": [],
+    "AIR_+1": []
+  },
+  "independent_scenario_count": 23,
+  "statistical_yield_estimated": false,
+  "manufacturing_release": false,
+  "robust_margin_optimum_certified": false,
+  "nominal_full_acceptance": {
+    "passed": true,
+    "green8_WFE_norm": 0.9355159637067472,
+    "physical_all15_passed": true,
+    "fullbody": {
+      "passed": true,
+      "minimum_margin_mm": 0.0,
+      "minimum_domain_slack": 0.24054878558887977,
+      "precision_digits": 80,
+      "full_spherical_shoulder_domain": true,
+      "manufacturing_release": false
+    },
+    "first_order_passed": true,
+    "minimum_first_order_slack": 3.686246035528029e-06,
+    "nominal_ports_passed": true,
+    "minimum_normalized_first_order_slack": 0.0010057385763865118,
+    "perturbed_port_datums_not_certified": false,
+    "focus": {
+      "performed": true,
+      "passed": true,
+      "LCA_um": 0.5765386841656663,
+      "FC_um": 0.6003260233951685,
+      "sampling": [
+        20,
+        64
+      ],
+      "axial_wavelengths": 51,
+      "field_grid": 65,
+      "local_extrema": [
+        {
+          "field_mm": 0.9128531074518462,
+          "value_mm": 0.0006003260233951685,
+          "success": true
+        }
+      ]
+    },
+    "fields": 65,
+    "WFE_pupils": [
+      "GQ12x48",
+      "RECT16"
+    ],
+    "full_NA": 0.5,
+    "local_extrema_searched": true,
+    "all_local_searches_succeeded": true,
+    "physical_rays": 1733931,
+    "manufacturing_release": false,
+    "statistical_yield_estimated": false
+  },
+  "scenario_before": {
+    "nominal": {
+      "passed": true,
+      "green8_WFE_norm": 0.9743643139740245,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.900069709748209e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0048196416405715805,
+      "perturbed_port_datums_not_certified": false,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_-1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0910693763498016,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -0.0004904668161722723,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.04904668161722723,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.1305467789811456,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.2825471756905404e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.00018322102509864862,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9969435207995236,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 7.91831241819807e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0035596114646134686,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9736582941622575,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 3.0080820307532008e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0060794163611111686,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9765608553234205,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.8132974977547178e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0045033780485428145,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9725041032064864,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.986824564426115e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.005135841979674633,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9753536637007476,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.410589596912871e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.007264871009805233,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0000756416498433,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.3896519895695292e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0023749022321390262,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9747085782406851,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.7578136148443946e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004724874167833356,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9740295148653493,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.0422973511458054e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004914390148438466,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9834572760680198,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.724333518815513e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.003395695295398523,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9703823408434538,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.075770692222534e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0062433028500068,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9732710707164604,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 8.898721146621824e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004689912378286804,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9755907380434684,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.9102179645690285e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.004901437716698811,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_-1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0044160961368844,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.834325647465107e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004758123112696767,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0343027822357234,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.9658055073534797e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.004881160179817061,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9736066714336332,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.5520715200167956e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004461983836172697,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.975175363877278,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.248037274554804e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.005177299422522152,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9735232347711941,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.6901556289639075e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004498984819616533,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.975270965646135,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.1099708314764598e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.005140298442511879,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9776208642978037,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.0447190671291082e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.004565711598605066,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.002720023452706,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.23556976901998475,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.7553806689107887e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.005073571748486929,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    }
+  },
+  "scenario_initial": {
+    "nominal": {
+      "passed": true,
+      "green8_WFE_norm": 0.9353977640310698,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 3.686246035528029e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": false,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_-1": {
+      "passed": false,
+      "green8_WFE_norm": 1.097639766632408,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -0.0005722564230674718,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.05722564230674718,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0599750731937585,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -0.0002089187405562576,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.002984553436517965,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_-1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9548902552253512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -7.440806630398811e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.003921544516943715,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9590257005529306,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.1492108955337907e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9389752563493512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.8954620763244066e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9370997777783173,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 4.47687181726053e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9610176853905279,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 8.85914196402382e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_+1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9571513140239061,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -5.922704661273648e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.0008461006658962353,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9359769437995635,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.2579336800276906e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9348312952492501,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.114272711992385e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9463627810795449,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.8921871536292656e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.00017684431583861855,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9470945632818657,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.479945469843983e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_-1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9382747991896535,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -6.2623843124498535e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.0033004780373073334,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9402027229424765,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.1492108955337907e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.991682154050793,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 3.0639624153394607e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9819947928137859,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 4.3084391236902775e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9342702898625562,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.6591747353800201e-07,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 8.744384727858896e-05,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9365765927184512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 7.206256569247671e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9341266269303174,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.553614810134718e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0008188049955814812,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9367338552550373,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.818739005292173e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9630636515345496,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.1622563681519296e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9587555489248781,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.209837331790254e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    }
+  },
+  "scenario_after": {
+    "nominal": {
+      "passed": true,
+      "green8_WFE_norm": 0.9353977640310698,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 3.686246035528029e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": false,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_-1": {
+      "passed": false,
+      "green8_WFE_norm": 1.097639766632408,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -0.0005722564230674718,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.05722564230674718,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S21_+1": {
+      "passed": false,
+      "green8_WFE_norm": 1.0599750731937585,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -0.0002089187405562576,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.002984553436517965,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_-1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9548902552253512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -7.440806630398811e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.003921544516943715,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S22_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9590257005529306,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.1492108955337907e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9389752563493512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.8954620763244066e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S23_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9370997777783173,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 4.47687181726053e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9610176853905279,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 8.85914196402382e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S24_+1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9571513140239061,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -5.922704661273648e-05,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.0008461006658962353,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9359769437995635,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.2579336800276906e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S25_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9348312952492501,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.114272711992385e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9463627810795449,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.8921871536292656e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.00017684431583861855,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "R_S26_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9470945632818657,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.479945469843983e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_-1": {
+      "passed": false,
+      "green8_WFE_norm": 0.9382747991896535,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": false,
+      "minimum_first_order_slack": -6.2623843124498535e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": -0.0033004780373073334,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T1_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9402027229424765,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.1492108955337907e-05,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.991682154050793,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 3.0639624153394607e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T2_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9819947928137859,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 4.3084391236902775e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9342702898625562,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.6591747353800201e-07,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 8.744384727858896e-05,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T3_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9365765927184512,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 7.206256569247671e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9341266269303174,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 1.553614810134718e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0008188049955814812,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "CT_T4_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9367338552550373,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.818739005292173e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_-1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9630636515345496,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 5.1622563681519296e-06,
+      "nominal_ports_passed": true,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    },
+    "AIR_+1": {
+      "passed": true,
+      "green8_WFE_norm": 0.9587555489248781,
+      "physical_all15_passed": true,
+      "fullbody": {
+        "passed": true,
+        "minimum_margin_mm": 0.0,
+        "minimum_domain_slack": 0.24054878558887977,
+        "precision_digits": 80,
+        "full_spherical_shoulder_domain": true,
+        "manufacturing_release": false
+      },
+      "first_order_passed": true,
+      "minimum_first_order_slack": 2.209837331790254e-06,
+      "nominal_ports_passed": false,
+      "minimum_normalized_first_order_slack": 0.0011492108955337907,
+      "perturbed_port_datums_not_certified": true,
+      "focus": {
+        "performed": false,
+        "passed": null
+      },
+      "fields": 17,
+      "WFE_pupils": [
+        "GQ12x48",
+        "RECT16"
+      ],
+      "full_NA": 0.5,
+      "local_extrema_searched": false,
+      "all_local_searches_succeeded": true,
+      "physical_rays": 386835,
+      "manufacturing_release": false,
+      "statistical_yield_estimated": false
+    }
+  },
+  "initial_WFE_failed": 2,
+  "before_WFE_failed": 6,
+  "after_WFE_failed": 2,
+  "worst_WFE_initial": 1.097639766632408,
+  "worst_WFE_before": 1.1305467789811456,
+  "worst_WFE_after": 1.097639766632408,
+  "physical_source_modified": false,
+  "scenario_scope": "22 fixed-image single-error probes; GQ12x48+RECT16, 17 fields. Not simultaneous errors or yield.",
+  "full_history_file": "robust-details.json.gz"
+}

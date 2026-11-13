@@ -32,13 +32,20 @@ def solve_proposal(model, low, high, tolerance, scales, selected, phase,
     modes = model.modes
     total = n + k + 1 if phase == 'feasibility' else n + 1
     scalar_m, scalar_c, cones, blocks, rhs = [], [], [], [], []
+    statistics=dict(removed_constant_linear_rows=0,constant_norms_to_linear=0,norm_rows_before=0,norm_rows_after=0,
+                    maximum_tail_spectral_norm=0.,norm_svd_cache_hits=0)
 
     def linear(coefficients, constant):
-        scalar_m.append(np.atleast_2d(coefficients))
-        scalar_c.append(np.atleast_1d(constant))
+        a,b=np.atleast_2d(coefficients),np.atleast_1d(constant)
+        keep=np.any(a!=0.,axis=1)|(b<0.)
+        statistics['removed_constant_linear_rows']+=int(np.sum(~keep))
+        if np.any(keep):scalar_m.append(a[keep]);scalar_c.append(b[keep])
 
     def norm_bound(B, b, offset, upper):
         # offset + upper@x >= ||B@x[:n] + b||, represented without linearizing the norm.
+        if not np.any(B):
+            statistics['constant_norms_to_linear']+=1
+            linear(upper,offset-np.linalg.norm(b));return
         A = np.zeros((len(b) + 1, total))
         A[0] = -upper
         A[1:, :n] = -B
@@ -80,7 +87,19 @@ def solve_proposal(model, low, high, tolerance, scales, selected, phase,
             else:
                 adjustment = tolerance[row]
             if spec:
-                B, b = gain[local]*compressed[local, :, :-1]@modes, gain[local]*compressed[local, :, -1]
+                affine=compressed[local]
+                statistics['norm_rows_before']+=len(affine)
+                if getattr(model,'norm_rank_tolerance',0.)>0.:
+                    from .standalone_streaming import affine_rank_factor,bounded_affine_rank
+                    cache_key=(spec['vector'],bool(spec.get('axis',False)),local)
+                    if cache_key not in model.norm_rank_cache:
+                        model.norm_rank_cache[cache_key]=affine_rank_factor(affine,model.norm_rank_tolerance)
+                    else:statistics['norm_svd_cache_hits']+=1
+                    factor,tail=model.norm_rank_cache[cache_key]
+                    affine=bounded_affine_rank(factor,tail,low,high)
+                    statistics['maximum_tail_spectral_norm']=max(statistics['maximum_tail_spectral_norm'],tail)
+                statistics['norm_rows_after']+=len(affine)
+                B, b = gain[local]*affine[:, :-1]@modes, gain[local]*affine[:, -1]
                 norm_bound(B, b, offset[local]+adjustment, upper)
                 if phase == 'margin' and row in selected:
                     upper = np.zeros(total); upper[-1] = -scales[row]
@@ -133,4 +152,4 @@ def solve_proposal(model, low, high, tolerance, scales, selected, phase,
         backend='clarabel', success=str(answer.status) == 'Solved', status=str(answer.status),
         message=str(answer.status), iterations=int(answer.iterations), model_violation=violation,
         usable=usable, objective=None if value is None else float(value),
-        solve_seconds=float(answer.solve_time))
+        solve_seconds=float(answer.solve_time),compression=statistics)

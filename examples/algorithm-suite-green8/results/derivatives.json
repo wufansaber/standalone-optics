@@ -1,0 +1,161 @@
+[
+  {
+    "scope": "tube",
+    "parameters": 11,
+    "seconds": 0.15159399999538437,
+    "reduction": {
+      "rank": 2,
+      "full_parameters": 11,
+      "reduced_parameters": 9,
+      "singular_values": [
+        1.7285657404056214,
+        0.10982022170786751,
+        1.0669555438473172e-16
+      ],
+      "linearized_only": true
+    },
+    "directions": [
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 1.0018727636274003e-05,
+          "maximum_absolute": 8.563042781073449e-06
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 3.701388244672988e-05,
+          "maximum_absolute": 4.5327966450806056e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 8.84303683144203e-05,
+          "maximum_absolute": 6.881043340988685e-05
+        }
+      ],
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 5.625057206232624e-06,
+          "maximum_absolute": 1.0999967457792081e-05
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 1.3884609797063989e-05,
+          "maximum_absolute": 2.2775202855943033e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 6.967343469358372e-05,
+          "maximum_absolute": 0.00014331398657095595
+        }
+      ],
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 7.190209958806635e-06,
+          "maximum_absolute": 1.4434574242550013e-05
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 1.894920815957259e-05,
+          "maximum_absolute": 3.3453201645716746e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 7.51924177020565e-05,
+          "maximum_absolute": 0.00010963824139410827
+        }
+      ]
+    ],
+    "counters": {
+      "primal_calls": 19,
+      "analytic_calls": 1,
+      "primal_rays": 100909,
+      "analytic_rays": 5311,
+      "reused_primal_rays": 5311
+    },
+    "passed": true
+  },
+  {
+    "scope": "all",
+    "parameters": 46,
+    "seconds": 0.1320447000034619,
+    "reduction": {
+      "rank": 5,
+      "full_parameters": 46,
+      "reduced_parameters": 41,
+      "singular_values": [
+        1.8616800352650855,
+        1.7285657404056216,
+        1.2252259923709183,
+        0.18157288870888694,
+        0.1098202217078676,
+        9.389958496486869e-17,
+        8.609483245972523e-17,
+        4.9375900891641246e-33
+      ],
+      "linearized_only": true
+    },
+    "directions": [
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 2.362060274605969e-06,
+          "maximum_absolute": 4.261299050156708e-05
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 1.5068696040415846e-06,
+          "maximum_absolute": 2.6088799496004622e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 6.244045077680062e-06,
+          "maximum_absolute": 0.00010954260055040521
+        }
+      ],
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 6.434377806272782e-06,
+          "maximum_absolute": 1.6961956292860236e-05
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 1.6261915970769206e-05,
+          "maximum_absolute": 3.082169938345425e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 6.432972961614646e-05,
+          "maximum_absolute": 0.00014322448931741727
+        }
+      ],
+      [
+        {
+          "step": 0.0001,
+          "relative_L2": 2.682445879703175e-06,
+          "maximum_absolute": 7.161678850842179e-05
+        },
+        {
+          "step": 3e-05,
+          "relative_L2": 1.9714748530529127e-06,
+          "maximum_absolute": 5.338794783504852e-05
+        },
+        {
+          "step": 1e-05,
+          "relative_L2": 6.13194850494651e-06,
+          "maximum_absolute": 0.00015320424042108982
+        }
+      ]
+    ],
+    "counters": {
+      "primal_calls": 19,
+      "analytic_calls": 1,
+      "primal_rays": 100909,
+      "analytic_rays": 5311,
+      "reused_primal_rays": 5311
+    },
+    "passed": true
+  }
+]

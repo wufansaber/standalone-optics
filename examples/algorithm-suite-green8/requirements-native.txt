@@ -1,0 +1,2 @@
+-r requirements.txt
+pythonnet>=3,<4

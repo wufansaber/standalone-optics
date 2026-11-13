@@ -1,0 +1,250 @@
+{
+  "passed": true,
+  "allowed": 166,
+  "calculable": 166,
+  "wavelengths": 61,
+  "sites": [
+    {
+      "site": "O1",
+      "ranked": 165,
+      "closest": [
+        {
+          "name": "S-LAH60MQ",
+          "score": 6.777502920750477e-06
+        },
+        {
+          "name": "S-LAH60",
+          "score": 1.391754738002432e-05
+        },
+        {
+          "name": "L-LAH90",
+          "score": 0.0006899365495388319
+        },
+        {
+          "name": "S-LAH55V",
+          "score": 0.0011014802600383216
+        },
+        {
+          "name": "S-LAH55VS",
+          "score": 0.0011042115956657811
+        },
+        {
+          "name": "L-LAH94",
+          "score": 0.0016393962766643923
+        },
+        {
+          "name": "S-LAH89",
+          "score": 0.0017645046337410983
+        },
+        {
+          "name": "L-LAH85V",
+          "score": 0.0018430398860681159
+        }
+      ]
+    },
+    {
+      "site": "T1",
+      "ranked": 165,
+      "closest": [
+        {
+          "name": "L-BAL35P",
+          "score": 0.0007398639205806296
+        },
+        {
+          "name": "S-PHM53",
+          "score": 0.0008017891598044854
+        },
+        {
+          "name": "BAL35Y",
+          "score": 0.000969576078811036
+        },
+        {
+          "name": "L-BAL35",
+          "score": 0.0009753398268908962
+        },
+        {
+          "name": "S-BAL35",
+          "score": 0.0009780150383955496
+        },
+        {
+          "name": "S-BAL35R",
+          "score": 0.0009922690258769107
+        },
+        {
+          "name": "BSM51Y",
+          "score": 0.0011608790114443334
+        },
+        {
+          "name": "S-BSM14",
+          "score": 0.0011625825427380606
+        }
+      ]
+    },
+    {
+      "site": "T3",
+      "ranked": 165,
+      "closest": [
+        {
+          "name": "S-NBH52V",
+          "score": 0.0017219914889965648
+        },
+        {
+          "name": "S-BAM12",
+          "score": 0.001992570578942795
+        },
+        {
+          "name": "S-BSM25",
+          "score": 0.001993563965172131
+        },
+        {
+          "name": "S-TIM27",
+          "score": 0.002258367500774604
+        },
+        {
+          "name": "S-BSM71",
+          "score": 0.002306150232275332
+        },
+        {
+          "name": "S-BAH11",
+          "score": 0.002313990709198365
+        },
+        {
+          "name": "S-LAL54Q",
+          "score": 0.00244450245836282
+        },
+        {
+          "name": "S-LAL7Q",
+          "score": 0.0026059375858943326
+        }
+      ]
+    },
+    {
+      "site": "T4",
+      "ranked": 165,
+      "closest": [
+        {
+          "name": "S-PHM52",
+          "score": 8.259922089334414e-06
+        },
+        {
+          "name": "S-BSM16",
+          "score": 0.0004259134231278037
+        },
+        {
+          "name": "S-BSM15",
+          "score": 0.0008139669682605355
+        },
+        {
+          "name": "S-BSM10",
+          "score": 0.0008966899092516636
+        },
+        {
+          "name": "S-BSM28",
+          "score": 0.0013043410276498944
+        },
+        {
+          "name": "S-PHM53",
+          "score": 0.0013647153438437099
+        },
+        {
+          "name": "S-BSM2",
+          "score": 0.0013978437056268041
+        },
+        {
+          "name": "BSM51Y",
+          "score": 0.00140778801503892
+        }
+      ]
+    }
+  ],
+  "shortlist": [
+    {
+      "id": "O1-S-LAH60MQ",
+      "name": "S-LAH60MQ",
+      "medium": 3,
+      "family": "O1",
+      "spectral_distance": 6.777502920750477e-06
+    },
+    {
+      "id": "O1-S-LAH60",
+      "name": "S-LAH60",
+      "medium": 3,
+      "family": "O1",
+      "spectral_distance": 1.391754738002432e-05
+    },
+    {
+      "id": "O1-L-LAH94",
+      "name": "L-LAH94",
+      "medium": 3,
+      "family": "O1",
+      "spectral_distance": 0.0016393962766643923
+    },
+    {
+      "id": "T1-L-BAL35P",
+      "name": "L-BAL35P",
+      "medium": 21,
+      "family": "T1",
+      "spectral_distance": 0.0007398639205806296
+    },
+    {
+      "id": "T1-S-PHM53",
+      "name": "S-PHM53",
+      "medium": 21,
+      "family": "T1",
+      "spectral_distance": 0.0008017891598044854
+    },
+    {
+      "id": "T1-S-BAL35R",
+      "name": "S-BAL35R",
+      "medium": 21,
+      "family": "T1",
+      "spectral_distance": 0.0009922690258769107
+    },
+    {
+      "id": "T3-S-NBH52V",
+      "name": "S-NBH52V",
+      "medium": 24,
+      "family": "T3",
+      "spectral_distance": 0.0017219914889965648
+    },
+    {
+      "id": "T3-S-BAM12",
+      "name": "S-BAM12",
+      "medium": 24,
+      "family": "T3",
+      "spectral_distance": 0.001992570578942795
+    },
+    {
+      "id": "T3-S-BAH11",
+      "name": "S-BAH11",
+      "medium": 24,
+      "family": "T3",
+      "spectral_distance": 0.002313990709198365
+    },
+    {
+      "id": "T4-S-PHM52",
+      "name": "S-PHM52",
+      "medium": 25,
+      "family": "T4",
+      "spectral_distance": 8.259922089334414e-06
+    },
+    {
+      "id": "T4-S-BSM16",
+      "name": "S-BSM16",
+      "medium": 25,
+      "family": "T4",
+      "spectral_distance": 0.0004259134231278037
+    },
+    {
+      "id": "T4-S-PHM53",
+      "name": "S-PHM53",
+      "medium": 25,
+      "family": "T4",
+      "spectral_distance": 0.0013647153438437099
+    }
+  ],
+  "rejected": [],
+  "catalog_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+  "procurement_verified": false,
+  "full_catalog_published": false
+}

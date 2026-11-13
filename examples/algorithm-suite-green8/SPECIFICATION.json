@@ -1,0 +1,43 @@
+{
+  "scope_sha256": "4d38ed9da3edb6afa7c0c97ddef897a911c9194b41189b81fb5e0ecc9961ac83",
+  "WFE_targets_waves": {
+    "0.51": 0.06723036845265126,
+    "0.536": 0.06723036845265126,
+    "0.556": 0.06723036845265126,
+    "0.573": 0.06723036845265126,
+    "0.593": 0.06723036845265126,
+    "0.62": 0.06723036845265126,
+    "0.595": 0.04568539236791058,
+    "0.61": 0.08
+  },
+  "original_NA": 0.5,
+  "object_field_radius_mm": 1.25,
+  "fixed_image_z_mm": 395.6035303459926,
+  "focus_max_object_um": {
+    "LCA570_620_PV": 0.7,
+    "FC595_meanTS": 0.7
+  },
+  "hard_green_lateral_color": {
+    "primary_um": 0.536,
+    "reference_measured_waves_um": [
+      0.51,
+      0.536,
+      0.556,
+      0.593,
+      0.573,
+      0.62
+    ],
+    "maximum_image_mm": 0.0018974173564139107,
+    "source": "Old unchanged reference cfg1 actual chief registration;595 and610 extra registration reported until same-observable reference measured; no .7um lateral-color inference"
+  },
+  "blue_and790_imaging_monitor_only": true,
+  "ports_mm": {
+    "objective_entry": 5.6195103459926,
+    "objective_exit": 65.0095103459926,
+    "tube_entry": 210.0035303459926,
+    "tube_exit": 265.6035303459926
+  },
+  "tube_housing_length_max_mm": 62.0,
+  "tube_stack_reserve_mm": 0.2,
+  "source_model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969"
+}

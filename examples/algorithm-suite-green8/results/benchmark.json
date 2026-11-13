@@ -1,0 +1,56 @@
+[
+  {
+    "mode": "finite-difference",
+    "start": 0,
+    "seconds": 161.430128100008,
+    "passed": true,
+    "WFE_norm": 0.9430909984969305,
+    "rounds": 3,
+    "termination": "round_limit"
+  },
+  {
+    "mode": "analytic",
+    "start": 0,
+    "seconds": 62.36107459999039,
+    "passed": true,
+    "WFE_norm": 0.9447494362737211,
+    "rounds": 3,
+    "termination": "round_limit"
+  },
+  {
+    "mode": "lifted-reduced",
+    "start": 0,
+    "seconds": 75.59867800000939,
+    "passed": true,
+    "WFE_norm": 0.9429194030649467,
+    "rounds": 3,
+    "termination": "round_limit"
+  },
+  {
+    "mode": "lifted-reduced",
+    "start": 1,
+    "seconds": 101.72081940001226,
+    "passed": true,
+    "WFE_norm": 0.9723851268576515,
+    "rounds": 3,
+    "termination": "round_limit"
+  },
+  {
+    "mode": "analytic",
+    "start": 1,
+    "seconds": 71.30661530001089,
+    "passed": true,
+    "WFE_norm": 0.9462193940771466,
+    "rounds": 3,
+    "termination": "round_limit"
+  },
+  {
+    "mode": "finite-difference",
+    "start": 1,
+    "seconds": 170.672699799994,
+    "passed": true,
+    "WFE_norm": 0.951137878582744,
+    "rounds": 3,
+    "termination": "round_limit"
+  }
+]

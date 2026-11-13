@@ -1,0 +1,13 @@
+{
+  "accepted_source_model_sha256": "566f75f750b03320ecb4f84c776ecae3df83696702f7c6d108adc8c80e6c7969",
+  "frozen_extended_serialization_sha256": "427d920e9fe60d0fe28b3eb6c780b69275b9c670dbfdb23c2d8a40d1466d7c9d",
+  "scope_sha256": "4d38ed9da3edb6afa7c0c97ddef897a911c9194b41189b81fb5e0ecc9961ac83",
+  "dispersion_origin": "exact frozen OHARA snapshot and fixed-window formula; per-wave values only",
+  "catalog_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+  "waves": 61,
+  "factory_release": false,
+  "specification_sha256": "bea6db39f7378e465ebcc7c9936147c93464b21aed1ea631f6817693d1bb4f69",
+  "glass_branches_serialization_sha256": "0eb467e13d91618f61172d3ee3dfe505d17831de885114a0ff1f2482b95b3622",
+  "native_ZMX_sha256": "fa0ca0bd6c72759ed6945f79bd702265b5752600c6c3a7f72db0ded91aa51945",
+  "fixed_window_catalog_sha256": "d4389b0403904891f4010f668960ad4357d64fd724f7ac50c7ac88cda97e3f41"
+}

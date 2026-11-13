@@ -57,6 +57,8 @@ class _Linearization:
     owner: object
     use_cones: bool
     norm_specs: dict
+    norm_rank_tolerance: float = 0.
+    norm_rank_cache: dict = field(default_factory=dict)
     _last_delta: np.ndarray | None = field(default=None, init=False)
     _last_prediction: tuple | None = field(default=None, init=False)
 
@@ -115,11 +117,13 @@ class EfficientSolveMixin:
               jacobian_provider=None, callback=None, initial_q=None, strict_validator=None,
               difference_step=2.5e-4, batch_size=8, min_trust=2e-6, max_trust=2.5,
               stagnation_retries=6, verbose=True, subproblem_backend="slsqp", hard_gate_keys=(),
-              trial_retractor=None):
+              trial_retractor=None, qr_block_rows=512,norm_rank_tolerance=0.):
         if subproblem_backend not in ("slsqp", "clarabel", "auto"):
             raise ValueError("Unknown subproblem_backend")
         if not np.isfinite([variant, damping]).all() or variant < 0 or damping < 0:
             raise ValueError("variant and damping must be finite and nonnegative")
+        if not np.isfinite(norm_rank_tolerance)or norm_rank_tolerance<0.:
+            raise ValueError('norm_rank_tolerance must be finite and nonnegative')
         directory = Path(directory)
         directory.mkdir(parents=True, exist_ok=True)
         bounds = np.asarray(self.bounds, dtype=float)
@@ -202,12 +206,13 @@ class EfficientSolveMixin:
             tick = perf_counter()
             frozen = bounds[:, 0] == bounds[:, 1]
             measured, steps = None, None
-            vector_derivatives = {}
+            vector_derivatives, supplied_compressed = {}, {}
             if jacobian_provider is not None:
                 supplied = jacobian_provider(q.copy(), base, tuple(keys))
                 if isinstance(supplied, dict):
                     j = np.array(supplied['slacks'], dtype=float, copy=True)
                     vector_derivatives = supplied.get('vectors', {})
+                    supplied_compressed = supplied.get('compressed_vectors', {})
                 else:
                     j = np.array(supplied, dtype=float, copy=True)
             else:
@@ -247,18 +252,29 @@ class EfficientSolveMixin:
                         vector_derivatives[name] = np.stack([(np.asarray(row[name])-base[name])/step
                                                              for row, step in zip(measured, safe_step)], axis=-1)
             if j.shape != (len(g), n) or not np.isfinite(j).all():
-                raise ValueError('Jacobian has wrong shape or nonfinite entries')
+                raise ValueError(f'Jacobian has shape {j.shape}, expected {(len(g), n)}; '
+                                 f'nonfinite entries: {int(np.count_nonzero(~np.isfinite(j)))}')
             j[:, frozen] = 0.
             times['derivatives'] += perf_counter()-tick
             tick = perf_counter()
             vectors = {}
             if use_cones:
+                from .standalone_streaming import compress_affine, validate_compressed
+                if set(vector_derivatives) & set(supplied_compressed):
+                    raise ValueError('Supply each residual derivative either dense or compressed, not both')
+                for name, compressed in supplied_compressed.items():
+                    if name not in base:
+                        raise ValueError('Unknown compressed residual vector '+name)
+                    current = validate_compressed(compressed, base[name], n)
+                    current[..., :-1][..., frozen] = 0.
+                    vectors[name] = current
+                    counters['qr_builds'] += 1
                 for name, derivative in vector_derivatives.items():
                     derivative = np.array(derivative, dtype=float, copy=True)
                     if name not in base or derivative.shape != np.asarray(base[name]).shape+(n,) or not np.isfinite(derivative).all():
                         raise ValueError('Invalid residual vector Jacobian: '+name)
                     derivative[..., frozen] = 0.
-                    vectors[name] = np.linalg.qr(np.concatenate((derivative, np.asarray(base[name])[..., None]), axis=-1), mode='r')
+                    vectors[name] = compress_affine(derivative, np.asarray(base[name]), block_rows=qr_block_rows)
                     counters['qr_builds'] += 1
             modes = np.eye(n)
             norm_specs = {}
@@ -311,7 +327,8 @@ class EfficientSolveMixin:
             times['compression'] += perf_counter()-tick
             counters['linearizations'] += 1
             safe_steps = None if steps is None else np.where(steps == 0., 1., steps)
-            return _Linearization(g.copy(), j, keys, arrays, slices, measured, safe_steps, vectors, modes, frozen, self, use_cones, norm_specs)
+            return _Linearization(g.copy(), j, keys, arrays, slices, measured, safe_steps, vectors, modes, frozen, self, use_cones, norm_specs,
+                                  norm_rank_tolerance=norm_rank_tolerance)
 
         for iteration in range(int(iters)+int(phase2_iterations)):
             converged = bool(np.all(g >= -tolerance))

@@ -13,10 +13,11 @@ from pathlib import Path
 
 CONTROL = {'CONF', 'PRIM'}
 BINARY = {'SUMM', 'DIFF', 'PROD', 'DIVI'}
+RANGE = {'MAXX', 'MINN'}
 UNARY = {'SQRT', 'PROB', 'OPGT', 'OPLT'}
 MEASURE = {'CVVA', 'TTHI', 'INDX', 'CARD', 'PARY', 'REAX', 'REAY',
            'REAA', 'REAB', 'REAC', 'RWCE', 'RWRE', 'MTFT', 'MTFS'}
-SUPPORTED = CONTROL | BINARY | UNARY | MEASURE | {'CONS'}
+SUPPORTED = CONTROL | BINARY | RANGE | UNARY | MEASURE | {'CONS'}
 LIMITS = {'OPGT', 'OPLT'}
 
 
@@ -34,11 +35,13 @@ def normalize(rows):
         if len(params) > 8 or not all(map(math.isfinite, params+[target, weight])) or weight < 0.:
             raise ValueError('Use finite parameters/targets and nonnegative weights; Lagrangian weights require a separate model')
         params += [0.]*(8-len(params))
-        positions = (0, 1) if op in BINARY else (0,) if op in UNARY else ()
+        positions = (0, 1) if op in BINARY | RANGE else (0,) if op in UNARY else ()
         for position in positions:
             number = params[position]
             if number != int(number) or not 1 <= number < index:
                 raise ValueError(f'Row {index} requires a strictly earlier positive integer row reference')
+        if op in RANGE and params[0] > params[1]:
+            raise ValueError('Range operands require increasing inclusive endpoints')
         if op == 'PROB' and params[1] != 1.:
             raise ValueError('This PROB schema requires Int2=1 and a literal factor in Data1')
         if op in CONTROL and (weight != 0. or params[0] < 1. or params[0] != int(params[0])):
@@ -50,19 +53,36 @@ def normalize(rows):
 
 def dependencies(row):
     op = row['operand']
+    if op in RANGE:
+        return list(range(int(row['params'][0]), int(row['params'][1])+1))
     count = 2 if op in BINARY else 1 if op in UNARY else 0
     return [int(v) for v in row['params'][:count]]
 
 
+class MeritGraph:
+    """Normalize a fixed source DAG once for repeated working-set compilations.
+
+    Treat the private normalized rows as immutable. Output rows and reports are
+    independent copies, so a solver can never rewrite this source pool.
+    """
+    def __init__(self, rows):
+        self._rows = normalize(rows)
+        self._audit = _audit_normalized(self._rows)
+
+
 def audit(rows, budget=None, *, evaluation_seconds=None, jacobian_seconds=None):
-    rows = normalize(rows)
+    rows = rows._rows if isinstance(rows, MeritGraph) else normalize(rows)
+    return _audit_normalized(rows, budget, evaluation_seconds=evaluation_seconds, jacobian_seconds=jacobian_seconds)
+
+
+def _audit_normalized(rows, budget=None, *, evaluation_seconds=None, jacobian_seconds=None):
     counts = Counter(r['operand'] for r in rows)
     values = dict(rows=len(rows), weighted_rows=sum(r['weight'] > 0. for r in rows),
         zero_weight_rows=sum(r['weight'] == 0. for r in rows),
         ray_queries=sum(counts[op] for op in ('PARY', 'REAX', 'REAY', 'REAA', 'REAB', 'REAC')),
         wavefront_queries=sum(counts[op] for op in ('RWCE', 'RWRE')),
         mtf_queries=sum(counts[op] for op in ('MTFT', 'MTFS')),
-        control_rows=sum(counts[op] for op in CONTROL), arithmetic_rows=sum(counts[op] for op in BINARY | {'SQRT', 'PROB', 'CONS'}))
+        control_rows=sum(counts[op] for op in CONTROL), arithmetic_rows=sum(counts[op] for op in BINARY | RANGE | {'SQRT', 'PROB', 'CONS'}))
     budget = dict(budget or {})
     unknown = set(budget)-set(values)
     if unknown or any(type(v) is not int or v < 0 for v in budget.values()):
@@ -87,7 +107,7 @@ closure of active/protected/explicit rows plus all controls; other weighted
 rows are deactivated, never silently called accepted. It requires an identity
 for the external full-domain audit. Keep protected physical gates explicitly.
     """
-    source = normalize(rows)
+    source = rows._rows if isinstance(rows, MeritGraph) else normalize(rows)
     n = len(source)
 
     def indices(values):
@@ -116,6 +136,10 @@ for the external full-domain audit. Keep protected physical gates explicitly.
                     live.add(dep); pending.append(dep)
     else:
         live, retained_weighted = set(range(1, n+1)), weighted
+    # Native range operands consume EVERY intervening row. Pin the complete
+    # interval against CSE so its mapped endpoints still delimit exactly the
+    # same ordered values, including any weighted/control rows in that range.
+    pinned = {dep for i in live if source[i-1]['operand'] in RANGE for dep in dependencies(source[i-1])}
     output, mapping, cache = [], [None]*(n+1), {}
     context = (None, None)
     state_epoch = 0
@@ -130,7 +154,9 @@ for the external full-domain audit. Keep protected physical gates explicitly.
         elif op == 'PRIM':
             state_epoch += 1
             context = (context[0], tuple(row['params']))
-        for position, dep in enumerate(dependencies(row)):
+        positions = (0, 1) if op in BINARY | RANGE else (0,) if op in UNARY else ()
+        for position in positions:
+            dep = int(row['params'][position])
             assert mapping[dep] is not None
             row['params'][position] = float(mapping[dep])
         if old not in retained_weighted:
@@ -142,7 +168,7 @@ for the external full-domain audit. Keep protected physical gates explicitly.
         # native primary wavelengths, so do not merge across those entries.
         state = (context, state_epoch if None in context else None) if op in MEASURE else None
         key = (op, tuple(row['params']), row['target'], state)
-        reusable = op not in CONTROL | LIMITS
+        reusable = op not in CONTROL | LIMITS and old not in pinned
         if reusable and row['weight'] == 0. and key in cache:
             mapping[old] = cache[key]
             continue
@@ -152,7 +178,8 @@ for the external full-domain audit. Keep protected physical gates explicitly.
             cache.setdefault(key, len(output))
     normalize(output)
     report = dict(mode='working_subset' if working else 'equivalent_all_rows',
-        input=audit(source), output=audit(output, budget),
+        input=deepcopy(rows._audit) if isinstance(rows, MeritGraph) else _audit_normalized(source),
+        output=_audit_normalized(output, budget),
         merged_rows=len(live)-len(output), omitted_rows=n-len(live),
         source_weighted_rows=len(weighted), retained_weighted_rows=len(retained_weighted),
         deactivated_weighted_rows=sorted(weighted-retained_weighted),
@@ -160,6 +187,7 @@ for the external full-domain audit. Keep protected physical gates explicitly.
         full_objective_preserved=not working or retained_weighted == weighted,
         final_acceptance=False, requires_external_full_audit=working,
         all_source_rows_mapped=not working, row_map_1based=mapping)
+    report['range_pinned_source_rows'] = len(pinned)
     # Verify weighted roots remain distinct even when expressions are identical.
     assert len({mapping[i] for i in retained_weighted}) == len(retained_weighted)
     return output, report
@@ -192,6 +220,9 @@ this function does not trace optics. Domain errors invalidate the whole graph.
             context = (context[0], tuple(p)); value = 0.
         elif op == 'CONS':
             value = row['target']
+        elif op in RANGE:
+            selected = values[int(p[0]):int(p[1])+1]
+            value = max(selected) if op == 'MAXX' else min(selected)
         elif op in BINARY:
             a, b = [values[int(i)] for i in p[:2]]
             if op == 'SUMM': value = a+b

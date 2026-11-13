@@ -229,7 +229,7 @@ for topology, materials in diverse_candidates(spec):
 | 高NA复消色差显微镜设计状态 | 早期快照未达标；后续14片方案按原始绿光范围通过名义光学、实体和原生验收，制造放行未完成 |
 | 跨项目稳定加速、全局最优、最少片数与制造良率 | 需要独立基准和相应工程证据 |
 
-早期方法总结未公开研究处方和完整研究运行时。2026-11-13经所有者授权，新增[可下载的14片绿光Zemax与MF案例](../examples/green8-14element/README.md)；厂家完整OHARA目录需由使用者自行提供。完整研究求解器、Jacobian和NPZ缓存仍未作为新增CLI发布。
+早期方法总结未公开研究处方和完整研究运行时。2026-11-13经所有者授权，新增[可下载的14片绿光Zemax与MF案例](../examples/green8-14element/README.md)；厂家完整OHARA目录需由使用者自行提供。原历史研究运行时与NPZ缓存保持独立；后续[六项算法与实际复消色差运行](../examples/algorithm-suite-green8/README.md)现已发布该冻结案例的解析Jacobian、动态工作集、完整独立验收及材料/公差CLI，适用边界见其说明。
 
 ## 15. 达标阶段固化的算法与策略
 

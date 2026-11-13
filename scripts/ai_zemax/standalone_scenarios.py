@@ -121,19 +121,34 @@ by default. User callbacks must apply controls to the physical model/trace.
         if self.local_jacobian is None:
             raise ValueError('No local_jacobian supplied; omit jacobian_provider for finite differences')
         gates, vectors = {key: [] for key in keys}, {key: [] for key in base if key not in ('gates', 'scenario_rows')}
+        from .standalone_streaming import validate_compressed,compress_affine
         for index, (key, payload) in enumerate(self.scenarios.items()):
             controls = self.controls[key]
             columns = np.r_[np.arange(self.design_size), np.arange(controls.start, controls.stop)]
             local = self.local_jacobian(np.asarray(q[:self.design_size]).copy(), deepcopy(payload),
                                         np.asarray(q[controls]).copy(), deepcopy(base['scenario_rows'][index]))
+            if set(local.get('vectors',{}))&set(local.get('compressed_vectors',{})):
+                raise ValueError('A scenario vector cannot have both dense and compressed Jacobians')
             for label, destination in [('gates', gates), ('vectors', vectors)]:
                 for name in destination:
                     expected = base['scenario_rows'][index][label][name].shape
+                    if label=='vectors'and name in local.get('compressed_vectors',{}):
+                        value=validate_compressed(local['compressed_vectors'][name],base['scenario_rows'][index]['vectors'][name],len(columns))
+                        lifted=np.zeros(value.shape[:-1]+(len(self.bounds)+1,))
+                        lifted[...,columns]=value[...,:-1];lifted[...,-1]=value[...,-1]
+                        destination[name].append(('compressed',lifted));continue
                     value = np.asarray(local[label][name], dtype=float)
                     if value.shape != expected+(len(columns),) or not np.isfinite(value).all():
                         raise ValueError('Invalid scenario Jacobian for '+name)
                     lifted = np.zeros(expected+(len(self.bounds),))
                     lifted[..., columns] = value
-                    destination[name].append(lifted)
+                    destination[name].append(('dense',lifted)if label=='vectors'else lifted)
+        dense,compressed={},{}
+        for name,values in vectors.items():
+            if all(mode=='dense'for mode,value in values):dense[name]=np.stack([value for mode,value in values])
+            else:
+                blocks=[value if mode=='compressed'else compress_affine(value,base['scenario_rows'][i]['vectors'][name])for i,(mode,value)in enumerate(values)]
+                rows=max(block.shape[-2]for block in blocks)
+                compressed[name]=np.stack([np.pad(block,[(0,0)]*(block.ndim-2)+[(0,rows-block.shape[-2]),(0,0)])for block in blocks])
         return dict(slacks=np.concatenate([np.stack(gates[key]).reshape(-1, len(self.bounds)) for key in keys]),
-                    vectors={name: np.stack(value) for name, value in vectors.items()})
+                    vectors=dense,compressed_vectors=compressed)
