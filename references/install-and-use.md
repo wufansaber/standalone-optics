@@ -11,6 +11,15 @@
 
 3. 在 Codex 中使用 `$standalone-optics`，提供本机上的处方、材料数据和要检查的指标。也可直接运行技能目录内的 `scripts/standalone_optics.py`。
 
+需要有约束连续优化时，另外安装 SciPy；解析追迹导数本身只依赖 NumPy。CUDA 是可选后端，普通 CPU 电脑可以执行局部优化和公开案例。
+
+```text
+python -m pip install -r standalone-optics/requirements-optimize.txt
+python standalone-optics/examples/local-optimizer-20261109/run.py --help
+```
+
+适配实际镜头的参数、约束、误差场景和独立验收见[局部优化接口](local-optimization.md)。公开合成镜头的验收分配仅用于复现算法，不能沿用为其他镜头的设计要求。
+
 ## 直接运行
 
 把下面的 `standalone-optics` 路径换成复制后的技能目录。使用其他 Python 解释器时替换 `python`。

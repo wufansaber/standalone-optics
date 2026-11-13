@@ -203,3 +203,7 @@ for branch in ranked_real_material_and_topology_candidates():
 ```
 
 该流程已在配套研究案例执行；完整研究适配器没有随本文自动安装到公开 CLI。公开案例可在有许可的 Zemax 中复核，公开独立内核的能力仍以[验证范围](validated-scope.md)和当前实现限制为准。
+
+## 13. 后续可执行代码的迁移范围
+
+2026-11-13将通用解析光线/波前导数、QR局部模型、直接SOCP、缓存、严格硬门、有界非线性投影、最坏点交换、真实材料分支和公差场景接口发布为[可执行模块](local-optimization.md)。[公开合成光学对照](../examples/runtime-upgrade-20261113/README.md)验证了两后端与有界像面补偿。项目专有有限远心参考、移动OTF等适配器仍在研究范围内；本案例的原生文件与原始验收记录保持不变。

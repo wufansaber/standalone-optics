@@ -1,0 +1,124 @@
+{
+  "vertices_mm": [
+    64.0,
+    65.0,
+    69.0,
+    145.25339956465032
+  ],
+  "surface_rows": [
+    {
+      "curvature_mm_inv": 0.0,
+      "conic": 0.0,
+      "even_coefficients": [],
+      "aperture_radius_mm": 4.0
+    },
+    {
+      "curvature_mm_inv": 0.029190903960381293,
+      "conic": 0.0,
+      "even_coefficients": [
+        0.0,
+        -1.2044541089847272e-05
+      ],
+      "aperture_radius_mm": 6.0
+    },
+    {
+      "curvature_mm_inv": -0.025936227382304215,
+      "conic": 0.0,
+      "even_coefficients": [],
+      "aperture_radius_mm": 6.0
+    },
+    {
+      "curvature_mm_inv": 0.0,
+      "conic": 0.0,
+      "even_coefficients": [],
+      "aperture_radius_mm": null
+    }
+  ],
+  "wavelengths_um": [
+    0.54,
+    0.55,
+    0.56
+  ],
+  "indices_by_wave": [
+    [
+      1.0,
+      1.0,
+      1.5175,
+      1.0,
+      1.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.5168,
+      1.0,
+      1.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.5162,
+      1.0,
+      1.0
+    ]
+  ],
+  "primary_wave": 1,
+  "stop_surface": 1,
+  "object_at_infinity": false,
+  "aperture_type": "enpd",
+  "aperture_value": 8.0,
+  "field_type": "object_height",
+  "fields": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.1
+    ],
+    [
+      0.0,
+      0.2
+    ],
+    [
+      0.0,
+      0.30000000000000004
+    ],
+    [
+      0.0,
+      0.4
+    ],
+    [
+      0.0,
+      0.5
+    ],
+    [
+      0.0,
+      0.6000000000000001
+    ],
+    [
+      0.0,
+      0.7000000000000001
+    ],
+    [
+      0.0,
+      0.8
+    ],
+    [
+      0.0,
+      0.9
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "material_names": [
+    "",
+    "",
+    "DEMO_FIXED_INDEX_GLASS",
+    "",
+    ""
+  ]
+}

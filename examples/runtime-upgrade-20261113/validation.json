@@ -1,0 +1,55 @@
+{
+  "tests_run": 140,
+  "passed": 138,
+  "skipped": [
+    {
+      "test": "setUpModule (test_cuda_backend)",
+      "reason": "GPU tracing requires CuPy and a working CUDA runtime"
+    },
+    {
+      "test": "test_cuda_and_cpu_use_same_fresh_envelope_gate (test_manufacturing_acceptance.ManufacturingAcceptanceTests.test_cuda_and_cpu_use_same_fresh_envelope_gate)",
+      "reason": "GPU tracing requires CuPy and a working CUDA runtime"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "suite_passed": true,
+  "validated_source_sha256": {
+    "scripts/glass_catalog.py": "941d651c5e4625985c4a6331b3aa74bf37804a857b8a2321d0948ac5b678068f",
+    "scripts/optimize_optics.py": "2d4a58dbdc145cebab8ef9d249eb781c9f1e4220037783e515902be367374389",
+    "scripts/standalone_optics.py": "e895b86638afeaa9721c0bc20fe8dddc3d363230d0dcc11b9ba54842221650b9",
+    "scripts/update_glass_catalogs.py": "9e07893e54e557e4d368131bd15e82d8f8e6522320ee6a3d9c83cf0ae5b103d3",
+    "scripts/ai_zemax/standalone.py": "84e8b3f11775dc8ce133067cc2f94938493ffae852edcc155cfb4408a70d8fac",
+    "scripts/ai_zemax/standalone_aberrations.py": "ee2b7dd9f0fe528448e557292e2fb9179c84bcdbfcf0ed674f8914b11a5e5f52",
+    "scripts/ai_zemax/standalone_analysis.py": "ec5dfabc5ee6a1670e638b4bbf2e99479e013263c6423af73557b8906916224a",
+    "scripts/ai_zemax/standalone_candidate_generation.py": "fa3264316a47c0cb3a54d4a6812193e86c904c16e56b38eb2f54538dd83a3335",
+    "scripts/ai_zemax/standalone_catalog_download.py": "f23579494d4f7899704955725fefc44474964cce5413587462121279e8874f51",
+    "scripts/ai_zemax/standalone_cli.py": "1ee0ddfa07c96b11421fd0c593d1730ff5d30b6470fdc21102418605499a4b76",
+    "scripts/ai_zemax/standalone_conic.py": "76223ba9ae4782d3640aac4eb9519bb7aa4e6649ad19b99d27bab4255948bb5f",
+    "scripts/ai_zemax/standalone_constraint_exchange.py": "fa52bdc58d7b86ccac29d3eb0ed4e69a41f4bd79f796ada558e66f07f9206771",
+    "scripts/ai_zemax/standalone_coupled_group_search.py": "8399516b597dd6ce991ba8775e6d15560b03ae73df5117f555b7e3a6a31a0764",
+    "scripts/ai_zemax/standalone_demo.py": "73b4b7cbccebc7404c41e61a12f5a22440f4821c3c2c1a46ceeffe7e8ba10cdf",
+    "scripts/ai_zemax/standalone_derivatives.py": "27b89755162ec4eb65c05eee95db830e46711e100b80e2ecddcc03aa30bdc131",
+    "scripts/ai_zemax/standalone_glass_catalog.py": "4d5cfd0c88830c2ea502c4331d9697cb03b6a4ed86bc8e97776e3399b7001d32",
+    "scripts/ai_zemax/standalone_glass_search.py": "f28cc1a6a220bb40684cc285db57e51e808227db030c814b06a2ffed21e38cfe",
+    "scripts/ai_zemax/standalone_gpu_screen.py": "ab1b4402091fa254f5cc6e241fcea3f52c430beca1686856d1bed65a8ea978d0",
+    "scripts/ai_zemax/standalone_gpu_trace.py": "3aeb0d8b234635a24fa15fae74fa90e70ffb04a2353ea673368887f1ddb3f926",
+    "scripts/ai_zemax/standalone_group_search.py": "94d3b15d2f06dd0e078a56241e61c7054577d6ed58c74be816ca3fb53a19efbd",
+    "scripts/ai_zemax/standalone_local_solver.py": "047ec16700c4f5aed40029243a097d0fe8db1a3f38ec51b700cb76e534a21eda",
+    "scripts/ai_zemax/standalone_manufacturing.py": "f7844f0d2a04d7f1fdd7079643b600ec0387ed2fc9034ab68d8fafa8ec0882e0",
+    "scripts/ai_zemax/standalone_model.py": "ce6b153b2404167f3472c24238f3ed5f91ea31b1cb65382d179f6c48942c6c24",
+    "scripts/ai_zemax/standalone_mtf.py": "4212682c206e8acb31ae9ae12d5866d1b1e70d115672056367a9f5d0ce88fce9",
+    "scripts/ai_zemax/standalone_mtf_geometric.py": "1ded7cc0fd3e75a7a3fbcd06d2bee7496403fa90eaa7bc6fa44bb2489b36b28b",
+    "scripts/ai_zemax/standalone_mtf_workflow.py": "9c5b3f6ce43c70fe1ce8833f9062248c045bf2cf44d4e7f3fa0d9def402c20d4",
+    "scripts/ai_zemax/standalone_optimization_cli.py": "9b8a54579e0e315941bbc905cc6adeb1631e4536f3616a01040357b8d3b1bf20",
+    "scripts/ai_zemax/standalone_parallel_screen.py": "0cb7da6e7637837250aa1a0d80ce5e1f6607bb8ddf0e56a9b29d701f470e87ce",
+    "scripts/ai_zemax/standalone_plots.py": "d57fba66dc57b27be954e3b7f153cb13a6a279812851f1d2c81f1fee8d5e7160",
+    "scripts/ai_zemax/standalone_retraction.py": "f9150e23e0c18c2f49e0e71a2681140fb5695f694e3a254d60de05ec9564fefc",
+    "scripts/ai_zemax/standalone_scenarios.py": "7715939b33a19b5447c2e36a9a9bba03e06424e5e6761ed877550173a728b465",
+    "scripts/ai_zemax/standalone_seed_realize.py": "f2c6330527eff290dd5543719e753e56a9864549fbc9ba06d1c9fea41fce9074",
+    "scripts/ai_zemax/standalone_seed_search.py": "c5d1fe334277fe82635525d9acf9a9953ddd4af33bae4f7bcc0da00d9ed9c577",
+    "scripts/ai_zemax/standalone_spot.py": "d0d8171b8acf61639585a61896ed7e061ac15f4726af0434d3fe488a806c82d0",
+    "scripts/ai_zemax/standalone_system.py": "28059e9a566dd67e84235b50c9e834874b6ae91c37b0f9aa5d3d08f1da1e5bc1",
+    "scripts/ai_zemax/__init__.py": "bded78d0cee5a6d576ad22817032e8d5eb32903f0683633c5e9b117c3015d7d5"
+  }
+}

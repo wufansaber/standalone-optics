@@ -1,0 +1,125 @@
+{
+  "schema": "standalone_optics.official_catalog_sources.v1",
+  "as_of_date": "2026-11-09",
+  "latest_meaning": "Official files offered on the verification date; not an automatic claim about future releases.",
+  "sources": [
+    {
+      "source_id": "cdgm-current",
+      "vendor": "CDGM",
+      "default_current": true,
+      "scope": "current_official_download",
+      "version_label": "202609",
+      "version_date": "2026-09",
+      "release_date": null,
+      "release_date_basis": "Catalog header and official Content-Disposition agree on September2026; publication day not shown.",
+      "official_landing_url": "https://www.cdgmgd.com/go.htm?k=ge_lei_xia_zai&url=downList",
+      "download_url": "https://www.cdgmgd.com/downloadFile.htm?uid=vkYlfwDmuNtvITOp4NV",
+      "archive_name": "CDGM-ZEMAX202609.AGF",
+      "archive_sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+      "archive_bytes": 1325696,
+      "archive_http_last_modified": null,
+      "verified_at_utc": "2026-11-09T09:44:08.805166+00:00",
+      "latest_verified": true,
+      "latest_verified_as_of": "2026-11-09",
+      "agf_files": [
+        {
+          "filename": "CDGM-ZEMAX202609.AGF",
+          "sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "bytes": 1325696,
+          "archive_member": null
+        }
+      ],
+      "public_bundling": false
+    },
+    {
+      "source_id": "schott-current",
+      "vendor": "SCHOTT",
+      "default_current": true,
+      "scope": "preferred_inquiry_AR_glasses",
+      "version_label": "June-2025-B",
+      "version_date": "2025-06",
+      "release_date": null,
+      "release_date_basis": "AGF header June2025; B suffix is filename evidence. No explicit posting day.",
+      "official_landing_url": "https://www.schott.com/en-us/products/optical-glass",
+      "download_url": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?v=3b65e351&download=true",
+      "archive_name": "schott-optical-glass-overview-zemax-format.zip",
+      "archive_sha256": "448c1ae62ed661f4e6e5e20fe5c30ddefeed9187fe4b5786a848e2bec7ef6047",
+      "archive_bytes": 69798,
+      "archive_http_last_modified": "Fri, 06 Feb 2026 14:22:02 GMT",
+      "verified_at_utc": "2026-11-09T09:44:11.533891+00:00",
+      "latest_verified": true,
+      "latest_verified_as_of": "2026-11-09",
+      "agf_files": [
+        {
+          "filename": "schott glasses preferred and special June-2025-B.AGF",
+          "sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "bytes": 484061,
+          "archive_member": "schott glasses preferred and special June-2025-B.AGF"
+        }
+      ],
+      "public_bundling": false
+    },
+    {
+      "source_id": "ohara-current",
+      "vendor": "OHARA",
+      "default_current": true,
+      "scope": "S-glass_L-glass_i-line_non-browning_fused-silica",
+      "version_label": "260529",
+      "version_date": "2026-05-29",
+      "release_date": "2026-05-29",
+      "release_date_basis": "Explicit date attached to the current catalog on official Japan landing.",
+      "official_landing_url": "https://www.ohara-inc.co.jp/en/product/catalog/",
+      "download_url": "https://www.ohara-inc.co.jp/wp-content/uploads/2022/02/OHARA_260529_CATALOG.zip",
+      "archive_name": "OHARA_260529_CATALOG.zip",
+      "archive_sha256": "d892108afd3206379b39b4d0603497759e42d1689112d39835c1d75e14467765",
+      "archive_bytes": 40875,
+      "archive_http_last_modified": "Wed, 27 May 2026 09:26:02 GMT",
+      "verified_at_utc": "2026-11-09T09:44:13.041066+00:00",
+      "latest_verified": true,
+      "latest_verified_as_of": "2026-11-09",
+      "agf_files": [
+        {
+          "filename": "OHARA_260529_CATALOG.AGF",
+          "sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "bytes": 598766,
+          "archive_member": "OHARA_260529_CATALOG.AGF"
+        }
+      ],
+      "public_bundling": false
+    },
+    {
+      "source_id": "ohara-all",
+      "vendor": "OHARA",
+      "default_current": false,
+      "scope": "all_products_including_special_order_and_discontinued",
+      "version_label": "260701",
+      "version_date": "2026-07-01",
+      "release_date": "2026-07-01",
+      "release_date_basis": "Explicit date attached to the all-products catalog on official Japan landing.",
+      "official_landing_url": "https://www.ohara-inc.co.jp/en/product/catalog/",
+      "download_url": "https://www.ohara-inc.co.jp/wp-content/uploads/2022/02/OHARA_260701_CATALOG.zip",
+      "archive_name": "OHARA_260701_CATALOG.zip",
+      "archive_sha256": "f609ee1e256b1a5be439fc21ec0750576c305e32f667805ea6b6141b25ae2ca3",
+      "archive_bytes": 69506,
+      "archive_http_last_modified": "Tue, 07 Jul 2026 08:14:23 GMT",
+      "verified_at_utc": "2026-11-09T09:44:13.765565+00:00",
+      "latest_verified": true,
+      "latest_verified_as_of": "2026-11-09",
+      "agf_files": [
+        {
+          "filename": "OHARA_260701.AGF",
+          "sha256": "2515c3c5d6d3812310ca9a168e29d79bf490f576ea1cc66696a8616be8650a35",
+          "bytes": 708915,
+          "archive_member": "OHARA_260701.AGF"
+        }
+      ],
+      "public_bundling": false
+    }
+  ],
+  "notes": [
+    "No vendor catalog bodies are embedded in this registry.",
+    "Updates require an explicit command and create a new immutable local index.",
+    "HTTP modification timestamps are distinct from catalog version/release dates.",
+    "Wavelength dispersion validity does not establish optical transmission or procurement."
+  ]
+}

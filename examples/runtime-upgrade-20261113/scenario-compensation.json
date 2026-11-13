@@ -1,0 +1,994 @@
+{
+  "seconds": 21.48747839999851,
+  "solver": {
+    "status": "margin_iteration_limit",
+    "q": [
+      -1.3599677043719547,
+      -1.319177199120602,
+      -1.0957361760506246,
+      0.4393281797036759,
+      -0.0198325280406521,
+      0.019804605352747515,
+      -7.108299074818244e-05,
+      7.267978904844323e-05
+    ],
+    "worst_slack": 0.1446372433895925,
+    "merit": 0.0,
+    "margin": 0.1446372433895925,
+    "strict_feasible": true,
+    "numerical_converged": true,
+    "gates": {
+      "wfe": 0.1446372433895925,
+      "spot": 0.31779035984455073,
+      "height_positive": 1.0,
+      "height_negative": 0.96487494960945
+    },
+    "baseline": {
+      "worst_slack": -4.178212392709088,
+      "merit": 5.7276561945745925,
+      "margin": -4.178212392709088,
+      "strict_feasible": false,
+      "numerical_converged": false,
+      "gates": {
+        "wfe": -4.178212392709088,
+        "spot": -3.569006616618438,
+        "height_positive": 1.0,
+        "height_negative": 0.9195270369153828
+      }
+    },
+    "history": [
+      {
+        "iteration": 0,
+        "phase": "feasibility",
+        "accepted": true,
+        "rho": 0.9835741600660483,
+        "trust": 0.8,
+        "seconds": 2.575737900013337,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 24,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": 0.25465538397686643,
+          "solve_seconds": 0.0048829
+        },
+        "worst_slack": -0.2689569566963468,
+        "merit": 0.34454435673855216,
+        "margin": -0.2689569566963468,
+        "strict_feasible": false,
+        "numerical_converged": false,
+        "gates": {
+          "wfe": -0.10898004351468016,
+          "spot": -0.2689569566963468,
+          "height_positive": 0.9346561497846332,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 1,
+        "phase": "feasibility",
+        "accepted": true,
+        "rho": 0.9996476287925502,
+        "trust": 0.8,
+        "seconds": 4.879053800003021,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": true,
+          "status": "Solved",
+          "message": "Solved",
+          "iterations": 20,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": 6.436547827999262e-07,
+          "solve_seconds": 0.0042862
+        },
+        "worst_slack": -0.00010117292583666782,
+        "merit": 0.00012140751100400137,
+        "margin": -0.00010117292583666782,
+        "strict_feasible": false,
+        "numerical_converged": false,
+        "gates": {
+          "wfe": 0.0001286657337377095,
+          "spot": -0.00010117292583666782,
+          "height_positive": 0.9327938893027393,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 2,
+        "phase": "feasibility",
+        "accepted": true,
+        "rho": 1.0,
+        "trust": 0.8,
+        "seconds": 7.162120600012713,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": true,
+          "status": "Solved",
+          "message": "Solved",
+          "iterations": 19,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": 2.3116347410390602e-10,
+          "solve_seconds": 0.0037834
+        },
+        "worst_slack": 0.00035886984149624546,
+        "merit": 0.0,
+        "margin": 0.00035886984149624546,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.0022265516271684493,
+          "spot": 0.00035886984149624546,
+          "height_positive": 0.9328878717188909,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 3,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 1.2307883510892605,
+        "trust": 0.8,
+        "seconds": 9.462959200012847,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": true,
+          "status": "Solved",
+          "message": "Solved",
+          "iterations": 20,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.1715730406880696,
+          "solve_seconds": 0.0093223
+        },
+        "worst_slack": 0.12280403812802132,
+        "merit": 0.0,
+        "margin": 0.12280403812802132,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.12280403812802132,
+          "spot": 0.18483887714360392,
+          "height_positive": 0.966069794108127,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 4,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 0.5215070148360091,
+        "trust": 0.8,
+        "seconds": 11.703459600001224,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 19,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.17315761681525757,
+          "solve_seconds": 0.0088535
+        },
+        "worst_slack": 0.12842197706111924,
+        "merit": 0.0,
+        "margin": 0.12842197706111924,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.12842197706111924,
+          "spot": 0.22050143996909355,
+          "height_positive": 0.9762917779149074,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 5,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 0.4410155052262768,
+        "trust": 0.8,
+        "seconds": 13.946131100005005,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 19,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.17346603175853362,
+          "solve_seconds": 0.0076012
+        },
+        "worst_slack": 0.13248207493019648,
+        "merit": 0.0,
+        "margin": 0.13248207493019648,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.13248207493019648,
+          "spot": 0.250365710676563,
+          "height_positive": 0.986548684185238,
+          "height_negative": 1.0
+        }
+      },
+      {
+        "iteration": 6,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 0.5107344050487541,
+        "trust": 0.8,
+        "seconds": 16.21101230000204,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 20,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.17372803525726047,
+          "solve_seconds": 0.0084197
+        },
+        "worst_slack": 0.13654284806576356,
+        "merit": 0.0,
+        "margin": 0.13654284806576356,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.13654284806576356,
+          "spot": 0.2761743590659861,
+          "height_positive": 0.9981223223726118,
+          "height_negative": 0.991909286518278
+        }
+      },
+      {
+        "iteration": 7,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 0.5977474099168217,
+        "trust": 0.8,
+        "seconds": 18.450152900011744,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 19,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.17399402481535706,
+          "solve_seconds": 0.0082513
+        },
+        "worst_slack": 0.14064634917509056,
+        "merit": 0.0,
+        "margin": 0.14064634917509056,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.14064634917509056,
+          "spot": 0.2985202582635421,
+          "height_positive": 1.0,
+          "height_negative": 0.9789666014781555
+        }
+      },
+      {
+        "iteration": 8,
+        "phase": "margin",
+        "accepted": true,
+        "rho": 0.6746789289899194,
+        "trust": 0.8,
+        "seconds": 20.68872140000167,
+        "subproblem": {
+          "backend": "clarabel",
+          "success": false,
+          "status": "AlmostSolved",
+          "message": "AlmostSolved",
+          "iterations": 19,
+          "model_violation": 0.0,
+          "usable": true,
+          "objective": -0.17426396290507373,
+          "solve_seconds": 0.0082753
+        },
+        "worst_slack": 0.1446372433895925,
+        "merit": 0.0,
+        "margin": 0.1446372433895925,
+        "strict_feasible": true,
+        "numerical_converged": true,
+        "gates": {
+          "wfe": 0.1446372433895925,
+          "spot": 0.31779035984455073,
+          "height_positive": 1.0,
+          "height_negative": 0.96487494960945
+        }
+      }
+    ],
+    "counters": {
+      "batch_calls": 10,
+      "traced_candidates": 55,
+      "linearizations": 9,
+      "derivative_cache_hits": 0,
+      "qr_builds": 18,
+      "svd_builds": 0,
+      "proposals": 9,
+      "rejected_steps": 0,
+      "accepted_steps": 9,
+      "derivative_failures": 0,
+      "cone_linear_fallbacks": 0,
+      "retraction_calls": 0
+    },
+    "timings": {
+      "trace": 20.007406600008835,
+      "derivatives": 0.4936720999976387,
+      "compression": 0.013413200023933314,
+      "subproblem": 0.13582049997057766,
+      "retraction": 0.0,
+      "validation": 0.794136399999843,
+      "optimization_seconds": 20.690198500000406,
+      "seconds": 21.484336900000926
+    },
+    "margin_keys": [
+      "wfe",
+      "spot",
+      "height_positive",
+      "height_negative"
+    ],
+    "optimizer_tolerances": {
+      "wfe": [
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ]
+      ],
+      "spot": [
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ]
+      ],
+      "height_positive": [
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ]
+      ],
+      "height_negative": [
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ],
+        [
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ],
+          [
+            1e-08,
+            1e-08,
+            1e-08
+          ]
+        ]
+      ]
+    },
+    "final_acceptance": {
+      "passed": true,
+      "deterministic_scenarios": [
+        {
+          "id": "assembly-0",
+          "controls": [],
+          "passed": true,
+          "gate_minima": {
+            "wfe": 0.27151093497118883,
+            "spot": 0.4047244743263728,
+            "height_positive": 1.0,
+            "height_negative": 0.9688098645567569
+          }
+        },
+        {
+          "id": "assembly-1",
+          "controls": [
+            -0.0198325280406521
+          ],
+          "passed": true,
+          "gate_minima": {
+            "wfe": 0.14891405719527995,
+            "spot": 0.3212014080450575,
+            "height_positive": 1.0,
+            "height_negative": 0.972574164030964
+          }
+        },
+        {
+          "id": "assembly-2",
+          "controls": [
+            0.019804605352747515
+          ],
+          "passed": true,
+          "gate_minima": {
+            "wfe": 0.18872131824079552,
+            "spot": 0.4877676497932396,
+            "height_positive": 1.0,
+            "height_negative": 0.9650505748614027
+          }
+        },
+        {
+          "id": "assembly-3",
+          "controls": [
+            -7.108299074818244e-05
+          ],
+          "passed": true,
+          "gate_minima": {
+            "wfe": 0.2563782419665934,
+            "spot": 0.39449280511935036,
+            "height_positive": 1.0,
+            "height_negative": 0.9679119777331565
+          }
+        },
+        {
+          "id": "assembly-4",
+          "controls": [
+            7.267978904844323e-05
+          ],
+          "passed": true,
+          "gate_minima": {
+            "wfe": 0.2866295956267322,
+            "spot": 0.4149428892277336,
+            "height_positive": 1.0,
+            "height_negative": 0.9697074604961433
+          }
+        }
+      ],
+      "statistical_yield_estimated": false,
+      "status": "completed"
+    },
+    "subproblem_backend": "clarabel",
+    "hard_gate_keys": [],
+    "derivative_backend": "external"
+  },
+  "physical_design": {
+    "design": {
+      "vertices_mm": [
+        64.0,
+        65.0,
+        69.0,
+        144.42721241727864
+      ],
+      "surface_rows": [
+        {
+          "curvature_mm_inv": 0.0,
+          "conic": 0.0,
+          "even_coefficients": [],
+          "aperture_radius_mm": 4.0
+        },
+        {
+          "curvature_mm_inv": 0.02653349481147356,
+          "conic": 0.0,
+          "even_coefficients": [
+            0.0,
+            -1.0957361760506246e-05
+          ],
+          "aperture_radius_mm": 6.0
+        },
+        {
+          "curvature_mm_inv": -0.028818108217825232,
+          "conic": 0.0,
+          "even_coefficients": [],
+          "aperture_radius_mm": 6.0
+        },
+        {
+          "curvature_mm_inv": 0.0,
+          "conic": 0.0,
+          "even_coefficients": [],
+          "aperture_radius_mm": null
+        }
+      ],
+      "wavelengths_um": [
+        0.54,
+        0.55,
+        0.56
+      ],
+      "indices_by_wave": [
+        [
+          1.0,
+          1.0,
+          1.5175,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.5168,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.5162,
+          1.0,
+          1.0
+        ]
+      ],
+      "primary_wave": 1,
+      "stop_surface": 1,
+      "object_at_infinity": false,
+      "aperture_type": "enpd",
+      "aperture_value": 8.0,
+      "field_type": "object_height",
+      "fields": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1
+        ],
+        [
+          0.0,
+          0.2
+        ],
+        [
+          0.0,
+          0.30000000000000004
+        ],
+        [
+          0.0,
+          0.4
+        ],
+        [
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.6000000000000001
+        ],
+        [
+          0.0,
+          0.7000000000000001
+        ],
+        [
+          0.0,
+          0.8
+        ],
+        [
+          0.0,
+          0.9
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "material_names": [
+        "",
+        "",
+        "DEMO_FIXED_INDEX_GLASS",
+        "",
+        ""
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "assembly-0",
+        "controls": []
+      },
+      {
+        "id": "assembly-1",
+        "controls": [
+          -0.0198325280406521
+        ]
+      },
+      {
+        "id": "assembly-2",
+        "controls": [
+          0.019804605352747515
+        ]
+      },
+      {
+        "id": "assembly-3",
+        "controls": [
+          -7.108299074818244e-05
+        ]
+      },
+      {
+        "id": "assembly-4",
+        "controls": [
+          7.267978904844323e-05
+        ]
+      }
+    ],
+    "compensation_scope": "One bounded control vector per named physical scenario",
+    "statistical_yield_estimated": false
+  },
+  "controls_definition": "One image-plane axial shift per disturbed assembly, \u00b10.02mm; none for nominal",
+  "final_audit": {
+    "passed": true,
+    "deterministic_scenarios": [
+      {
+        "id": "assembly-0",
+        "controls": [],
+        "passed": true,
+        "gate_minima": {
+          "wfe": 0.27151093497118883,
+          "spot": 0.4047244743263728,
+          "height_positive": 1.0,
+          "height_negative": 0.9688098645567569
+        }
+      },
+      {
+        "id": "assembly-1",
+        "controls": [
+          -0.0198325280406521
+        ],
+        "passed": true,
+        "gate_minima": {
+          "wfe": 0.14891405719527995,
+          "spot": 0.3212014080450575,
+          "height_positive": 1.0,
+          "height_negative": 0.972574164030964
+        }
+      },
+      {
+        "id": "assembly-2",
+        "controls": [
+          0.019804605352747515
+        ],
+        "passed": true,
+        "gate_minima": {
+          "wfe": 0.18872131824079552,
+          "spot": 0.4877676497932396,
+          "height_positive": 1.0,
+          "height_negative": 0.9650505748614027
+        }
+      },
+      {
+        "id": "assembly-3",
+        "controls": [
+          -7.108299074818244e-05
+        ],
+        "passed": true,
+        "gate_minima": {
+          "wfe": 0.2563782419665934,
+          "spot": 0.39449280511935036,
+          "height_positive": 1.0,
+          "height_negative": 0.9679119777331565
+        }
+      },
+      {
+        "id": "assembly-4",
+        "controls": [
+          7.267978904844323e-05
+        ],
+        "passed": true,
+        "gate_minima": {
+          "wfe": 0.2866295956267322,
+          "spot": 0.4149428892277336,
+          "height_positive": 1.0,
+          "height_negative": 0.9697074604961433
+        }
+      }
+    ],
+    "statistical_yield_estimated": false,
+    "status": "completed"
+  }
+}

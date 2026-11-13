@@ -1,0 +1,1839 @@
+{
+  "schema": "standalone_optics.glass_combination_search.v1",
+  "target": {
+    "track_mm": 240.0,
+    "magnification": -2.0,
+    "object_na": 0.035,
+    "field_radius_mm": 2.0,
+    "wavelengths_um": [
+      0.486,
+      0.588,
+      0.656
+    ],
+    "wavelength_weights": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "primary_wave": 1,
+    "wfe_limit_waves": 0.1,
+    "spot_over_airy_limit": 1.0,
+    "image_height_error_mm": 0.02,
+    "magnification_error": 0.01,
+    "distortion_percent": 0.5,
+    "clear_radius_mm": 6.5,
+    "mechanical_radius_mm": 7.0,
+    "center_thickness_mm": 4.0,
+    "minimum_radial_thickness_mm": 1.2,
+    "minimum_air_gap_mm": 2.0,
+    "maximum_surface_slope": 0.6,
+    "all_spherical": true
+  },
+  "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+  "branch_count": 5,
+  "passed_branches": 5,
+  "all_branches_passed": true,
+  "seconds": 64.43471440000576,
+  "claim": "independently checked finite-sampled local solutions; no global optimum or universal seed-convergence guarantee",
+  "recorded_date": "2026-11-09",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.7",
+  "numerical_backend": "NumPy CPU; SciPy cached trust-region local model",
+  "private_full_record_sha256": "9212a267037ffa6880b417cb23202ee29f1f39e5415aa7483500abf5d77b86bc",
+  "verification_scope": "independent dense sampling and acceptance on the same standalone ray kernel; no new Zemax comparison for these 15 demonstration solves",
+  "ray_count_convention": "ray transports launched for optical, chief, near-axis, rim and manufacturing-envelope calls; no claim that separate launches are unique physical rays",
+  "no_vendor_catalog_bodies_included": true,
+  "branches": [
+    {
+      "id": "cdgm",
+      "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+      "passed": true,
+      "generated_seed_count": 14,
+      "physical_seed_count": 14,
+      "selected_seed_index": 6,
+      "seconds": 12.780780799992499,
+      "materials": [
+        {
+          "vendor": "CDGM",
+          "name": "H-K9L",
+          "catalog_id": "CDGM::CDGM-CURRENT::e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "snapshot_sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "nd": 1.5168,
+          "vd": 64.198732,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5223860735192516,
+            1.516781718303166,
+            1.5143349370330785
+          ]
+        },
+        {
+          "vendor": "CDGM",
+          "name": "H-ZF2",
+          "catalog_id": "CDGM::CDGM-CURRENT::e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "snapshot_sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "nd": 1.6727,
+          "vd": 32.171186,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.687554153038067,
+            1.6726536754338774,
+            1.6666375701527125
+          ]
+        },
+        {
+          "vendor": "CDGM",
+          "name": "H-K9L",
+          "catalog_id": "CDGM::CDGM-CURRENT::e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "snapshot_sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "nd": 1.5168,
+          "vd": 64.198732,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5223860735192516,
+            1.516781718303166,
+            1.5143349370330785
+          ]
+        }
+      ],
+      "screen_trace_counts": {
+        "traced_candidates": 14,
+        "optical_bundles": 126,
+        "rays": 14280
+      },
+      "runs": [
+        {
+          "seed_index": 7,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              66.84003335919995,
+              23.850574770428313,
+              8.456516715410174,
+              140.85287515496157
+            ],
+            "powers_mm_inv": [
+              0.017567794504655388,
+              -0.01738438470360895,
+              0.02009897920883095
+            ],
+            "group_positions_mm": [
+              66.84003335919995,
+              90.69060812962826,
+              99.14712484503843
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.5120911999983946,
+            "initial_wfe_waves": 0.22332676370974325,
+            "final_wfe_waves": 0.08999310624109667,
+            "initial_merit": 2.13115767212624,
+            "final_merit": 9.05248098703737e-12,
+            "counters": {
+              "batch_calls": 10,
+              "traced_candidates": 46,
+              "linearizations": 3,
+              "derivative_cache_hits": 0,
+              "qr_builds": 6,
+              "svd_builds": 0,
+              "proposals": 3,
+              "rejected_steps": 0,
+              "accepted_steps": 3,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 47,
+              "optical_bundles": 423,
+              "rays": 47940
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09066806719687548,
+            "spot_over_airy_worst": 0.9340733766990051,
+            "image_height_error_mm": 0.018000000000131244,
+            "magnification_error": 0.008508809462659084,
+            "distortion_percent": 0.4500000000032811,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 6,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              67.70641723788088,
+              10.01863890812018,
+              9.01306775259463,
+              153.2618761014043
+            ],
+            "powers_mm_inv": [
+              0.015800091047012084,
+              -0.01697564694068958,
+              0.020458148478892168
+            ],
+            "group_positions_mm": [
+              67.70641723788088,
+              77.72505614600107,
+              86.73812389859569
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.985744599995087,
+            "initial_wfe_waves": 0.24542627072872975,
+            "final_wfe_waves": 0.09000000002239782,
+            "initial_merit": 2.5031092063477867,
+            "final_merit": 3.410466353770403e-10,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.0901759289016619,
+            "spot_over_airy_worst": 0.9583664861622236,
+            "image_height_error_mm": 0.017636463926537616,
+            "magnification_error": 0.009000000000015884,
+            "distortion_percent": 0.44985808703525976,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 4,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              55.423040996866504,
+              42.777001081558886,
+              14.242167631348359,
+              127.55779029022622
+            ],
+            "powers_mm_inv": [
+              0.019099332239878825,
+              -0.015515826954438011,
+              0.019795498117147623
+            ],
+            "group_positions_mm": [
+              55.423040996866504,
+              98.20004207842538,
+              112.44220970977375
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 4.4871568999951705,
+            "initial_wfe_waves": 0.28098429100724975,
+            "final_wfe_waves": 0.08998930918490991,
+            "initial_merit": 3.167964457590898,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 28,
+              "traced_candidates": 136,
+              "linearizations": 9,
+              "derivative_cache_hits": 0,
+              "qr_builds": 18,
+              "svd_builds": 0,
+              "proposals": 9,
+              "rejected_steps": 0,
+              "accepted_steps": 9,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 137,
+              "optical_bundles": 1233,
+              "rays": 139740
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09036840808123234,
+            "spot_over_airy_worst": 0.9296218044868284,
+            "image_height_error_mm": 0.017999999999895877,
+            "magnification_error": 0.008971823037261517,
+            "distortion_percent": 0.4499999999973969,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schott",
+      "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+      "passed": true,
+      "generated_seed_count": 14,
+      "physical_seed_count": 14,
+      "selected_seed_index": 6,
+      "seconds": 12.684639500002959,
+      "materials": [
+        {
+          "vendor": "SCHOTT",
+          "name": "N-BK7",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.5168,
+          "vd": 64.17,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.522385894349391,
+            1.5167817367777037,
+            1.5143308473500767
+          ]
+        },
+        {
+          "vendor": "SCHOTT",
+          "name": "N-SF5",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.67271,
+          "vd": 32.25,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.6875229843876856,
+            1.6726610094127015,
+            1.666658087708773
+          ]
+        },
+        {
+          "vendor": "SCHOTT",
+          "name": "N-BK7",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.5168,
+          "vd": 64.17,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.522385894349391,
+            1.5167817367777037,
+            1.5143308473500767
+          ]
+        }
+      ],
+      "screen_trace_counts": {
+        "traced_candidates": 14,
+        "optical_bundles": 126,
+        "rays": 14280
+      },
+      "runs": [
+        {
+          "seed_index": 7,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              66.84003335919995,
+              23.850574770428313,
+              8.456516715410174,
+              140.85287515496157
+            ],
+            "powers_mm_inv": [
+              0.017567794504655388,
+              -0.01738438470360895,
+              0.02009897920883095
+            ],
+            "group_positions_mm": [
+              66.84003335919995,
+              90.69060812962826,
+              99.14712484503843
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.5037892999971518,
+            "initial_wfe_waves": 0.224758450832469,
+            "final_wfe_waves": 0.08998920341985901,
+            "initial_merit": 2.154172763329977,
+            "final_merit": 1.4357126598696368e-11,
+            "counters": {
+              "batch_calls": 10,
+              "traced_candidates": 46,
+              "linearizations": 3,
+              "derivative_cache_hits": 0,
+              "qr_builds": 6,
+              "svd_builds": 0,
+              "proposals": 3,
+              "rejected_steps": 0,
+              "accepted_steps": 3,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 47,
+              "optical_bundles": 423,
+              "rays": 47940
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.0906100141225773,
+            "spot_over_airy_worst": 0.9352799755904588,
+            "image_height_error_mm": 0.018000000000207628,
+            "magnification_error": 0.008507660447276688,
+            "distortion_percent": 0.4500000000051907,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 6,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              67.70641723788088,
+              10.01863890812018,
+              9.01306775259463,
+              153.2618761014043
+            ],
+            "powers_mm_inv": [
+              0.015800091047012084,
+              -0.01697564694068958,
+              0.020458148478892168
+            ],
+            "group_positions_mm": [
+              67.70641723788088,
+              77.72505614600107,
+              86.73812389859569
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.9738101999973878,
+            "initial_wfe_waves": 0.24701859264233722,
+            "final_wfe_waves": 0.09000000005435752,
+            "initial_merit": 2.5286972575407782,
+            "final_merit": 7.892759779082326e-10,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09017468950958739,
+            "spot_over_airy_worst": 0.9583885127602317,
+            "image_height_error_mm": 0.01763900427730558,
+            "magnification_error": 0.009000000000015884,
+            "distortion_percent": 0.4498590789789425,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 4,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              55.423040996866504,
+              42.777001081558886,
+              14.242167631348359,
+              127.55779029022622
+            ],
+            "powers_mm_inv": [
+              0.019099332239878825,
+              -0.015515826954438011,
+              0.019795498117147623
+            ],
+            "group_positions_mm": [
+              55.423040996866504,
+              98.20004207842538,
+              112.44220970977375
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 4.47067490000336,
+            "initial_wfe_waves": 0.2818746657036841,
+            "final_wfe_waves": 0.08998851929411267,
+            "initial_merit": 3.1820842626714203,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 28,
+              "traced_candidates": 136,
+              "linearizations": 9,
+              "derivative_cache_hits": 0,
+              "qr_builds": 18,
+              "svd_builds": 0,
+              "proposals": 9,
+              "rejected_steps": 0,
+              "accepted_steps": 9,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 137,
+              "optical_bundles": 1233,
+              "rays": 139740
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09035384302729442,
+            "spot_over_airy_worst": 0.9314801427326828,
+            "image_height_error_mm": 0.017999999999906535,
+            "magnification_error": 0.008978090163386021,
+            "distortion_percent": 0.4499999999976634,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ohara",
+      "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+      "passed": true,
+      "generated_seed_count": 14,
+      "physical_seed_count": 14,
+      "selected_seed_index": 6,
+      "seconds": 16.777939399995375,
+      "materials": [
+        {
+          "vendor": "OHARA",
+          "name": "S-BSL7",
+          "catalog_id": "OHARA::OHARA-CURRENT::9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "snapshot_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "nd": 1.51633,
+          "vd": 64.142022,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5219145461068941,
+            1.5163116417074844,
+            1.5138636348607764
+          ]
+        },
+        {
+          "vendor": "OHARA",
+          "name": "S-TIM2",
+          "catalog_id": "OHARA::OHARA-CURRENT::9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "snapshot_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "nd": 1.620041,
+          "vd": 36.263378,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.6321442444266265,
+            1.6200029406908476,
+            1.6150410639446369
+          ]
+        },
+        {
+          "vendor": "OHARA",
+          "name": "S-BSL7",
+          "catalog_id": "OHARA::OHARA-CURRENT::9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "snapshot_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "nd": 1.51633,
+          "vd": 64.142022,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5219145461068941,
+            1.5163116417074844,
+            1.5138636348607764
+          ]
+        }
+      ],
+      "screen_trace_counts": {
+        "traced_candidates": 14,
+        "optical_bundles": 126,
+        "rays": 14280
+      },
+      "runs": [
+        {
+          "seed_index": 7,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              66.84003335919995,
+              23.850574770428313,
+              8.456516715410174,
+              140.85287515496157
+            ],
+            "powers_mm_inv": [
+              0.017567794504655388,
+              -0.01738438470360895,
+              0.02009897920883095
+            ],
+            "group_positions_mm": [
+              66.84003335919995,
+              90.69060812962826,
+              99.14712484503843
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 3.493030400000862,
+            "initial_wfe_waves": 0.2871379663025238,
+            "final_wfe_waves": 0.08999465488811094,
+            "initial_merit": 3.156311662044986,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 22,
+              "traced_candidates": 106,
+              "linearizations": 7,
+              "derivative_cache_hits": 0,
+              "qr_builds": 14,
+              "svd_builds": 0,
+              "proposals": 7,
+              "rejected_steps": 0,
+              "accepted_steps": 7,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 107,
+              "optical_bundles": 963,
+              "rays": 109140
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09016348707672513,
+            "spot_over_airy_worst": 0.9561158484145286,
+            "image_height_error_mm": 0.017999999999983807,
+            "magnification_error": 0.008505260580115248,
+            "distortion_percent": 0.44999999999959517,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 4,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              55.423040996866504,
+              42.777001081558886,
+              14.242167631348359,
+              127.55779029022622
+            ],
+            "powers_mm_inv": [
+              0.019099332239878825,
+              -0.015515826954438011,
+              0.019795498117147623
+            ],
+            "group_positions_mm": [
+              55.423040996866504,
+              98.20004207842538,
+              112.44220970977375
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 6.497122600005241,
+            "initial_wfe_waves": 0.3213720715493204,
+            "final_wfe_waves": 0.08997957670487162,
+            "initial_merit": 3.808934929134581,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 40,
+              "traced_candidates": 196,
+              "linearizations": 13,
+              "derivative_cache_hits": 0,
+              "qr_builds": 26,
+              "svd_builds": 0,
+              "proposals": 13,
+              "rejected_steps": 0,
+              "accepted_steps": 13,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 197,
+              "optical_bundles": 1773,
+              "rays": 200940
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09016644941967485,
+            "spot_over_airy_worst": 0.9557076850455998,
+            "image_height_error_mm": 0.017999999998472127,
+            "magnification_error": 0.008999845449213284,
+            "distortion_percent": 0.4499999999618032,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 6,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              67.70641723788088,
+              10.01863890812018,
+              9.01306775259463,
+              153.2618761014043
+            ],
+            "powers_mm_inv": [
+              0.015800091047012084,
+              -0.01697564694068958,
+              0.020458148478892168
+            ],
+            "group_positions_mm": [
+              67.70641723788088,
+              77.72505614600107,
+              86.73812389859569
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 2.0106394000031287,
+            "initial_wfe_waves": 0.3158543549155572,
+            "final_wfe_waves": 0.08999791242414161,
+            "initial_merit": 3.6337895157934863,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09015379470309681,
+            "spot_over_airy_worst": 0.951356407850355,
+            "image_height_error_mm": 0.01781384522085272,
+            "magnification_error": 0.00899988962393472,
+            "distortion_percent": 0.44992188749080064,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schott_barium",
+      "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+      "passed": true,
+      "generated_seed_count": 14,
+      "physical_seed_count": 14,
+      "selected_seed_index": 6,
+      "seconds": 14.341701500001363,
+      "materials": [
+        {
+          "vendor": "SCHOTT",
+          "name": "N-BAK4",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.56883,
+          "vd": 55.98,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5759237878905217,
+            1.5688045602937153,
+            1.5657598776507786
+          ]
+        },
+        {
+          "vendor": "SCHOTT",
+          "name": "N-SF10",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.72828,
+          "vd": 28.53,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.7464635698825544,
+            1.7282209628021508,
+            1.720930630287031
+          ]
+        },
+        {
+          "vendor": "SCHOTT",
+          "name": "N-BAK4",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.56883,
+          "vd": 55.98,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5759237878905217,
+            1.5688045602937153,
+            1.5657598776507786
+          ]
+        }
+      ],
+      "screen_trace_counts": {
+        "traced_candidates": 14,
+        "optical_bundles": 126,
+        "rays": 14280
+      },
+      "runs": [
+        {
+          "seed_index": 7,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              66.84003335919995,
+              23.850574770428313,
+              8.456516715410174,
+              140.85287515496157
+            ],
+            "powers_mm_inv": [
+              0.017567794504655388,
+              -0.01738438470360895,
+              0.02009897920883095
+            ],
+            "group_positions_mm": [
+              66.84003335919995,
+              90.69060812962826,
+              99.14712484503843
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.9952501000079792,
+            "initial_wfe_waves": 0.2465152223140555,
+            "final_wfe_waves": 0.08999848351227108,
+            "initial_merit": 2.4979907056342774,
+            "final_merit": 1.9595436384634013e-12,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.0906892688746428,
+            "spot_over_airy_worst": 0.9287640376078803,
+            "image_height_error_mm": 0.01800000000003177,
+            "magnification_error": 0.008506647482926954,
+            "distortion_percent": 0.4500000000007942,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 6,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              67.70641723788088,
+              10.01863890812018,
+              9.01306775259463,
+              153.2618761014043
+            ],
+            "powers_mm_inv": [
+              0.015800091047012084,
+              -0.01697564694068958,
+              0.020458148478892168
+            ],
+            "group_positions_mm": [
+              67.70641723788088,
+              77.72505614600107,
+              86.73812389859569
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 2.0036123000027146,
+            "initial_wfe_waves": 0.2685257742759961,
+            "final_wfe_waves": 0.0899999999487389,
+            "initial_merit": 2.86633663246024,
+            "final_merit": 6.051796286321576e-10,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09019649252307496,
+            "spot_over_airy_worst": 0.9580145339909765,
+            "image_height_error_mm": 0.01765560399623567,
+            "magnification_error": 0.00900000000005452,
+            "distortion_percent": 0.4498655571104626,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 4,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              55.423040996866504,
+              42.777001081558886,
+              14.242167631348359,
+              127.55779029022622
+            ],
+            "powers_mm_inv": [
+              0.019099332239878825,
+              -0.015515826954438011,
+              0.019795498117147623
+            ],
+            "group_positions_mm": [
+              55.423040996866504,
+              98.20004207842538,
+              112.44220970977375
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 5.567079000000376,
+            "initial_wfe_waves": 0.30590433350718893,
+            "final_wfe_waves": 0.09000000000518188,
+            "initial_merit": 3.6499623949951143,
+            "final_merit": 7.199230100951581e-11,
+            "counters": {
+              "batch_calls": 34,
+              "traced_candidates": 166,
+              "linearizations": 11,
+              "derivative_cache_hits": 0,
+              "qr_builds": 22,
+              "svd_builds": 0,
+              "proposals": 11,
+              "rejected_steps": 0,
+              "accepted_steps": 11,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 167,
+              "optical_bundles": 1503,
+              "rays": 170340
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09094168677476758,
+            "spot_over_airy_worst": 0.9560352283036758,
+            "image_height_error_mm": 0.017999999999999794,
+            "magnification_error": 0.009000000000000785,
+            "distortion_percent": 0.44999999999999485,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed_asymmetric",
+      "target_sha256": "54b44675ff764bd78d61e06ebd1399f68664493b72c09a7880e4fa70e964f00e",
+      "passed": true,
+      "generated_seed_count": 14,
+      "physical_seed_count": 14,
+      "selected_seed_index": 7,
+      "seconds": 7.838391099998262,
+      "materials": [
+        {
+          "vendor": "SCHOTT",
+          "name": "N-BAK4",
+          "catalog_id": "SCHOTT::SCHOTT-CURRENT::657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "snapshot_sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+          "nd": 1.56883,
+          "vd": 55.98,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5759237878905217,
+            1.5688045602937153,
+            1.5657598776507786
+          ]
+        },
+        {
+          "vendor": "CDGM",
+          "name": "H-ZF52",
+          "catalog_id": "CDGM::CDGM-CURRENT::e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "snapshot_sha256": "e0933fe14749919b2b7c5170f814765af570ef53b78171dc98dae6b542f8e9ce",
+          "nd": 1.84666,
+          "vd": 23.784497,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.8721395113146293,
+            1.8465822944079515,
+            1.8365291333989866
+          ]
+        },
+        {
+          "vendor": "OHARA",
+          "name": "S-BSL7",
+          "catalog_id": "OHARA::OHARA-CURRENT::9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "snapshot_sha256": "9ad9d23da983ef105ec02dd6c9ad55f124163ad604a074e53f753dc351c49e86",
+          "nd": 1.51633,
+          "vd": 64.142022,
+          "status": {
+            "code": 1,
+            "label": "preferred",
+            "interpretation": "AGF specification; vendor semantics require confirmation",
+            "interpretation_source": "https://optics.ansys.com/hc/en-us/articles/46891219767827-Zemax-AGF-material-catalog-file-format",
+            "historical_or_obsolete": null,
+            "procurement_availability": "unknown"
+          },
+          "exclude_substitution_code": 0,
+          "indices_by_wave": [
+            1.5219145461068941,
+            1.5163116417074844,
+            1.5138636348607764
+          ]
+        }
+      ],
+      "screen_trace_counts": {
+        "traced_candidates": 14,
+        "optical_bundles": 126,
+        "rays": 14280
+      },
+      "runs": [
+        {
+          "seed_index": 7,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              66.84003335919995,
+              23.850574770428313,
+              8.456516715410174,
+              140.85287515496157
+            ],
+            "powers_mm_inv": [
+              0.017567794504655388,
+              -0.01738438470360895,
+              0.02009897920883095
+            ],
+            "group_positions_mm": [
+              66.84003335919995,
+              90.69060812962826,
+              99.14712484503843
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 0.03694109999923967,
+            "initial_wfe_waves": 0.08416388538836574,
+            "final_wfe_waves": 0.08416388538836574,
+            "initial_merit": 0.0,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 1,
+              "traced_candidates": 1,
+              "linearizations": 0,
+              "derivative_cache_hits": 0,
+              "qr_builds": 0,
+              "svd_builds": 0,
+              "proposals": 0,
+              "rejected_steps": 0,
+              "accepted_steps": 0,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 2,
+              "optical_bundles": 18,
+              "rays": 2040
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.08495111223824578,
+            "spot_over_airy_worst": 0.8469181020063691,
+            "image_height_error_mm": 0.014951087942343122,
+            "magnification_error": 0.007010888917674762,
+            "distortion_percent": 0.37377719855857805,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 6,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              67.70641723788088,
+              10.01863890812018,
+              9.01306775259463,
+              153.2618761014043
+            ],
+            "powers_mm_inv": [
+              0.015800091047012084,
+              -0.01697564694068958,
+              0.020458148478892168
+            ],
+            "group_positions_mm": [
+              67.70641723788088,
+              77.72505614600107,
+              86.73812389859569
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.0365689999889582,
+            "initial_wfe_waves": 0.10870815325895185,
+            "final_wfe_waves": 0.08969210287771191,
+            "initial_merit": 0.30036382486269325,
+            "final_merit": 0.0,
+            "counters": {
+              "batch_calls": 7,
+              "traced_candidates": 31,
+              "linearizations": 2,
+              "derivative_cache_hits": 0,
+              "qr_builds": 4,
+              "svd_builds": 0,
+              "proposals": 2,
+              "rejected_steps": 0,
+              "accepted_steps": 2,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 32,
+              "optical_bundles": 288,
+              "rays": 32640
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09062001931460949,
+            "spot_over_airy_worst": 0.9574949451920175,
+            "image_height_error_mm": 0.0006141662929310954,
+            "magnification_error": 0.00023762039590957684,
+            "distortion_percent": 0.015354157323277384,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        },
+        {
+          "seed_index": 4,
+          "passed": true,
+          "initial_structure": {
+            "gaps_mm": [
+              55.423040996866504,
+              42.777001081558886,
+              14.242167631348359,
+              127.55779029022622
+            ],
+            "powers_mm_inv": [
+              0.019099332239878825,
+              -0.015515826954438011,
+              0.019795498117147623
+            ],
+            "group_positions_mm": [
+              55.423040996866504,
+              98.20004207842538,
+              112.44220970977375
+            ]
+          },
+          "optimizer": {
+            "status": "numerical_feasibility",
+            "seconds": 1.9885581999988062,
+            "initial_wfe_waves": 0.1829281977428844,
+            "final_wfe_waves": 0.09000000000437695,
+            "initial_merit": 1.7553465579637393,
+            "final_merit": 6.092393256551532e-11,
+            "counters": {
+              "batch_calls": 13,
+              "traced_candidates": 61,
+              "linearizations": 4,
+              "derivative_cache_hits": 0,
+              "qr_builds": 8,
+              "svd_builds": 0,
+              "proposals": 4,
+              "rejected_steps": 0,
+              "accepted_steps": 4,
+              "derivative_failures": 0,
+              "cone_linear_fallbacks": 0
+            },
+            "actual_counts": {
+              "traced_candidates": 62,
+              "optical_bundles": 558,
+              "rays": 63240
+            }
+          },
+          "independent_validation": {
+            "passed": true,
+            "checks": {
+              "wavefront": true,
+              "spot": true,
+              "height": true,
+              "magnification": true,
+              "distortion": true,
+              "manufacturing": true,
+              "all_spherical": true,
+              "track": true
+            },
+            "wfe_worst_waves": 0.09077255645136181,
+            "spot_over_airy_worst": 0.8463698896430736,
+            "image_height_error_mm": 0.017999999999989136,
+            "magnification_error": 0.009000000000004782,
+            "distortion_percent": 0.4499999999997284,
+            "field_points": 50,
+            "methods": [
+              "GQ16/48",
+              "RECT20"
+            ],
+            "trace_counts": {
+              "optical_ray_transports": 305874,
+              "manufacturing_ray_transports": 76950,
+              "total_ray_transports": 382824
+            },
+            "scope": "finite-sampled nominal validation; not tolerance/yield qualification"
+          }
+        }
+      ]
+    }
+  ],
+  "total_counted_ray_transports": 7083660,
+  "independent_solve_count": 15,
+  "passed_solve_count": 15,
+  "initial_wfe_range_waves": [
+    0.08416388538836574,
+    0.3213720715493204
+  ],
+  "prior_failed_validation_example": {
+    "branch": "ohara",
+    "same_target_sha256": true,
+    "failures": [
+      {
+        "seed_index": 7,
+        "failed_checks": [
+          "manufacturing"
+        ],
+        "manufacturing_violations": [
+          {
+            "code": "air_gap_below_limit",
+            "detail": "Air separation less budget misses limit",
+            "left_lens": 2,
+            "right_lens": 3,
+            "value": 1.8504018927824006,
+            "limit": 2.0
+          }
+        ]
+      },
+      {
+        "seed_index": 4,
+        "failed_checks": [
+          "manufacturing"
+        ],
+        "manufacturing_violations": [
+          {
+            "code": "air_gap_below_limit",
+            "detail": "Air separation less budget misses limit",
+            "left_lens": 2,
+            "right_lens": 3,
+            "value": 1.8185635723360747,
+            "limit": 2.0
+          }
+        ]
+      }
+    ],
+    "resolution": "Added center air separation to coarse geometry constraints, kept original final requirements unchanged."
+  },
+  "refined_solve_count": 14,
+  "zero_step_feasible_baseline_count": 1,
+  "source_sha256": {
+    "run.py": "3d46b672cf8d22fdebae045878e65ddaff4cd923339421f50a034739397cae7b",
+    "standalone_glass_search.py": "f28cc1a6a220bb40684cc285db57e51e808227db030c814b06a2ffed21e38cfe"
+  },
+  "selected_refinement_convergence": [
+    {
+      "branch_id": "cdgm",
+      "seed_index": 6,
+      "selection": "best dense-passing solution with at least one accepted refinement step",
+      "history": [
+        {
+          "iteration": 0,
+          "merit": 2.5031092063477867
+        },
+        {
+          "iteration": 1,
+          "merit": 0.08475778382679239,
+          "accepted": true
+        },
+        {
+          "iteration": 2,
+          "merit": 0.00010850427725694889,
+          "accepted": true
+        },
+        {
+          "iteration": 3,
+          "merit": 7.456075229450576e-08,
+          "accepted": true
+        },
+        {
+          "iteration": 4,
+          "merit": 3.410466353770403e-10,
+          "accepted": true
+        }
+      ],
+      "initial_coarse_wfe_waves": 0.24542627072872975,
+      "final_coarse_wfe_waves": 0.09000000002239782,
+      "dense_final_wfe_waves": 0.0901759289016619
+    },
+    {
+      "branch_id": "schott",
+      "seed_index": 6,
+      "selection": "best dense-passing solution with at least one accepted refinement step",
+      "history": [
+        {
+          "iteration": 0,
+          "merit": 2.5286972575407782
+        },
+        {
+          "iteration": 1,
+          "merit": 0.09934418214921675,
+          "accepted": true
+        },
+        {
+          "iteration": 2,
+          "merit": 0.00014048179105774494,
+          "accepted": true
+        },
+        {
+          "iteration": 3,
+          "merit": 8.501275061689739e-08,
+          "accepted": true
+        },
+        {
+          "iteration": 4,
+          "merit": 7.892759779082326e-10,
+          "accepted": true
+        }
+      ],
+      "initial_coarse_wfe_waves": 0.24701859264233722,
+      "final_coarse_wfe_waves": 0.09000000005435752,
+      "dense_final_wfe_waves": 0.09017468950958739
+    },
+    {
+      "branch_id": "ohara",
+      "seed_index": 6,
+      "selection": "best dense-passing solution with at least one accepted refinement step",
+      "history": [
+        {
+          "iteration": 0,
+          "merit": 3.6337895157934863
+        },
+        {
+          "iteration": 1,
+          "merit": 0.7324270952627308,
+          "accepted": true
+        },
+        {
+          "iteration": 2,
+          "merit": 0.5320943895788292,
+          "accepted": true
+        },
+        {
+          "iteration": 3,
+          "merit": 0.20346176018386702,
+          "accepted": true
+        },
+        {
+          "iteration": 4,
+          "merit": 0.0,
+          "accepted": true
+        }
+      ],
+      "initial_coarse_wfe_waves": 0.3158543549155572,
+      "final_coarse_wfe_waves": 0.08999791242414161,
+      "dense_final_wfe_waves": 0.09015379470309681
+    },
+    {
+      "branch_id": "schott_barium",
+      "seed_index": 6,
+      "selection": "best dense-passing solution with at least one accepted refinement step",
+      "history": [
+        {
+          "iteration": 0,
+          "merit": 2.86633663246024
+        },
+        {
+          "iteration": 1,
+          "merit": 0.3168026741337818,
+          "accepted": true
+        },
+        {
+          "iteration": 2,
+          "merit": 0.0009968877854832359,
+          "accepted": true
+        },
+        {
+          "iteration": 3,
+          "merit": 3.126130651009973e-07,
+          "accepted": true
+        },
+        {
+          "iteration": 4,
+          "merit": 6.051796286321576e-10,
+          "accepted": true
+        }
+      ],
+      "initial_coarse_wfe_waves": 0.2685257742759961,
+      "final_coarse_wfe_waves": 0.0899999999487389,
+      "dense_final_wfe_waves": 0.09019649252307496
+    },
+    {
+      "branch_id": "mixed_asymmetric",
+      "seed_index": 6,
+      "selection": "best dense-passing solution with at least one accepted refinement step",
+      "history": [
+        {
+          "iteration": 0,
+          "merit": 0.30036382486269325
+        },
+        {
+          "iteration": 1,
+          "merit": 0.00031329120053991133,
+          "accepted": true
+        },
+        {
+          "iteration": 2,
+          "merit": 0.0,
+          "accepted": true
+        }
+      ],
+      "initial_coarse_wfe_waves": 0.10870815325895185,
+      "final_coarse_wfe_waves": 0.08969210287771191,
+      "dense_final_wfe_waves": 0.09062001931460949
+    }
+  ],
+  "convergence_figure_sha256": "ab58ae8690b96b9933bd526ee8815c2bb9cc0b784c0af355587a6a4a023d03d9",
+  "local_index_document_sha256": "f16ce2e43c55f3e19f9d29cb25ca5df5c3f596012731faf921c27d5227fda288"
+}

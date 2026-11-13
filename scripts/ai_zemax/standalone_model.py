@@ -38,12 +38,35 @@ class _Glass:
     reference_temperature_c: float
 
     def index(self, wavelength_um):
+        if not math.isfinite(wavelength_um) or wavelength_um <= 0.0:
+            raise ValueError("Wavelength must be positive and finite")
         if self.bounds_um and not self.bounds_um[0] <= wavelength_um <= self.bounds_um[1]:
             raise ValueError(f"Wavelength {wavelength_um:g} µm outside catalog validity range")
-        if self.formula not in (1, 2) or len(self.coefficients) < 6:
+        if self.formula not in (1, 2, 3) or len(self.coefficients) < 6:
             raise ValueError(f"Unsupported AGF dispersion formula {self.formula}")
+        if any(value != 0.0 for value in self.coefficients[6:]):
+            raise ValueError("Nonzero extra coefficients are not defined for this six-coefficient AGF formula")
         a, b, c, d, e, f = self.coefficients[:6]
         wavelength_squared = wavelength_um * wavelength_um
+        if self.formula == 3:
+            # Zemax Herzberger (lambda in micrometres) returns n, not n^2.
+            # Official reference: OpticStudio2026R1.03, The Herzberger Formula:
+            # n=A+B*L+C*L^2+D*lambda^2+E*lambda^4+F*lambda^6,
+            # L=1/(lambda^2-0.028). Preserve the catalog LD domain above.
+            denominator = wavelength_squared - 0.028
+            if denominator == 0.0:
+                raise ValueError("Wavelength is at a Herzberger pole")
+            inverse = 1.0 / denominator
+            terms = (a, b*inverse, c*inverse*inverse, d*wavelength_squared,
+                     e*wavelength_squared*wavelength_squared,
+                     f*wavelength_squared*wavelength_squared*wavelength_squared)
+            try:
+                index = math.fsum(terms)
+            except (OverflowError, ValueError) as error:
+                raise ValueError("AGF formula returned an invalid refractive index") from error
+            if not math.isfinite(index) or index <= 0.0:
+                raise ValueError("AGF formula returned an invalid refractive index")
+            return index
         if self.formula == 1:
             inverse = 1.0 / wavelength_squared
             squared = a + b * wavelength_squared + inverse * (c + inverse * (d + inverse * (e + inverse * f)))

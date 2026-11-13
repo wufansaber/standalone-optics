@@ -11,7 +11,7 @@ from threading import Lock
 import numpy as np
 
 from .standalone import disk_quadrature
-from .standalone_manufacturing import audit_manufacturing
+from .standalone_manufacturing import audit_manufacturing, audit_ray_envelope
 from .standalone_system import OpticalSystem
 
 
@@ -105,6 +105,21 @@ def _manufacturing_preflight(model, settings, result):
     return True
 
 
+def _manufacturing_ray_preflight(system, settings, result, pupil):
+    """Use one shared strict CPU envelope gate for CPU and CUDA acceptance."""
+    geometry = result['manufacturing']
+    if settings['manufacturing_policy'] is None and not any(
+            row['mechanical_radius_mm'] is not None for row in geometry['surfaces']):
+        return True
+    report = audit_ray_envelope(system, geometry, pupil)
+    result['manufacturing'] = report
+    if not report['eligible']:
+        result['reasons'].append({'code': 'manufacturing_ray_envelope_failed',
+                                  'detail': 'Fresh full-field/full-spectrum ray paths violate configured dimensions or fail tracing'})
+        return False
+    return True
+
+
 def _score_candidate(model, settings, pupil, weights, task):
     input_index, candidate = task
     result = {'id': candidate['id'], 'input_index': input_index, 'status': 'rejected',
@@ -120,6 +135,8 @@ def _score_candidate(model, settings, pupil, weights, task):
         waves = settings['wave_indices'] or range(len(system.wavelengths))
         if max(fields) >= len(system.fields) or max(waves) >= len(system.wavelengths):
             raise ValueError('Selected field or wavelength index is outside the candidate model')
+        if not _manufacturing_ray_preflight(system, settings, result, pupil):
+            return result
     except _OPTICAL_ERRORS as error:
         reasons.append({'code': 'invalid_model', 'detail': str(error)})
         return result

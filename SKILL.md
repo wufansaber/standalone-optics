@@ -16,11 +16,19 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 
 候选的接受和回退使用硬几何门槛，复核完整机械径向域和内部极值。用户要求全球面时，逐面锁定圆锥常数和全部非球面项为零。通光口径扩大后重新检查实体和支承域。原项目的 0.30 mm 空气隙、厚度分档和限定材料分别保留在原项目配置，跨项目按实际工艺选择。输出光学、名义几何、安装路径及制造验收各自的完成状态。
 
-使用加工配置和候选排名时，先查[当前已知接受风险](references/manufacturing-audit-20261109.md)。六项逐片覆盖和通光包络联动尚未修复，涉及这些条件时需按[当前实现限制](references/manufacturing-boundaries.md)另做检查；名义实体 `passed` 不能推出完整制造或通光验收。
+使用加工配置按[加工边界](references/manufacturing-boundaries.md)核对生效限值。逐片、共享面及空气接口限制已执行，候选接受加入实际全路径包络检查；名义实体、有限采样通光和制造放行分别记录。历史问题和修复证据见[审查记录](references/manufacturing-audit-20261109.md)。
 
 ## 优化算法与案例策略
 
 需要结构/材料联合搜索、受约束精修或优化方法总结时，阅读[优化算法总结](references/reusable-optimization-method.md)。需要处理移动参考、真实材料切线、直接SOCP、工程延拓或真实瞳多色MTF时，再读[绿光案例算法与策略](references/green8-constrained-design-strategy.md)。[14片Zemax/MF案例](examples/green8-14element/README.md)给出已验证的原始绿光范围、文件下载和制造未完成项；案例数值不作为其他项目默认规格，未发布的研究求解器不能当作现有CLI。
+
+## 可执行局部优化与材料搜索
+
+接入连续精修时按[局部优化接口](references/local-optimization.md)使用 `EfficientSolveMixin`。需要直接SOCP时选择 `subproblem_backend="clarabel"` 或有记录回退的 `"auto"`，并安装可选依赖。指定 `hard_gate_keys` 保护全过程硬门；几何投影或校正后的点必须在原信赖盒内并重新追迹。解析导数要覆盖当前发射、参考球及倾斜基底变化，并做独立方向差分。
+
+需要公差优化时用 `ScenarioProblem` 明确全部场景和可实现的补偿器行程；各场景保留全部光学与实体门，任一失败不能过滤。独立密采样通过与统计良率分别报告。工作集加密可用 `run_constraint_exchange`，更新后重建局部模型。[可运行的后端及补偿器案例](examples/runtime-upgrade-20261113/README.md)提供接口示范。
+
+换玻璃时按[真实目录边界](references/glass-catalogs.md)冻结牌号、厂家、目录哈希及实际n(λ)，用 `standalone_glass_search.py` 编排材料分支、厚透镜恢复、连续优化和独立验收；不把可计算折射率当成采购或荧光资格。项目数值不升级为通用门槛。
 
 ## 已有处方的独立验证
 

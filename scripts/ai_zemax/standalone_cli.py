@@ -195,11 +195,16 @@ def main(argv=None):
             manufacturing = None
             policy_raw = None
             if args.manufacturing_only or args.manufacturing_policy:
-                from .standalone_manufacturing import audit_manufacturing
+                from .standalone_manufacturing import audit_manufacturing, audit_ray_envelope
 
                 policy_raw = args.manufacturing_policy.read_bytes() if args.manufacturing_policy else None
                 policy = json.loads(policy_raw.decode('utf-8-sig')) if policy_raw is not None else None
                 manufacturing = audit_manufacturing(model, policy)
+                if not args.manufacturing_only and manufacturing['passed']:
+                    pupil, _ = (disk_quadrature(20, 64) if args.sampling == 'gq20'
+                                else rectangular_pupil(int(args.sampling[4:])))
+                    manufacturing = audit_ray_envelope(OpticalSystem(model), manufacturing, pupil,
+                                                       use_primary_field=args.field_reference == 'primary')
             if args.manufacturing_only:
                 report = {'status': manufacturing['status'], 'manufacturing': manufacturing}
             elif manufacturing is not None and not manufacturing['passed']:

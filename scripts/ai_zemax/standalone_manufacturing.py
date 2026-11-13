@@ -1,5 +1,6 @@
 """Configured nominal solid checks for coaxial refractive models, in millimetres."""
 import math
+from copy import deepcopy
 
 import numpy as np
 from numpy.polynomial import Polynomial
@@ -211,8 +212,8 @@ def _audit_manufacturing(model, policy=None):
     """
     report = dict(status='incomplete', eligible=True, passed=False, violations=[], missing=[],
                   surfaces=[], lenses=[], gaps=[], assumptions=[],
-                  scope=('configured nominal coaxial solids and supplied scalar budgets; fresh ray-envelope coverage, '
-                         'mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated'))
+                  scope=('configured nominal coaxial solids and supplied scalar budgets; ray-envelope coverage '
+                         'requires audit_ray_envelope; mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated'))
     def issue(collection, code, detail, **extra):
         report[collection].append(dict(code=code, detail=detail, **extra))
     try:
@@ -251,6 +252,19 @@ def _audit_manufacturing(model, policy=None):
         if not declarations:
             issue('missing', 'no_closed_solids', 'No closed physical lens identified')
     faces = {lens[key] for lens in declarations for key in ('front_surface', 'rear_surface')}
+    lens_limits = [dict(defaults, **{k: v for k, v in lens.items() if k in _LIMITS})
+                   for lens in declarations]
+    report['limit_precedence'] = ('Lens entries override defaults for that lens. Shared faces use the '
+                                  'tightest effective slope/margin; air and rim requirements apply to '
+                                  'both adjacent ambient interfaces and use the tightest complete '
+                                  '(minimum + budget) requirement from either bordering lens. '
+                                  'Bonded shared faces have no air/rim gap requirement.')
+    def face_limit(sn, key):
+        owners = [limits[key] for lens, limits in zip(declarations, lens_limits, strict=True)
+                  if sn in (lens['front_surface'], lens['rear_surface']) and key in limits]
+        values = owners or ([defaults[key]] if key in defaults else [])
+        return (min(values) if key.startswith('maximum_') else max(values)) if values else None
+
     clear, mechanical, usable = {}, {}, {}
     for sn, (row, surface) in enumerate(zip(rows, surfaces, strict=True), 1):
         override = overrides.get(sn, {})
@@ -282,7 +296,8 @@ def _audit_manufacturing(model, policy=None):
             if margin < 0.:
                 issue('violations', 'clear_outside_mechanical', 'Clear aperture exceeds physical radius',
                       surface=sn, value=margin, limit=0.)
-            required = defaults.get('minimum_clear_to_mechanical_radial_margin_mm')
+            required = face_limit(sn, 'minimum_clear_to_mechanical_radial_margin_mm')
+            diagnostic['effective_minimum_clear_to_mechanical_radial_margin_mm'] = required
             if required is None and sn in faces:
                 issue('missing', 'radial_margin_limit_missing', 'Configure bevel and mounting radial allowance', surface=sn)
             elif required is not None and margin < required:
@@ -308,7 +323,8 @@ def _audit_manufacturing(model, policy=None):
             location = _golden(lambda r: -abs(2.*r*surface.sag_and_gradient(r*r)[1]), radial[peak-1], radial[peak+1])
             maximum_slope = max(maximum_slope, float(abs(2.*location*surface.sag_and_gradient(location*location)[1])))
         diagnostic['maximum_sampled_surface_slope'] = maximum_slope
-        limit = defaults.get('maximum_surface_slope')
+        limit = face_limit(sn, 'maximum_surface_slope')
+        diagnostic['effective_maximum_surface_slope'] = limit
         if limit is not None and maximum_slope > limit:
             issue('violations', 'surface_slope_above_limit', 'Slope exceeds configured process/metrology capability',
                   surface=sn, value=maximum_slope, limit=limit)
@@ -316,8 +332,8 @@ def _audit_manufacturing(model, policy=None):
         report['surfaces'].append(diagnostic)
     for number, declaration in enumerate(declarations, 1):
         a, b = declaration['front_surface'], declaration['rear_surface']
-        limits = dict(defaults, **{k: v for k, v in declaration.items() if k in _LIMITS})
-        row = dict(lens=number, front_surface=a, rear_surface=b)
+        limits = lens_limits[number-1]
+        row = dict(lens=number, front_surface=a, rear_surface=b, effective_limits=limits)
         report['lenses'].append(row)
         center = float(z[b-1]-z[a-1])
         row['center_thickness_mm'] = center
@@ -384,8 +400,20 @@ def _audit_manufacturing(model, policy=None):
                       left_lens=left['lens'], right_lens=right['lens'])
                 row['kind'] = 'nonambient_interface'
                 continue
-            required = defaults.get('minimum_air_gap_mm')
-            budget = defaults.get('air_gap_budget_mm', 0.)
+            def interface_limit(minimum_key, budget_key):
+                candidates = [(limits[minimum_key]+limits.get(budget_key, 0.), limits[minimum_key],
+                               limits.get(budget_key, 0.), number)
+                              for number, limits in ((left['lens'], lens_limits[left['lens']-1]),
+                                                     (right['lens'], lens_limits[right['lens']-1]))
+                              if minimum_key in limits]
+                if not candidates:
+                    return None, 0., None
+                _, required, budget, owner = max(candidates)
+                return required, budget, owner
+
+            required, budget, owner = interface_limit('minimum_air_gap_mm', 'air_gap_budget_mm')
+            row.update(effective_minimum_air_gap_mm=required, effective_air_gap_budget_mm=budget,
+                       air_requirement_lens=owner)
             if required is None:
                 issue('missing', 'air_gap_limit_missing', 'Configure minimum physical air separation',
                       left_lens=left['lens'], right_lens=right['lens'])
@@ -396,8 +424,9 @@ def _audit_manufacturing(model, policy=None):
                 continue
             rim = float(gap+_sag(surfaces[b-1], rb)-_sag(surfaces[a-1], ra))
             row['separate_rim_axial_gap_mm'] = rim
-            required = defaults.get('minimum_rim_gap_mm')
-            budget = defaults.get('rim_gap_budget_mm', 0.)
+            required, budget, owner = interface_limit('minimum_rim_gap_mm', 'rim_gap_budget_mm')
+            row.update(effective_minimum_rim_gap_mm=required, effective_rim_gap_budget_mm=budget,
+                       rim_requirement_lens=owner)
             if required is None:
                 issue('missing', 'rim_gap_limit_missing', 'Configure mechanical-rim axial clearance',
                       left_lens=left['lens'], right_lens=right['lens'])
@@ -421,3 +450,79 @@ def audit_manufacturing(model, policy=None):
                     violations=[dict(code='numerical_geometry_failure', detail=str(error))],
                     missing=[], surfaces=[], lenses=[], gaps=[], assumptions=[],
                     scope='numerical geometry check could not complete')
+
+
+def audit_ray_envelope(system, geometry, pupil, *, rim_samples=64, use_primary_field=False):
+    """Join fresh full-path ray hits to the audited CA and physical radii.
+
+    Check every declared field and wavelength, even when optical screening selects
+    only a subset. Include chief and exact rim rays in addition to the supplied
+    interior pupil nodes. This is a sampled check, not a continuous-domain proof.
+    Optical apertures retain their original meaning; configured CA/OD never alter
+    ray launching or clip the bundle to manufacture a passing result.
+    """
+    report = deepcopy(geometry)
+    if not geometry['eligible']:
+        return report
+    pupil = np.asarray(pupil, dtype=float)
+    if (pupil.ndim != 2 or pupil.shape[1] != 2 or not len(pupil)
+            or not np.isfinite(pupil).all() or type(rim_samples) is not int or rim_samples < 8):
+        raise ValueError('Envelope checking requires finite pupil XY nodes and at least eight rim samples')
+    azimuth = 2.*np.pi*np.arange(rim_samples)/rim_samples
+    nodes = np.vstack((np.zeros((1, 2)), pupil, np.column_stack((np.cos(azimuth), np.sin(azimuth)))))
+    bounded = {row['surface']: row for row in geometry['surfaces']
+               if row['clear_radius_mm'] is not None or row['mechanical_radius_mm'] is not None}
+    envelope = dict(status='passed', backend='cpu_full_path', field_indices=list(range(len(system.fields))),
+                    wave_indices=list(range(len(system.wavelengths))),
+                    samples_per_group=len(nodes), rim_samples=rim_samples, chief_included=True,
+                    field_reference='primary' if use_primary_field else 'measurement',
+                    numerical_radius_tolerance_mm=1e-9, continuous_domain_certified=False,
+                    surfaces=[], failed_groups=[])
+    report['ray_envelope'] = envelope
+    peaks = {sn: (-1., None, None, None) for sn in bounded}
+    for fi, field in enumerate(system.fields):
+        for wi in range(len(system.wavelengths)):
+            try:
+                origin, slopes = system.launch_field(field, None if use_primary_field else wi)
+                traced = system._shoot(wi, nodes, origin, slopes, record_path=True)
+                if not traced.valid.all() or np.any(traced.negative_segment_count):
+                    bad = np.flatnonzero(~traced.valid)
+                    detail = ('Negative propagation segment in physical envelope check' if not len(bad)
+                              else f'Ray {bad[0]} failed at S{traced.failed_surface[bad[0]]+1}: {traced.reason[bad[0]]}')
+                    envelope['failed_groups'].append(dict(field_index=fi, wave_index=wi, detail=detail))
+                for sn in bounded:
+                    xy = traced.surface_points[sn-1, :, :2]
+                    radius = np.linalg.norm(xy, axis=-1)
+                    finite = np.flatnonzero(np.isfinite(radius))
+                    if not len(finite):
+                        continue
+                    ray = int(finite[np.argmax(radius[finite])])
+                    if radius[ray] > peaks[sn][0]:
+                        peaks[sn] = (float(radius[ray]), fi, wi, ray)
+            except (ValueError, RuntimeError, FloatingPointError, OverflowError, np.linalg.LinAlgError) as error:
+                envelope['failed_groups'].append(dict(field_index=fi, wave_index=wi, detail=str(error)))
+    for sn, dimensions in bounded.items():
+        radius, fi, wi, ray = peaks[sn]
+        item = dict(surface=sn, maximum_hit_radius_mm=None if radius < 0. else radius,
+                    field_index=fi, wave_index=wi, pupil_index=ray)
+        for key, code in (('clear_radius_mm', 'ray_outside_clear_aperture'),
+                          ('mechanical_radius_mm', 'ray_outside_mechanical_radius')):
+            limit = dimensions[key]
+            item[key] = limit
+            if limit is not None and radius >= 0.:
+                item[key.replace('radius_mm', 'ray_margin_mm')] = limit-radius
+                if radius > limit+envelope['numerical_radius_tolerance_mm']:
+                    report['violations'].append(dict(code=code, detail='Fresh traced ray exceeds configured surface radius',
+                                                      surface=sn, value=radius, limit=limit,
+                                                      field_index=fi, wave_index=wi, pupil_index=ray))
+        envelope['surfaces'].append(item)
+    if envelope['failed_groups']:
+        report['violations'].append(dict(code='ray_envelope_trace_failed',
+                                          detail='At least one full-field/full-spectrum envelope bundle failed; '
+                                                 'see ray_envelope.failed_groups'))
+    if report['violations']:
+        envelope['status'] = 'invalid'
+        report.update(status='invalid', eligible=False, passed=False)
+    report['scope'] = ('configured nominal coaxial solids, scalar budgets and sampled fresh ray-envelope coverage; '
+                       'mounting, insertion, stress, tooling, coating and manufacturing yield not evaluated')
+    return report

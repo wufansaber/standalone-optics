@@ -1,0 +1,481 @@
+{
+  "case": "public_synthetic_singlet",
+  "environment": {
+    "python": "3.12.7",
+    "numpy": "2.5.4",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+  },
+  "uses_zemax": false,
+  "uses_cuda": false,
+  "parameters": [
+    "front_curvature_knob",
+    "rear_curvature_knob",
+    "front_A4_knob",
+    "focus_mm"
+  ],
+  "wavelengths_um": [
+    0.54,
+    0.55,
+    0.56
+  ],
+  "index_after_front": [
+    1.5175,
+    1.5168,
+    1.5162
+  ],
+  "deterministic_scenarios": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      2e-05,
+      0.0
+    ],
+    [
+      -2e-05,
+      0.0
+    ],
+    [
+      0.0,
+      0.005
+    ],
+    [
+      0.0,
+      -0.005
+    ]
+  ],
+  "acceptance": {
+    "maximum_wfe_waves": 0.25,
+    "maximum_spot_rms_mm": 0.018,
+    "maximum_chief_height_error_mm": 0.08
+  },
+  "initial": {
+    "maximum_wfe_waves": 1.288080332839974,
+    "maximum_spot_rms_mm": 0.08183090850443302,
+    "maximum_height_error_mm": 0.006405647861535524
+  },
+  "all_passed": true,
+  "schema_version": 1,
+  "benchmark_date": "2026-11-09",
+  "repeat_order": "FD/A, A/FD, FD/A",
+  "gradient_validation": {
+    "method": "central_difference",
+    "dimensionless_step": 0.0001,
+    "maximum_absolute_normalized_slack_error": 3.936876950660917e-06,
+    "acceptance_limit": 1e-05,
+    "passed": true
+  },
+  "runs": [
+    {
+      "backend": "finite_difference",
+      "seconds": 10.97348050000437,
+      "exchange_seconds": 10.357436100006453,
+      "candidate_evaluations": 182,
+      "analytic_evaluations": 0,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22997085958619715,
+        "maximum_spot_rms_mm": 0.01164862019651735,
+        "maximum_height_error_mm": 0.01936110446436734
+      },
+      "q": [
+        -0.8284835453191428,
+        -0.7428002156898575,
+        -1.2044465033529552,
+        1.2655144835844623
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -9.833200920184026e-11,
+          "after": 0.16644892143384693,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.334043986389588e-12,
+          "after": 0.07549403181428282,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    },
+    {
+      "backend": "analytic",
+      "seconds": 9.3824953000003,
+      "exchange_seconds": 8.78685360000236,
+      "candidate_evaluations": 110,
+      "analytic_evaluations": 18,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22994817054814803,
+        "maximum_spot_rms_mm": 0.011647390055245935,
+        "maximum_height_error_mm": 0.019361114934695944
+      },
+      "q": [
+        -0.8284858745904082,
+        -0.7428010320163982,
+        -1.2044541089847272,
+        1.265515327075347
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -2.842170943040401e-14,
+          "after": 0.16635100257441215,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.857625164802812e-12,
+          "after": 0.07558524402754563,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    },
+    {
+      "backend": "analytic",
+      "seconds": 9.37080619999324,
+      "exchange_seconds": 8.776454699996975,
+      "candidate_evaluations": 110,
+      "analytic_evaluations": 18,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22994817054814803,
+        "maximum_spot_rms_mm": 0.011647390055245935,
+        "maximum_height_error_mm": 0.019361114934695944
+      },
+      "q": [
+        -0.8284858745904082,
+        -0.7428010320163982,
+        -1.2044541089847272,
+        1.265515327075347
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -2.842170943040401e-14,
+          "after": 0.16635100257441215,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.857625164802812e-12,
+          "after": 0.07558524402754563,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    },
+    {
+      "backend": "finite_difference",
+      "seconds": 10.877460799994878,
+      "exchange_seconds": 10.280500100008794,
+      "candidate_evaluations": 182,
+      "analytic_evaluations": 0,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22997085958619715,
+        "maximum_spot_rms_mm": 0.01164862019651735,
+        "maximum_height_error_mm": 0.01936110446436734
+      },
+      "q": [
+        -0.8284835453191428,
+        -0.7428002156898575,
+        -1.2044465033529552,
+        1.2655144835844623
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -9.833200920184026e-11,
+          "after": 0.16644892143384693,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.334043986389588e-12,
+          "after": 0.07549403181428282,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    },
+    {
+      "backend": "finite_difference",
+      "seconds": 10.894362799997907,
+      "exchange_seconds": 10.281374600002891,
+      "candidate_evaluations": 182,
+      "analytic_evaluations": 0,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22997085958619715,
+        "maximum_spot_rms_mm": 0.01164862019651735,
+        "maximum_height_error_mm": 0.01936110446436734
+      },
+      "q": [
+        -0.8284835453191428,
+        -0.7428002156898575,
+        -1.2044465033529552,
+        1.2655144835844623
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -9.833200920184026e-11,
+          "after": 0.16644892143384693,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.334043986389588e-12,
+          "after": 0.07549403181428282,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    },
+    {
+      "backend": "analytic",
+      "seconds": 9.331843599997228,
+      "exchange_seconds": 8.72222700000566,
+      "candidate_evaluations": 110,
+      "analytic_evaluations": 18,
+      "accepted_steps": 18,
+      "passed": true,
+      "final_optics": {
+        "maximum_wfe_waves": 0.22994817054814803,
+        "maximum_spot_rms_mm": 0.011647390055245935,
+        "maximum_height_error_mm": 0.019361114934695944
+      },
+      "q": [
+        -0.8284858745904082,
+        -0.7428010320163982,
+        -1.2044541089847272,
+        1.265515327075347
+      ],
+      "exchange_rounds": [
+        {
+          "working_samples": 1,
+          "audited_samples": 22,
+          "failed_samples": 2,
+          "added_samples": [
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq20"
+            },
+            {
+              "field_mm": 1.0,
+              "pupil_rule": "gq12"
+            }
+          ],
+          "independent_audit_passed": false
+        },
+        {
+          "working_samples": 3,
+          "audited_samples": 22,
+          "failed_samples": 0,
+          "added_samples": [],
+          "independent_audit_passed": true
+        }
+      ],
+      "margin_stages": [
+        {
+          "before": -2.842170943040401e-14,
+          "after": 0.16635100257441215,
+          "phase2_iterations": 6
+        },
+        {
+          "before": -1.857625164802812e-12,
+          "after": 0.07558524402754563,
+          "phase2_iterations": 6
+        }
+      ],
+      "all_scenario_geometry_and_ray_envelopes_passed": true
+    }
+  ],
+  "median_wall_seconds": {
+    "finite_difference": 10.894362799997907,
+    "analytic": 9.37080619999324
+  },
+  "analytic_wall_time_reduction_fraction": 0.13984816073914486,
+  "candidate_evaluation_reduction_fraction": 0.39560439560439564,
+  "final_audit": {
+    "object_field_radii_mm": [
+      0.0,
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6000000000000001,
+      0.7000000000000001,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "pupil_rules": {
+      "gq12": {
+        "radial_order": 12,
+        "azimuths": 48,
+        "nodes": 576
+      },
+      "gq20": {
+        "radial_order": 20,
+        "azimuths": 48,
+        "nodes": 960
+      }
+    },
+    "wfe_spot_height_combinations": 330,
+    "ray_envelope_fields": 11,
+    "ray_envelope_wavelengths": 3,
+    "ray_envelope_scenarios": 5,
+    "ray_envelope_interior_nodes": 576,
+    "rim_samples": 96,
+    "chief_included": true,
+    "continuous_domain_certified": false
+  },
+  "scope": [
+    "Synthetic singlet algorithm verification, with its own illustrative performance limits.",
+    "No private UV355 prescription, no commercial solver reference and no hardware measurement.",
+    "Analytic differentiation covers fixed launched rays, moving reference sphere and moving tilt basis.",
+    "Aperture population derivatives, manufacturing yield, tooling, preload, thermal and insertion are not certified.",
+    "Earlier developmental .12/.20 wave targets failed; final identical-backend benchmark uses explicit .25 wave singlet specification."
+  ],
+  "source_sha256": {
+    "examples/local-optimizer-20261109/run.py": "0ef1c74154e51453da58c551ee5a19de7e83bad8ca68643a03910fe58204fdbc",
+    "scripts/ai_zemax/standalone_derivatives.py": "27b89755162ec4eb65c05eee95db830e46711e100b80e2ecddcc03aa30bdc131",
+    "scripts/ai_zemax/standalone_local_solver.py": "69258b5d8378cc35a4d5f94ee82472f98ec06f4ac8449d1793d0bd7b8b524f2f",
+    "scripts/ai_zemax/standalone_constraint_exchange.py": "fa52bdc58d7b86ccac29d3eb0ed4e69a41f4bd79f796ada558e66f07f9206771",
+    "scripts/ai_zemax/standalone_manufacturing.py": "f7844f0d2a04d7f1fdd7079643b600ec0387ed2fc9034ab68d8fafa8ec0882e0"
+  },
+  "post_benchmark_verification": {
+    "change": "Failure cases preserve audit gate schema; final result additionally checks final optical and mechanical reports. Successful measured paths unchanged.",
+    "current_run_py_sha256": "6cfe495df56fbf08a50d47e4799b31c521a05613cd78eae5325d07af8faef9b3",
+    "ordinary_cpu_final_source_replay_passed": true,
+    "ordinary_cpu_final_source_summary": "private record results/optimizer_upgrade_20261109/public-experiments/cpu-portability-final/summary.json"
+  }
+}

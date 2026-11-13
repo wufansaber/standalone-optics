@@ -84,7 +84,7 @@ class OpticalSystem:
         self.reference_distance_mm = self.indices[self.primary,-1]*numerator/denominator if abs(denominator)>1e-14 else 1e15
         self.image_z_mm = vertices[-1]
 
-    def _shoot(self, wave, pupil, object_xy, slopes):
+    def _shoot(self, wave, pupil, object_xy, slopes, *, record_path=False):
         pupil = np.asarray(pupil, dtype=float)
         if pupil.ndim != 2 or pupil.shape[1] != 2 or not np.isfinite(pupil).all():
             raise ValueError('Use finite pupil coordinates with shape (N,2)')
@@ -93,7 +93,7 @@ class OpticalSystem:
         if not self.infinite:
             directions = directions_from_slopes(slopes + self.pupil_scale*pupil)
             return trace(surfaces,np.r_[object_xy,0.],directions,n_object,
-                         allow_signed_segments=self.allow_signed_segments)
+                         allow_signed_segments=self.allow_signed_segments, record_path=record_path)
         # Parallel rays originate on a common phase plane. Build their lines
         # through the paraxial entrance pupil before translating the origins.
         direction = directions_from_slopes(np.asarray(slopes)[None,:])[0]
@@ -109,7 +109,7 @@ class OpticalSystem:
         reference = np.r_[-(clearance+self.entrance_pupil_z_mm)*slopes,first.vertex_mm-clearance]
         points -= ((points-reference)@direction)[:,None]*direction
         result = trace(surfaces,points,np.broadcast_to(direction,points.shape),n_object,
-                       allow_signed_segments=self.allow_signed_segments)
+                       allow_signed_segments=self.allow_signed_segments, record_path=record_path)
         # Reference the phase to d·P = 0 for both the bundle and its chief.
         result.opl_mm += n_object*float(reference@direction)
         return result

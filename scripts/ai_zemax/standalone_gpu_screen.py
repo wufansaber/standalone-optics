@@ -10,7 +10,7 @@ import numpy as np
 from .standalone import directions_from_slopes, disk_quadrature
 from .standalone_parallel_screen import (MAX_CANDIDATES_PER_BATCH, _OPTICAL_ERRORS, _candidate_model,
                                          _limit, _manufacturing_policy, _manufacturing_preflight,
-                                         _rank_key, _score_candidate, _selection_indices)
+                                         _manufacturing_ray_preflight, _rank_key, _score_candidate, _selection_indices)
 from .standalone_system import OpticalSystem
 
 # A bundle always includes its chief in addition to the quadrature rays.
@@ -263,6 +263,8 @@ class CudaCandidateScreen:
                 waves = self.settings['wave_indices'] or range(len(system.wavelengths))
                 if max(fields) >= len(system.fields) or max(waves) >= len(system.wavelengths):
                     raise ValueError('Selected field or wavelength index is outside the candidate model')
+                if not _manufacturing_ray_preflight(system, self.settings, row, self._pupil):
+                    continue
             except _OPTICAL_ERRORS as error:
                 row['reasons'].append({'code': 'invalid_model', 'detail': str(error)})
                 continue

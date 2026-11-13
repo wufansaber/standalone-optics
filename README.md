@@ -15,13 +15,18 @@
 
 ## 优化算法总结
 
-[阅读成像光学优化算法总结](references/reusable-optimization-method.md)：多结构与真实材料筛选、有符号OPD范数、波前/场曲/轴向色差联合评价、解析导数、信赖域与二阶修正、CPU/GPU分工，以及复消色差研究的有限实测证据。2026-11-13新增[14片绿光设计过程与Zemax/MF案例](examples/green8-14element/README.md)，原始绿光目标及增强名义实体已通过独立与原生复核；制造放行未完成。文档明确区分公开实现、本地研究验证和待完成的设计验收；本次为方法总结，不新增完整研究求解器运行时。
+[阅读成像光学优化算法总结](references/reusable-optimization-method.md)：多结构与真实材料筛选、有符号OPD范数、波前/场曲/轴向色差联合评价、解析导数、信赖域与二阶修正、CPU/GPU分工，以及复消色差研究的有限实测证据。2026-11-13新增[14片绿光设计过程与Zemax/MF案例](examples/green8-14element/README.md)，原始绿光目标及增强名义实体已通过独立与原生复核；制造放行未完成。文档明确区分公开实现、本地研究验证和待完成的设计验收；现已提供[可执行内核及同预算对照](examples/runtime-upgrade-20261113/README.md)，项目专有适配器与通用模块的覆盖范围分别说明。
 
-## 加工检查的已知限制
+## 可执行优化与工程接受链
 
-2026-11-09 审查复现了两个待修复问题：六个逐片覆盖字段未生效，以及候选排名尚未联动检查配置 CA/机械实体与新光线包络。当前 `manufacturing.passed` 只表示其已执行的名义几何检查通过，不能作为完整加工、通光或装配验收。
+2026-11-13发布逐片约束和实际通光接受链修复：六个逐片覆盖字段、共享面及空气接口约束现已执行，CPU/CUDA候选入口和普通分析联动全路径光线包络与CA/机械实体检查。名义实体、有限采样通光和完整制造放行分别报告；历史问题见[审查记录](references/manufacturing-audit-20261109.md)。
 
-使用加工配置前请读[审查结论与修订顺序](references/manufacturing-audit-20261109.md)。该记录包含教材与厂商来源、缺失检查项，以及可在其他电脑运行的匿名复现脚本。本次更新发布审查资料，运行时算法尚未修复。
+新增可执行的[局部优化接口](references/local-optimization.md)：解析光线/OPD导数、QR范数模型、缓存信赖域、SLSQP与可选Clarabel直接SOCP、始终保持的硬门、有界非线性投影和自动最坏点交换。[公开光学对照与有界补偿案例](examples/runtime-upgrade-20261113/README.md)提供运行命令、环境及原始结果。真实玻璃选择使用[目录与组合搜索](references/glass-catalogs.md)，厂商完整目录保存在本机私有数据中。
+
+```text
+python -m pip install -r requirements-optimize.txt
+python examples/runtime-upgrade-20261113/run.py --out output/comparison --repeats 3
+```
 
 ## 当前计算覆盖
 
@@ -77,4 +82,4 @@ python scripts/optimize_optics.py seed --demo --workers 4 --dense-top 8 --out se
 
 ## 14片绿光案例与算法策略
 
-[设计过程、下载Zemax与完整MF](examples/green8-14element/README.md) · [受约束搜索策略与数学模型](references/green8-constrained-design-strategy.md)。内容覆盖真实材料替换、解析导数、直接SOCP与QR压缩、工程延拓、非线性修正、真实瞳OTF、最坏点加密和原生保存重载。已授权公开的案例文件与研究求解器运行时分别说明；本次未改动现有追迹CLI。
+[设计过程、下载Zemax与完整MF](examples/green8-14element/README.md) · [受约束搜索策略与数学模型](references/green8-constrained-design-strategy.md)。内容覆盖真实材料替换、解析导数、直接SOCP与QR压缩、工程延拓、非线性修正、真实瞳OTF、最坏点加密和原生保存重载。已授权公开的案例文件与研究求解器运行时分别说明；后续可执行代码升级见上方内核说明，原案例文件字节保持不变。
