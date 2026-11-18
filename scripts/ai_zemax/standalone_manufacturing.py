@@ -460,8 +460,12 @@ def _audit_manufacturing(model, policy=None, *, ct_brackets=False):
             row['face_distance'] = dict(nearest, limit_mm=floor, budget_mm=loss,
                                         lower_margin_mm=nearest['lower_mm']-loss-floor)
             if ct_brackets and not absent:
-                row['isolated_center_thickness_bracket'] = center_thickness_bracket(
-                    face_a,face_b,full_radius,row,rules)
+                bracket = center_thickness_bracket(face_a,face_b,full_radius,row,rules)
+                row['isolated_center_thickness_bracket'] = bracket
+                if bracket['status'] == 'unresolved':
+                    issue('missing','meniscus_ct_bracket_unresolved','Requested minimum center thickness bracket did not converge',lens=number,**bracket)
+                elif bracket['status'] == 'infeasible':
+                    issue('violations','meniscus_ct_bracket_infeasible','No feasible center thickness in the configured interval',lens=number,**bracket)
             if nearest['upper_mm'] < floor+loss:
                 issue('violations','meniscus_face_distance_below_limit','Closest faces miss the required thickness',lens=number,**row['face_distance'])
             elif nearest['lower_mm'] < floor+loss:

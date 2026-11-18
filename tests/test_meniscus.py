@@ -27,6 +27,17 @@ def policy():
 
 
 class MeniscusTests(unittest.TestCase):
+    def test_unresolved_requested_bracket_blocks_an_otherwise_passing_lens(self):
+        from unittest.mock import patch
+        model = lens(thickness=2.)
+        self.assertTrue(audit_manufacturing(model,policy())['passed'])
+        with patch('scripts.ai_zemax.standalone_manufacturing.center_thickness_bracket',
+                   return_value={'status':'unresolved','width_mm':.000035}):
+            result = audit_manufacturing(model,policy(),ct_brackets=True)
+        self.assertFalse(result['eligible'])
+        self.assertFalse(result['passed'])
+        self.assertIn('meniscus_ct_bracket_unresolved',[r['code'] for r in result['missing']])
+
     def test_axial_thickness_passes_while_oblique_glass_fails(self):
         for sign in (1.,-1.):
             model=lens(sign*.1);config=policy();result=audit_manufacturing(model,config)

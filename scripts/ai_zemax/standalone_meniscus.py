@@ -109,7 +109,7 @@ def _polyline_distance(front, rear, radius, count):
     return best, *witness
 
 
-def thickness_interval(front, rear, radius, required, axial_minimum, axial_at):
+def thickness_interval(front, rear, radius, required, axial_minimum, axial_at, *, refine=False):
     """Bound minimum Euclidean face distance. A limit inside the bounds is unresolved."""
     if axial_minimum <= 0:
         # The signed axial intersection check separately rejects this lens.
@@ -124,7 +124,10 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at):
     best_p, best_q = _point(front, axial_at), _point(rear, axial_at)
     upper = float(np.linalg.norm(best_p-best_q))
     lower = 0.
-    for segments in (16,32,64,128,256,512,1024):
+    grids = (16,32,64,128,256,512,1024)
+    if refine:
+        grids += (2048,4096)
+    for segments in grids:
         distance, p, q = _polyline_distance(front,rear,radius,segments)
         error = bound*(radius/segments)**2/8
         lower = max(lower, distance-error)
@@ -153,10 +156,10 @@ def center_thickness_bracket(front, rear, radius, row, rules):
              + ct-row['edge_thickness_mm'])
     hi = rules['maximum_center_thickness_mm']-ct_loss
     required = row['face_distance']['limit_mm']+rules['face_distance_budget_mm']
-    def evaluate(value):
+    def evaluate(value, *, refine=False):
         moved = replace(rear, vertex_mm=front.vertex_mm+value)
         interval = thickness_interval(front,moved,radius,required,
-                                      row['minimum_radial_thickness_mm']+value-ct,row['minimum_at_radius_mm'])
+                                      row['minimum_radial_thickness_mm']+value-ct,row['minimum_at_radius_mm'],refine=refine)
         if interval['lower_mm'] >= required:
             return 'feasible'
         if interval['upper_mm'] < required:
@@ -177,7 +180,18 @@ def center_thickness_bracket(front, rear, radius, row, rules):
             break
         result=evaluate(mid)
         if result=='unresolved':
-            return dict(status='unresolved',lower_mm=lo,feasible_upper_mm=hi,width_mm=hi-lo)
+            # The midpoint can coincide with the exact boundary. Probe on
+            # both sides, and retain only a certified change of endpoint.
+            old_lo,old_hi=lo,hi
+            for probe in ((lo+mid)/2,(mid+hi)/2):
+                side=evaluate(probe,refine=True)
+                if side=='infeasible':
+                    lo=max(lo,probe)
+                elif side=='feasible':
+                    hi=min(hi,probe)
+            if (lo,hi)==(old_lo,old_hi):
+                break
+            continue
         if result=='feasible':
             hi=mid
         else:
