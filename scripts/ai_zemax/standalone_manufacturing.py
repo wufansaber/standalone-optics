@@ -6,6 +6,7 @@ import numpy as np
 from numpy.polynomial import Polynomial
 
 from .standalone import Surface
+from .standalone_meniscus import shape, thickness_interval
 
 
 _LIMITS = {
@@ -14,6 +15,11 @@ _LIMITS = {
     'minimum_clear_to_mechanical_radial_margin_mm', 'maximum_surface_slope',
     'center_thickness_budget_mm', 'radial_thickness_budget_mm',
     'air_gap_budget_mm', 'rim_gap_budget_mm',
+}
+_MENISCUS = {
+    'minimum_center_to_diameter_ratio', 'minimum_face_to_diameter_ratio',
+    'minimum_face_distance_mm', 'minimum_edge_thickness_mm', 'maximum_center_thickness_mm',
+    'face_distance_budget_mm', 'edge_thickness_budget_mm',
 }
 _RADII = {'mechanical_radius_mm', 'clear_radius_mm'}
 
@@ -37,7 +43,7 @@ def _policy(value, count):
         return {}, {}, None, False, 1., 1025
     if not isinstance(value, dict) or value.keys() - {
             'schema_version', 'defaults', 'surfaces', 'lenses', 'all_spherical',
-            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes'}:
+            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes', 'meniscus'}:
         raise ValueError('Unknown or malformed manufacturing policy')
     if type(value.get('schema_version', 1)) is not int or value.get('schema_version', 1) != 1:
         raise ValueError('Unsupported manufacturing schema_version')
@@ -47,6 +53,12 @@ def _policy(value, count):
     samples = value.get('radial_samples', 1025)
     if type(samples) is not int or not 33 <= samples <= 65537:
         raise ValueError('radial_samples must be an integer from 33 to 65537')
+    if 'meniscus' in value:
+        rules = value['meniscus']
+        if not isinstance(rules, dict) or rules.keys() - _MENISCUS:
+            raise ValueError('Unknown or malformed meniscus policy')
+        for key, number in rules.items():
+            _number(number, 'meniscus.'+key, positive=not key.endswith('budget_mm'))
     defaults = _limits(value.get('defaults', {}), 'defaults')
     overrides = value.get('surfaces', {})
     if not isinstance(overrides, dict):
@@ -347,6 +359,34 @@ def _audit_manufacturing(model, policy=None):
         elif center-budget < required:
             issue('violations', 'center_thickness_below_limit', 'Center thickness less budget misses limit',
                   lens=number, value=center-budget, limit=required)
+        face_a, face_b = surfaces[a-1], surfaces[b-1]
+        domains = [mechanical.get(sn) for sn in (a,b)]
+        full_radius = domains[0] if None not in domains and domains[0] == domains[1] else None
+        row['shape'] = shape(face_a, face_b, full_radius)
+        strict_piece = row['shape'] in ('meniscus', 'possible_aspheric_meniscus')
+        rules = (policy or {}).get('meniscus', {})
+        if strict_piece:
+            row['meniscus_conditions'] = dict(rules)
+            absent = sorted(_MENISCUS - rules.keys())
+            base_required = ('minimum_center_thickness_mm','minimum_radial_thickness_mm',
+                             'center_thickness_budget_mm','radial_thickness_budget_mm',
+                             'maximum_surface_slope','minimum_clear_to_mechanical_radial_margin_mm')
+            absent.extend(key for key in base_required if key not in limits)
+            if absent:
+                issue('missing','meniscus_conditions_missing','Declare project process limits and loss budgets',lens=number,fields=absent)
+            if full_radius is None:
+                issue('missing','meniscus_full_diameter_missing','Declare equal finished face radii or supply a supported detailed solid',lens=number)
+            for sn in (a,b):
+                saved = rows[sn-1].get('mechanical_radius_mm')
+                declared = overrides.get(sn,{}).get('mechanical_radius_mm')
+                if saved is not None and declared is not None and not math.isclose(
+                        _number(saved,'saved mechanical radius',True), declared, rel_tol=1e-12, abs_tol=1e-12):
+                    issue('violations','meniscus_mechanical_radius_mismatch',
+                          'Model and policy must describe the same finished OD',lens=number,surface=sn,
+                          model_radius_mm=saved,policy_radius_mm=declared)
+            sources = (policy or {}).get('sources')
+            if not isinstance(sources,list) or not any(isinstance(item,str) and item.strip() for item in sources):
+                issue('missing','meniscus_sources_missing','Identify the project or supplier allocations',lens=number)
         if a not in usable or b not in usable:
             continue
         ra, rb = mechanical.get(a), mechanical.get(b)
@@ -372,6 +412,31 @@ def _audit_manufacturing(model, policy=None):
         elif minimum-budget < required:
             issue('violations', 'radial_thickness_below_limit', 'Material thickness less budget misses limit',
                   lens=number, value=minimum-budget, radius_mm=at, limit=required)
+        if strict_piece and full_radius is not None:
+            diameter = 2*full_radius
+            row['center_to_diameter_ratio'] = center/diameter
+            if all(face.conic == 0 and not any(face.even_coefficients) and face.curvature_mm_inv != 0
+                   for face in (face_a, face_b)):
+                row['sphere_center_separation_mm'] = abs(center + 1/face_b.curvature_mm_inv - 1/face_a.curvature_mm_inv)
+            ct_budget = limits.get('center_thickness_budget_mm',0.)
+            edge_budget = rules.get('edge_thickness_budget_mm',0.)
+            thresholds = [('center_ratio',center,diameter*rules.get('minimum_center_to_diameter_ratio',0.),ct_budget),
+                          ('edge',row['edge_thickness_mm'],rules.get('minimum_edge_thickness_mm',0.),edge_budget)]
+            for label, value, limit, loss in thresholds:
+                if value-loss < limit:
+                    issue('violations','meniscus_'+label+'_below_limit','Full OD thickness misses the allocated limit',lens=number,value=value,limit=limit,budget_mm=loss)
+            max_center = rules.get('maximum_center_thickness_mm')
+            if max_center is not None and center+ct_budget > max_center:
+                issue('violations','meniscus_center_above_limit','Center thickness exceeds its upper allocation',lens=number,value=center,limit=max_center,budget_mm=ct_budget)
+            floor = max(rules.get('minimum_face_distance_mm',0.),diameter*rules.get('minimum_face_to_diameter_ratio',0.))
+            loss = rules.get('face_distance_budget_mm',0.)
+            nearest = thickness_interval(face_a,face_b,full_radius,floor+loss,minimum,at)
+            row['face_distance'] = dict(nearest, limit_mm=floor, budget_mm=loss,
+                                        lower_margin_mm=nearest['lower_mm']-loss-floor)
+            if nearest['upper_mm'] < floor+loss:
+                issue('violations','meniscus_face_distance_below_limit','Closest faces miss the required thickness',lens=number,**row['face_distance'])
+            elif nearest['lower_mm'] < floor+loss:
+                issue('missing','meniscus_face_distance_unresolved','Distance bounds straddle the required thickness',lens=number,**row['face_distance'])
     for position, left in enumerate(report['lenses']):
         for right in report['lenses'][position+1:]:
             a, b = left['rear_surface'], right['front_surface']
@@ -437,6 +502,8 @@ def _audit_manufacturing(model, policy=None):
         report.update(status='invalid', eligible=False)
     elif not report['missing']:
         report.update(status='passed', passed=True)
+    elif any(r.get('shape') in ('meniscus','possible_aspheric_meniscus') for r in report['lenses']):
+        report['eligible'] = False
     return report
 
 

@@ -4,6 +4,8 @@
 
 新增[六项可运行算法升级](references/algorithm-suite.md)：动态最坏点交换、复用实光线与流式QR、焦点跨度线性规模表达、约束消元、材料/几何分支预算以及误差场景优化。[14片复消色差实测与新版Zemax/MF](examples/algorithm-suite-green8/README.md)公开固定输入、运行命令、完整验收、失败探针和同预算对照，原始案例文件保持原字节。
 
+弯月片现在按成品全外径执行厚径比、边厚和两面最短实体距离检查。接受链保存最近点、误差界和预算后余量。[加工条件与示例](references/manufacturing-boundaries.md#弯月片加工条件)
+
 ## 通用设计流程
 
 2026-11-13 下一版新增 **MF 工作集与计算预算**：依赖编译、配置/主波长状态隔离、显式保护根、球面采样冗余证明及超预算停止。绿光案例核心工作 MF 从23,030行减至6,375行，含焦面引导的工作 MF 从203,427行减至18,454行；完整验收独立保留。[策略与接口](references/merit-function-budget.md) · [Zemax/MF下载、重现和原生实测](examples/green8-mf-compact/README.md)。

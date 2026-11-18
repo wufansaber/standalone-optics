@@ -94,11 +94,11 @@ def _manufacturing_preflight(model, settings, result):
     policy = settings['manufacturing_policy']
     report = audit_manufacturing(model, policy)
     result['manufacturing'] = report
-    if not report['eligible']:
+    if report['status'] == 'invalid':
         result['reasons'].append({'code': 'manufacturing_failed',
                                   'detail': 'Candidate violates physical geometry or configured limits'})
         return False
-    if policy is not None and not report['passed']:
+    if not report['eligible'] or (policy is not None and not report['passed']):
         result['reasons'].append({'code': 'manufacturing_incomplete',
                                   'detail': 'Configured nominal-geometry checks have missing inputs'})
         return False

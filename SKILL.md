@@ -7,6 +7,8 @@ description: Plan, initialize, optimize, and verify geometric imaging systems wi
 
 从任务类型选择路径。新设计和结构重构按[通用成像光学设计方法](references/imaging-design-method.md)执行。已有处方的计算和同处方对照按下列独立验证流程执行。跨电脑安装见[安装与使用](references/install-and-use.md)。
 
+发现两面同向弯曲或非球面可能形成弯月时，在配置中写入有来源的 `meniscus` 厚径比、绝对厚度和损失预算。以完整成品外径求两面之间的最短实体距离。缺少外径、条件或收敛证据的弯月片不得进入合格候选。见[弯月片加工条件](references/manufacturing-boundaries.md#弯月片加工条件)。
+
 ## 从规格建立和优化设计
 
 1. 固定共轭、视场坐标和半径或全幅口径、光谱、NA 或 F 数、像面和机械要求。把验收限值、优化目标和诊断量分开。先读[加工与装配边界](references/manufacturing-boundaries.md)，建立有来源的项目加工配置，确定实体、机械口径、CT/全径最薄厚度、净距、材料、面型和公差余量。对缺失规格标注假设，单独记录影响选型或验收的未决项。

@@ -19,13 +19,32 @@
     "center_thickness_budget_mm": 0.05,
     "radial_thickness_budget_mm": 0.05,
     "air_gap_budget_mm": 0.02,
-    "rim_gap_budget_mm": 0.02
+    "rim_gap_budget_mm": 0.02,
+    "maximum_surface_slope": 1.3
   },
   "surfaces": {
-    "1": {"mechanical_radius_mm": 6.0, "clear_radius_mm": 5.0},
-    "2": {"mechanical_radius_mm": 6.0, "clear_radius_mm": 5.0}
+    "1": {
+      "mechanical_radius_mm": 6.0,
+      "clear_radius_mm": 5.0
+    },
+    "2": {
+      "mechanical_radius_mm": 6.0,
+      "clear_radius_mm": 5.0
+    }
   },
   "lenses": [
-    {"front_surface": 1, "rear_surface": 2}
-  ]
+    {
+      "front_surface": 1,
+      "rear_surface": 2
+    }
+  ],
+  "meniscus": {
+    "minimum_center_to_diameter_ratio": 0.1,
+    "minimum_face_to_diameter_ratio": 0.06,
+    "minimum_face_distance_mm": 0.7,
+    "minimum_edge_thickness_mm": 0.7,
+    "maximum_center_thickness_mm": 6.0,
+    "face_distance_budget_mm": 0.05,
+    "edge_thickness_budget_mm": 0.05
+  }
 }
