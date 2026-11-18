@@ -6,6 +6,7 @@ class SpacerSeatTests(unittest.TestCase):
     def flat_case(self):
         import math
         model,config=self.case(20.)
+        config['defaults']['maximum_surface_slope']=3.
         lands={}
         for i,row in enumerate(model['surface_rows'][:4]):
             c=row['curvature_mm_inv'];z=model['vertices_mm'][i]
@@ -16,6 +17,16 @@ class SpacerSeatTests(unittest.TestCase):
                                       thickness_budget_mm=.05,minimum_platform_mm=1.5,clear_reserve_mm=.25,lands=lands)
         config['spacer_seats']['interfaces'][0]['kind']='flat_annulus'
         return model,config
+
+    def test_transition_slope_is_checked_and_tangent_ramp_can_pass(self):
+        model,config=self.flat_case()
+        config['defaults']['maximum_surface_slope']=1.8
+        result=audit_manufacturing(model,config)
+        self.assertIn('finished_profile_slope_unqualified',[v['code'] for v in result['violations']])
+        for key in ('2','3'):
+            config['extended_edges']['lands'][key]['transition']='tangent_ramp'
+        result=audit_manufacturing(model,config)
+        self.assertTrue(result['passed'],result['violations'])
 
     def test_flat_spacer_requires_two_ground_glass_platforms(self):
         model,config=self.flat_case()
@@ -54,6 +65,28 @@ class SpacerSeatTests(unittest.TestCase):
         config['surfaces']={'1':{'mechanical_radius_mm':8.}}
         result=audit_manufacturing(model,config)
         self.assertIn('extended_edge_model_radius_mismatch',[v['code'] for v in result['violations']])
+
+    def test_ground_asphere_requires_stock_at_interior_extrema(self):
+        model,config=self.flat_case()
+        model['surface_rows'][0]['even_coefficients']=[.00089,-.00001]
+        config['extended_edges']['lands']['1']['plane_z_mm']=1.017
+        result=audit_manufacturing(model,config)
+        self.assertIn('land_outside_stock',[v['code'] for v in result['violations']])
+
+    def test_extra_group_and_one_sided_end_lens(self):
+        model,config=self.flat_case()
+        rules=config['extended_edges']
+        rules['tube_lenses']=[1]
+        del rules['lands']['4']
+        result=audit_manufacturing(model,config)
+        self.assertTrue(result['passed'],result['violations'])
+        self.assertIn('finished_rim_mm',result['extended_edges'][1])
+        rules['additional_common_groups']=[dict(lenses=[2],diameter_mm=16.)]
+        self.assertFalse(audit_manufacturing(model,config)['passed'])
+        rules['lands']['4']=self.flat_case()[1]['extended_edges']['lands']['4']
+        self.assertTrue(audit_manufacturing(model,config)['passed'])
+        rules['additional_common_groups'][0]['lenses']=[1]
+        self.assertFalse(audit_manufacturing(model,config)['eligible'])
 
     def test_malformed_land_is_a_structured_failure(self):
         model,config=self.flat_case()
