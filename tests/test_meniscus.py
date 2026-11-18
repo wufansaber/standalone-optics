@@ -87,6 +87,16 @@ class MeniscusTests(unittest.TestCase):
         report=audit_manufacturing(lens(thickness=2.),config)
         self.assertIn('meniscus_mechanical_radius_mismatch',[i['code'] for i in report['violations']])
 
+    def test_explicit_outer_shoulder_is_not_a_full_diameter_sphere(self):
+        model=lens(thickness=2.)
+        model['explicit_nominal_solid_profiles']=[
+            dict(surface=i,sphere_face_radius_mm=8.,body_radius_mm=9.) for i in (1,2)]
+        report=audit_manufacturing(model,policy())
+        self.assertEqual(report['status'],'incomplete')
+        self.assertFalse(report['eligible'])
+        self.assertIn('meniscus_profile_requires_full_body_distance',[i['code'] for i in report['missing']])
+        self.assertNotIn('face_distance',report['lenses'][0])
+
     def test_aspheric_enclosure_covers_an_analytic_parabola(self):
         model=lens(conic=-1.);config=policy();p=config['meniscus']
         # Translate two identical paraboloids. Closest point projects front rim

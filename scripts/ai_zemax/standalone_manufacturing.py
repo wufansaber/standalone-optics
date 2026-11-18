@@ -342,6 +342,18 @@ def _audit_manufacturing(model, policy=None):
                   surface=sn, value=maximum_slope, limit=limit)
         usable[sn] = radius
         report['surfaces'].append(diagnostic)
+    profiles = model.get('explicit_nominal_solid_profiles')
+    declared_profiles = {}
+    if profiles is not None:
+        if not isinstance(profiles,list):
+            raise ValueError('Explicit solid profiles must be a list of numbered surfaces')
+        for profile in profiles:
+            if not isinstance(profile,dict):
+                raise ValueError('Explicit solid profile must be a mapping')
+            sn = profile.get('surface')
+            if type(sn) is not int or sn in declared_profiles or not 1 <= sn <= len(rows):
+                raise ValueError('Explicit solid profiles must have unique valid surface numbers')
+            declared_profiles[sn] = profile
     for number, declaration in enumerate(declarations, 1):
         a, b = declaration['front_surface'], declaration['rear_surface']
         limits = lens_limits[number-1]
@@ -384,6 +396,20 @@ def _audit_manufacturing(model, policy=None):
                     issue('violations','meniscus_mechanical_radius_mismatch',
                           'Model and policy must describe the same finished OD',lens=number,surface=sn,
                           model_radius_mm=saved,policy_radius_mm=declared)
+            if profiles is not None:
+                for sn in (a,b):
+                    profile = declared_profiles.get(sn,{})
+                    # The chord/arc distance below describes an uninterrupted optical face.
+                    # A cutoff with an outer shoulder must not silently become that face.
+                    values = [profile.get('body_radius_mm'), profile.get('sphere_face_radius_mm')]
+                    matches = full_radius is not None and all(
+                        v is not None and math.isclose(_number(v,'solid radius',True),full_radius,
+                                                        rel_tol=1e-12,abs_tol=1e-12) for v in values)
+                    if not matches:
+                        issue('missing','meniscus_profile_requires_full_body_distance',
+                              'Declared cutoff/shoulder needs a closest-distance audit on the actual profile',
+                              lens=number,surface=sn)
+                        full_radius = None
             sources = (policy or {}).get('sources')
             if not isinstance(sources,list) or not any(isinstance(item,str) and item.strip() for item in sources):
                 issue('missing','meniscus_sources_missing','Identify the project or supplier allocations',lens=number)
