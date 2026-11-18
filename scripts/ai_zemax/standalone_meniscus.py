@@ -71,11 +71,26 @@ def _sphere_distance(front, rear, radius):
 def _curvature_bound(surface, radius):
     c = surface.curvature_mm_inv
     minimum_domain = min(1., 1-(1+surface.conic)*c*c*radius*radius)
-    total = abs(c)/minimum_domain**1.5
+    base = abs(c)/minimum_domain**1.5
+    if not any(surface.even_coefficients):
+        return base
+    # Every polynomial term of z'' is monotone on a positive radial cell.
+    # Bound the signed sum locally before taking its absolute value. This
+    # retains cancellation between high-order coefficients without assuming
+    # that the extrema lie at the nodes.
+    edges = np.linspace(0., radius, 65)
+    conic = c / (1.-(1.+surface.conic)*(c*edges)**2)**1.5
+    lo = np.minimum(conic[:-1],conic[1:])
+    hi = np.maximum(conic[:-1],conic[1:])
+    absolute_sum = base
     for k, coefficient in enumerate(surface.even_coefficients, start=1):
         degree = 2*k
-        total += degree*(degree-1)*abs(coefficient)*radius**(degree-2)
-    return total
+        term = degree*(degree-1)*coefficient*edges**(degree-2)
+        lo += np.minimum(term[:-1],term[1:])
+        hi += np.maximum(term[:-1],term[1:])
+        absolute_sum += abs(term[-1])
+    padding = 64*np.finfo(float).eps*(len(surface.even_coefficients)+1)*absolute_sum
+    return float(max(np.max(hi),-np.min(lo))+padding)
 
 
 def _polyline_distance(front, rear, radius, count):

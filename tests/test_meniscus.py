@@ -27,6 +27,19 @@ def policy():
 
 
 class MeniscusTests(unittest.TestCase):
+    def test_signed_aspheric_curvature_enclosure(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import _curvature_bound
+        # These coefficients give z'' = sign * (1 - (r/R)^2)^3.
+        radius = 8.
+        for sign in (-1., 1.):
+            coefficients = tuple(sign*term/((2*k)*(2*k-1)*radius**(2*k-2))
+                                 for k, term in enumerate((1., -3., 3., -1.), 1))
+            surface = Surface(0., even_coefficients=coefficients)
+            enclosure = _curvature_bound(surface, radius)
+            self.assertGreaterEqual(enclosure, 1.)
+            self.assertLess(enclosure, 1.2)
+
     def test_unresolved_requested_bracket_blocks_an_otherwise_passing_lens(self):
         from unittest.mock import patch
         model = lens(thickness=2.)
