@@ -43,7 +43,7 @@ def _policy(value, count):
         return {}, {}, None, False, 1., 1025
     if not isinstance(value, dict) or value.keys() - {
             'schema_version', 'defaults', 'surfaces', 'lenses', 'all_spherical',
-            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes', 'meniscus','spacer_seats'}:
+            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes', 'meniscus','spacer_seats','extended_edges'}:
         raise ValueError('Unknown or malformed manufacturing policy')
     if type(value.get('schema_version', 1)) is not int or value.get('schema_version', 1) != 1:
         raise ValueError('Unsupported manufacturing schema_version')
@@ -531,11 +531,29 @@ def _audit_manufacturing(model, policy=None, *, ct_brackets=False):
             elif rim-budget < required:
                 issue('violations', 'rim_gap_below_limit', 'Separate mechanical-rim axial clearance misses limit',
                       left_lens=left['lens'], right_lens=right['lens'], value=rim-budget, limit=required)
+    if policy and 'extended_edges' in policy:
+        from .standalone_extended_edges import audit_extended_edges
+        report['extended_edges'] = audit_extended_edges(
+            surfaces, report['lenses'], clear, mechanical, policy['extended_edges'], issue)
+        for sn in faces:
+            saved = rows[sn-1].get('mechanical_radius_mm')
+            if saved is not None and mechanical.get(sn) is not None and not math.isclose(
+                    _number(saved, 'saved mechanical radius', True), mechanical[sn], abs_tol=1e-9, rel_tol=0.):
+                issue('violations', 'extended_edge_model_radius_mismatch',
+                      'The machined diameter in the prescription and its policy must agree', surface=sn)
+            profile = declared_profiles.get(sn)
+            if profile is not None and any(profile.get(k) != mechanical.get(sn)
+                                           for k in ('body_radius_mm', 'sphere_face_radius_mm')):
+                issue('missing', 'extended_edge_parent_profile_unverified',
+                      'Provide a complete compatible parent cap for the declared stock and body', surface=sn)
+        if report['missing']:
+            report['eligible'] = False
     if policy and 'spacer_seats' in policy:
         from .standalone_spacers import audit_spacers
-        report['spacers']=audit_spacers(surfaces,report['lenses'],clear,mechanical,policy['spacer_seats'],issue)
+        report['spacers'] = audit_spacers(surfaces, report['lenses'], clear, mechanical, policy['spacer_seats'],
+                                          issue, policy.get('extended_edges', {}).get('lands', {}))
         if report['missing']:
-            report['eligible']=False
+            report['eligible'] = False
     if report['violations']:
         report.update(status='invalid', eligible=False)
     elif not report['missing']:

@@ -8,7 +8,7 @@ def _finite(value):
     return type(value) in (int,float) and math.isfinite(value)
 
 
-def audit_spacers(surfaces,lenses,clear,mechanical,config,issue):
+def audit_spacers(surfaces,lenses,clear,mechanical,config,issue,lands=None):
     keys={'interfaces','minimum_width_mm','chip_mm','bevel_mm','minimum_gap_mm','maximum_gap_mm','gap_budget_mm'}
     if not isinstance(config,dict) or set(config)!=keys:
         raise ValueError('Spacer policy must specify all contact dimensions, budgets and adjacent interface roles')
@@ -25,7 +25,7 @@ def audit_spacers(surfaces,lenses,clear,mechanical,config,issue):
             raise ValueError('Spacer declarations must follow the physical lens order')
         if cfg.get('kind')=='open_group' and set(cfg)=={'left_lens','kind','function'} and cfg['function']:
             rows.append(dict(cfg));continue
-        if set(cfg)!={'left_lens','kind','inner_radius_mm','outer_radius_mm'} or cfg['kind']!='conformal_annulus':
+        if set(cfg)!={'left_lens','kind','inner_radius_mm','outer_radius_mm'} or cfg['kind'] not in ('conformal_annulus','flat_annulus'):
             raise ValueError('Unsupported spacer profile or missing annular contact radii')
         ri,ro=cfg['inner_radius_mm'],cfg['outer_radius_mm']
         if not all(_finite(v) for v in (ri,ro)) or not 0<=ri<ro:
@@ -40,6 +40,19 @@ def audit_spacers(surfaces,lenses,clear,mechanical,config,issue):
         ca=max(clear[a],clear[b]);od=min(mechanical[a],mechanical[b])
         if ri<ca+config['chip_mm']-1e-10 or ro>od-config['bevel_mm']+1e-10 or ro-ri<config['minimum_width_mm']-1e-10:
             issue('violations','spacer_contact_outside_usable_glass','Both full-width contacts must lie on glass outside CA and bevel',left_lens=n)
+            continue
+        if cfg['kind']=='flat_annulus':
+            if not lands or not all(str(i) in lands for i in (a,b)):
+                issue('missing','spacer_flat_land_missing','Both facing glass surfaces require actual ground planes',left_lens=n)
+                continue
+            f,t=[lands[str(i)] for i in (a,b)]
+            if ri<max(f['flat_start_mm'],t['flat_start_mm']) or ro>min(f['bevel_start_mm'],t['bevel_start_mm']):
+                issue('violations','spacer_outside_flat_land','Entire contact annulus must lie on both flat lands',left_lens=n)
+                continue
+            gap=t['plane_z_mm']-f['plane_z_mm']
+            row.update(minimum_gap_lower_mm=gap,maximum_gap_upper_mm=gap,inner_gap_mm=gap,outer_gap_mm=gap,interpolation_error_mm=0.)
+            if gap-config['gap_budget_mm']<config['minimum_gap_mm'] or gap+config['gap_budget_mm']>config['maximum_gap_mm']:
+                issue('violations','spacer_gap_out_of_range','Parallel plane spacing exceeds allocated interval',left_lens=n)
             continue
         grid=np.linspace(ri,ro,257)
         s,t=surfaces[a-1],surfaces[b-1]
