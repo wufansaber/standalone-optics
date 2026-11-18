@@ -43,7 +43,7 @@ def _policy(value, count):
         return {}, {}, None, False, 1., 1025
     if not isinstance(value, dict) or value.keys() - {
             'schema_version', 'defaults', 'surfaces', 'lenses', 'all_spherical',
-            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes', 'meniscus'}:
+            'ambient_index', 'radial_samples', 'policy_id', 'sources', 'notes', 'meniscus','spacer_seats'}:
         raise ValueError('Unknown or malformed manufacturing policy')
     if type(value.get('schema_version', 1)) is not int or value.get('schema_version', 1) != 1:
         raise ValueError('Unsupported manufacturing schema_version')
@@ -531,6 +531,11 @@ def _audit_manufacturing(model, policy=None, *, ct_brackets=False):
             elif rim-budget < required:
                 issue('violations', 'rim_gap_below_limit', 'Separate mechanical-rim axial clearance misses limit',
                       left_lens=left['lens'], right_lens=right['lens'], value=rim-budget, limit=required)
+    if policy and 'spacer_seats' in policy:
+        from .standalone_spacers import audit_spacers
+        report['spacers']=audit_spacers(surfaces,report['lenses'],clear,mechanical,policy['spacer_seats'],issue)
+        if report['missing']:
+            report['eligible']=False
     if report['violations']:
         report.update(status='invalid', eligible=False)
     elif not report['missing']:
