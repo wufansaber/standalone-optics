@@ -167,7 +167,9 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at, *
     lower = 0.
     grids = (16,32,64,128,256,512,1024)
     if refine:
-        grids += (2048,4096)
+        # The CT solver asks for a ten-nanometre bracket. Strong outer
+        # aspheres can still have a larger chord error at 4096 segments.
+        grids += (2048,4096,8192,16384)
     for segments in grids:
         distance, p, q = _polyline_distance(front,rear,radius,segments)
         error = bound*(radius/segments)**2/8
@@ -177,7 +179,7 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at, *
             witness = float(np.linalg.norm(p-q))
             if witness < upper:
                 upper, best_p, best_q = witness,p,q
-        if lower >= required or upper < required or upper-lower <= 1.e-6:
+        if lower >= required or upper < required or (not refine and upper-lower <= 1.e-6):
             break
     return dict(method='bounded_asphere_chords', lower_mm=lower, upper_mm=upper,
                 segments=segments, front_rz_mm=best_p.tolist(), rear_rz_mm=best_q.tolist())

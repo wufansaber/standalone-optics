@@ -40,6 +40,19 @@ class MeniscusTests(unittest.TestCase):
             self.assertGreaterEqual(enclosure, 1.)
             self.assertLess(enclosure, 1.2)
 
+    def test_refinement_proves_a_submicrometre_distance_margin(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import thickness_interval
+        # Nearest points of a plane and a positive paraboloid are on axis.
+        front=Surface(0.)
+        rear=Surface(2.,even_coefficients=(.15,))
+        target=2.-.0000007
+        bounds=thickness_interval(front,rear,40.,target,2.,0.,refine=True)
+        self.assertGreater(bounds['segments'],4096)
+        self.assertLessEqual(bounds['lower_mm'],2.)
+        self.assertGreaterEqual(bounds['lower_mm'],target)
+        self.assertGreaterEqual(bounds['upper_mm'],2.)
+
     def test_opposed_asphere_sign_proof_preserves_true_reversals(self):
         from scripts.ai_zemax.standalone import Surface
         from scripts.ai_zemax.standalone_meniscus import shape
