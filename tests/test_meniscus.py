@@ -50,6 +50,18 @@ class MeniscusTests(unittest.TestCase):
             rear=Surface(3.,even_coefficients=(offset+1.,-1.,1/3.))
             self.assertEqual(shape(front,rear,1.),expected)
 
+    def test_oscillatory_polynomial_curvature_uses_a_closed_interval_bound(self):
+        from numpy.polynomial import Chebyshev, Polynomial
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import _curvature_bound
+        # z'' = T9(2*r²/R²-1) has extrema inside the aperture as well as at the rim.
+        radius=47.
+        scaled=Chebyshev.basis(9,domain=[0.,1.]).convert(kind=Polynomial).coef
+        terms=tuple(v/((2*k)*(2*k-1)*radius**(2*k-2)) for k,v in enumerate(scaled,1))
+        bound=_curvature_bound(Surface(0.,even_coefficients=terms),radius)
+        self.assertGreaterEqual(bound,1.)
+        self.assertLess(bound,1.3)
+
     def test_unresolved_requested_bracket_blocks_an_otherwise_passing_lens(self):
         from unittest.mock import patch
         model = lens(thickness=2.)

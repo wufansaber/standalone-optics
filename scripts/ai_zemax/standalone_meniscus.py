@@ -1,11 +1,31 @@
 """Thickness between two coaxial optical faces on the complete finished radius."""
 import math
+from functools import lru_cache
 
 import numpy as np
 
 
 def _sphere(surface):
     return surface.conic == 0 and not any(surface.even_coefficients)
+
+
+@lru_cache(maxsize=512)
+def _radial_polynomial_bounds(coefficients):
+    """Enclose P(x) on 32 closed cells of x=(r/R)^2, with signed coefficients."""
+    degree = len(coefficients)-1
+    bernstein = np.array([math.fsum(coefficients[j]*math.comb(i,j)/math.comb(degree,j)
+                                    for j in range(i+1)) for i in range(degree+1)])[None,:]
+    # The convex hull of each Bernstein piece contains its curve. Subdivision
+    # uses only convex combinations, so the initial absolute error is not amplified.
+    for _ in range(5):
+        levels=[bernstein]
+        for i in range(degree):
+            levels.append(.5*(levels[-1][:,1:]+levels[-1][:,:-1]))
+        left=np.stack([a[:,0] for a in levels],axis=1)
+        right=np.stack([a[:,-1] for a in reversed(levels)],axis=1)
+        bernstein=np.stack((left,right),axis=1).reshape(-1,degree+1)
+    padding=128*np.finfo(float).eps*(degree+1)**2*sum(abs(a) for a in coefficients)
+    return bernstein.min(1)-padding,bernstein.max(1)+padding
 
 
 def _slope_sign(surface, radius):
@@ -33,17 +53,14 @@ def _slope_sign(surface, radius):
     # Opposing coefficients can give an inconclusive single interval even
     # when every radius has the same sign. Accept a sign only if all closed
     # subintervals certify it, including a floating-point margin.
-    r = np.linspace(0., radius, 65)
-    base = curvature/(2*np.sqrt(1.-(1.+surface.conic)*(curvature*r)**2))
-    lower = np.minimum(base[:-1],base[1:])
-    upper = np.maximum(base[:-1],base[1:])
-    magnitude = max(abs(base[0]),abs(base[-1]))
-    for j, coefficient in enumerate(surface.even_coefficients):
-        term = (j+1)*coefficient*r**(2*j)
-        lower += np.minimum(term[:-1],term[1:])
-        upper += np.maximum(term[:-1],term[1:])
-        magnitude += abs(term[-1])
-    error = 64*np.finfo(float).eps*(len(surface.even_coefficients)+1)*magnitude
+    radial_square = np.linspace(0.,radius**2,33)
+    base = curvature/(2*np.sqrt(1.-(1.+surface.conic)*curvature**2*radial_square))
+    coefficients=[(j+1)*v*radius**(2*j) for j,v in enumerate(surface.even_coefficients)]
+    # Pure conics returned at the single-interval test above.
+    lower,upper=_radial_polynomial_bounds(tuple(coefficients) or (0.,))
+    lower=lower+np.minimum(base[:-1],base[1:])
+    upper=upper+np.maximum(base[:-1],base[1:])
+    error=64*np.finfo(float).eps*max(abs(base[0]),abs(base[-1]))/min(1.,domain)
     if np.min(lower) > error:
         return 1
     if np.max(upper) < -error:
@@ -92,22 +109,13 @@ def _curvature_bound(surface, radius):
     base = abs(c)/minimum_domain**1.5
     if not any(surface.even_coefficients):
         return base
-    # Every polynomial term of z'' is monotone on a positive radial cell.
-    # Bound the signed sum locally before taking its absolute value. This
-    # retains cancellation between high-order coefficients without assuming
-    # that the extrema lie at the nodes.
-    edges = np.linspace(0., radius, 65)
-    conic = c / (1.-(1.+surface.conic)*(c*edges)**2)**1.5
-    lo = np.minimum(conic[:-1],conic[1:])
-    hi = np.maximum(conic[:-1],conic[1:])
-    absolute_sum = base
-    for k, coefficient in enumerate(surface.even_coefficients, start=1):
-        degree = 2*k
-        term = degree*(degree-1)*coefficient*edges**(degree-2)
-        lo += np.minimum(term[:-1],term[1:])
-        hi += np.maximum(term[:-1],term[1:])
-        absolute_sum += abs(term[-1])
-    padding = 64*np.finfo(float).eps*(len(surface.even_coefficients)+1)*absolute_sum
+    radial_square = np.linspace(0.,radius**2,33)
+    conic = c/(1.-(1.+surface.conic)*c*c*radial_square)**1.5
+    terms=[(2*k)*(2*k-1)*v*radius**(2*k-2) for k,v in enumerate(surface.even_coefficients,1)]
+    lo,hi=_radial_polynomial_bounds(tuple(terms))
+    lo=lo+np.minimum(conic[:-1],conic[1:])
+    hi=hi+np.maximum(conic[:-1],conic[1:])
+    padding=128*np.finfo(float).eps*base/minimum_domain
     return float(max(np.max(hi),-np.min(lo))+padding)
 
 
