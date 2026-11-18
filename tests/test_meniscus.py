@@ -40,6 +40,16 @@ class MeniscusTests(unittest.TestCase):
             self.assertGreaterEqual(enclosure, 1.)
             self.assertLess(enclosure, 1.2)
 
+    def test_opposed_asphere_sign_proof_preserves_true_reversals(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import shape
+        # dz/d(r²) = offset + (1-r²)^2. With positive offset the rear
+        # slope stays positive throughout, while negative offset crosses zero.
+        front=Surface(0.,curvature_mm_inv=-.1)
+        for offset,expected in [(.2, 'opposed'),(-.2, 'possible_aspheric_meniscus')]:
+            rear=Surface(3.,even_coefficients=(offset+1.,-1.,1/3.))
+            self.assertEqual(shape(front,rear,1.),expected)
+
     def test_unresolved_requested_bracket_blocks_an_otherwise_passing_lens(self):
         from unittest.mock import patch
         model = lens(thickness=2.)

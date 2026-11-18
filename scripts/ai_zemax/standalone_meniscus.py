@@ -30,6 +30,24 @@ def _slope_sign(surface, radius):
         return 1
     if hi <= 0:
         return -1
+    # Opposing coefficients can give an inconclusive single interval even
+    # when every radius has the same sign. Accept a sign only if all closed
+    # subintervals certify it, including a floating-point margin.
+    r = np.linspace(0., radius, 65)
+    base = curvature/(2*np.sqrt(1.-(1.+surface.conic)*(curvature*r)**2))
+    lower = np.minimum(base[:-1],base[1:])
+    upper = np.maximum(base[:-1],base[1:])
+    magnitude = max(abs(base[0]),abs(base[-1]))
+    for j, coefficient in enumerate(surface.even_coefficients):
+        term = (j+1)*coefficient*r**(2*j)
+        lower += np.minimum(term[:-1],term[1:])
+        upper += np.maximum(term[:-1],term[1:])
+        magnitude += abs(term[-1])
+    error = 64*np.finfo(float).eps*(len(surface.even_coefficients)+1)*magnitude
+    if np.min(lower) > error:
+        return 1
+    if np.max(upper) < -error:
+        return -1
     return None
 
 
