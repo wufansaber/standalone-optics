@@ -54,6 +54,20 @@ class MeniscusTests(unittest.TestCase):
         self.assertTrue(audit_manufacturing(lens(thickness=hi),policy())['passed'])
         self.assertFalse(audit_manufacturing(lens(thickness=lo),policy())['eligible'])
 
+    def test_solver_returns_feasible_upper_and_does_not_accept_the_unmodified_piece(self):
+        model=lens();config=policy()
+        report=audit_manufacturing(model,config,ct_brackets=True)
+        bracket=report['lenses'][0]['isolated_center_thickness_bracket']
+        expected=math.sqrt((10.+.81)**2-8.**2)-6.
+        self.assertLessEqual(bracket['lower_mm'],expected)
+        self.assertGreaterEqual(bracket['feasible_upper_mm'],expected)
+        self.assertLessEqual(bracket['width_mm'],1e-5)
+        self.assertFalse(report['eligible'])
+        self.assertTrue(audit_manufacturing(lens(thickness=bracket['feasible_upper_mm']),config)['passed'])
+        config['meniscus']['maximum_center_thickness_mm']=1.05
+        report=audit_manufacturing(model,config,ct_brackets=True)
+        self.assertEqual(report['lenses'][0]['isolated_center_thickness_bracket']['status'],'infeasible')
+
     def test_budget_ratios_edge_and_center_limit_are_independent(self):
         for key,value,code in [('minimum_center_to_diameter_ratio',.13,'meniscus_center_ratio_below_limit'),
                                ('minimum_face_to_diameter_ratio',.10,'meniscus_face_distance_below_limit'),

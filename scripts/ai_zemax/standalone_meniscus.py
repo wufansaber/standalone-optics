@@ -137,3 +137,50 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at):
             break
     return dict(method='bounded_asphere_chords', lower_mm=lower, upper_mm=upper,
                 segments=segments, front_rz_mm=best_p.tolist(), rear_rz_mm=best_q.tolist())
+
+def center_thickness_bracket(front, rear, radius, row, rules):
+    """Bracket the least CT of this isolated piece with both shapes and OD held fixed."""
+    from dataclasses import replace
+    ct = row['center_thickness_mm']
+    limits = row['effective_limits']
+    ct_loss = limits['center_thickness_budget_mm']
+    # Translating the rear cap shifts every axial thickness by the same amount.
+    lo = max(limits['minimum_center_thickness_mm']+ct_loss,
+             2*radius*rules['minimum_center_to_diameter_ratio']+ct_loss,
+             limits['minimum_radial_thickness_mm']+limits['radial_thickness_budget_mm']
+             + ct-row['minimum_radial_thickness_mm'],
+             rules['minimum_edge_thickness_mm']+rules['edge_thickness_budget_mm']
+             + ct-row['edge_thickness_mm'])
+    hi = rules['maximum_center_thickness_mm']-ct_loss
+    required = row['face_distance']['limit_mm']+rules['face_distance_budget_mm']
+    def evaluate(value):
+        moved = replace(rear, vertex_mm=front.vertex_mm+value)
+        interval = thickness_interval(front,moved,radius,required,
+                                      row['minimum_radial_thickness_mm']+value-ct,row['minimum_at_radius_mm'])
+        if interval['lower_mm'] >= required:
+            return 'feasible'
+        if interval['upper_mm'] < required:
+            return 'infeasible'
+        return 'unresolved'
+    if lo > hi:
+        return dict(status='infeasible',axial_floor_mm=lo,maximum_ct_mm=hi)
+    end = evaluate(hi)
+    if end != 'feasible':
+        return dict(status=end,maximum_ct_mm=hi)
+    if evaluate(lo) == 'feasible':
+        return dict(status='converged',lower_mm=lo,feasible_upper_mm=lo,width_mm=0.)
+    # For separated single-valued graphs the distance is monotone under
+    # outward axial translation (nested epigraphs). Retain a verified upper end.
+    while hi-lo > 1.e-5:
+        mid=(lo+hi)/2
+        if mid in (lo,hi):
+            break
+        result=evaluate(mid)
+        if result=='unresolved':
+            return dict(status='unresolved',lower_mm=lo,feasible_upper_mm=hi,width_mm=hi-lo)
+        if result=='feasible':
+            hi=mid
+        else:
+            lo=mid
+    return dict(status='converged' if hi-lo <= 1.e-5 else 'unresolved',
+                lower_mm=lo,feasible_upper_mm=hi,width_mm=hi-lo)

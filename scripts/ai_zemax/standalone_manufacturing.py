@@ -6,7 +6,7 @@ import numpy as np
 from numpy.polynomial import Polynomial
 
 from .standalone import Surface
-from .standalone_meniscus import shape, thickness_interval
+from .standalone_meniscus import center_thickness_bracket, shape, thickness_interval
 
 
 _LIMITS = {
@@ -215,7 +215,7 @@ def _minimum(left, right, radius, offset, samples):
     return float(evaluated[best]), float(candidates[best])
 
 
-def _audit_manufacturing(model, policy=None):
+def _audit_manufacturing(model, policy=None, *, ct_brackets=False):
     """Return invalid, incomplete, or passed configured nominal solid geometry.
 
     Default missing envelopes/limits are incomplete. Known physical or configured
@@ -459,6 +459,9 @@ def _audit_manufacturing(model, policy=None):
             nearest = thickness_interval(face_a,face_b,full_radius,floor+loss,minimum,at)
             row['face_distance'] = dict(nearest, limit_mm=floor, budget_mm=loss,
                                         lower_margin_mm=nearest['lower_mm']-loss-floor)
+            if ct_brackets and not absent:
+                row['isolated_center_thickness_bracket'] = center_thickness_bracket(
+                    face_a,face_b,full_radius,row,rules)
             if nearest['upper_mm'] < floor+loss:
                 issue('violations','meniscus_face_distance_below_limit','Closest faces miss the required thickness',lens=number,**row['face_distance'])
             elif nearest['lower_mm'] < floor+loss:
@@ -533,11 +536,11 @@ def _audit_manufacturing(model, policy=None):
     return report
 
 
-def audit_manufacturing(model, policy=None):
+def audit_manufacturing(model, policy=None, *, ct_brackets=False):
     """Audit supported nominal geometry, returning structured numerical failures."""
     try:
         with np.errstate(over='raise', invalid='raise'):
-            return _audit_manufacturing(model, policy)
+            return _audit_manufacturing(model, policy, ct_brackets=ct_brackets)
     except (ValueError, OverflowError, FloatingPointError, np.linalg.LinAlgError) as error:
         return dict(status='invalid', eligible=False, passed=False,
                     violations=[dict(code='numerical_geometry_failure', detail=str(error))],

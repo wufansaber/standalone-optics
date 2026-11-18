@@ -155,7 +155,11 @@ def main(argv=None):
                         help='Apply a project nominal-geometry policy before optical evaluation')
     parser.add_argument('--manufacturing-only', action='store_true',
                         help='Write the nominal-geometry audit without tracing optical performance')
+    parser.add_argument('--meniscus-ct-brackets', action='store_true',
+                        help='Bound the minimum CT of each isolated meniscus at fixed face shapes and OD')
     args = parser.parse_args(argv)
+    if args.meniscus_ct_brackets and not (args.manufacturing_only and args.manufacturing_policy):
+        parser.error('--meniscus-ct-brackets requires --manufacturing-only and a project --manufacturing-policy')
     paths = [path.resolve() for path in (args.model,args.out,args.neutral_out,args.manufacturing_policy)
              if path is not None]
     if len(paths)!=len(set(paths)):
@@ -199,7 +203,7 @@ def main(argv=None):
 
                 policy_raw = args.manufacturing_policy.read_bytes() if args.manufacturing_policy else None
                 policy = json.loads(policy_raw.decode('utf-8-sig')) if policy_raw is not None else None
-                manufacturing = audit_manufacturing(model, policy)
+                manufacturing = audit_manufacturing(model, policy, ct_brackets=args.meniscus_ct_brackets)
                 if not args.manufacturing_only and manufacturing['passed']:
                     pupil, _ = (disk_quadrature(20, 64) if args.sampling == 'gq20'
                                 else rectangular_pupil(int(args.sampling[4:])))
