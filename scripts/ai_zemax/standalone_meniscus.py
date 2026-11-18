@@ -1,11 +1,31 @@
 """Thickness between two coaxial optical faces on the complete finished radius."""
 import math
+from functools import lru_cache
 
 import numpy as np
 
 
 def _sphere(surface):
     return surface.conic == 0 and not any(surface.even_coefficients)
+
+
+@lru_cache(maxsize=512)
+def _radial_polynomial_bounds(coefficients):
+    """Enclose P(x) on 32 closed cells of x=(r/R)^2, with signed coefficients."""
+    degree = len(coefficients)-1
+    bernstein = np.array([math.fsum(coefficients[j]*math.comb(i,j)/math.comb(degree,j)
+                                    for j in range(i+1)) for i in range(degree+1)])[None,:]
+    # The convex hull of each Bernstein piece contains its curve. Subdivision
+    # uses only convex combinations, so the initial absolute error is not amplified.
+    for _ in range(5):
+        levels=[bernstein]
+        for i in range(degree):
+            levels.append(.5*(levels[-1][:,1:]+levels[-1][:,:-1]))
+        left=np.stack([a[:,0] for a in levels],axis=1)
+        right=np.stack([a[:,-1] for a in reversed(levels)],axis=1)
+        bernstein=np.stack((left,right),axis=1).reshape(-1,degree+1)
+    padding=128*np.finfo(float).eps*(degree+1)**2*sum(abs(a) for a in coefficients)
+    return bernstein.min(1)-padding,bernstein.max(1)+padding
 
 
 def _slope_sign(surface, radius):
@@ -29,6 +49,21 @@ def _slope_sign(surface, radius):
     if lo >= 0:
         return 1
     if hi <= 0:
+        return -1
+    # Opposing coefficients can give an inconclusive single interval even
+    # when every radius has the same sign. Accept a sign only if all closed
+    # subintervals certify it, including a floating-point margin.
+    radial_square = np.linspace(0.,radius**2,33)
+    base = curvature/(2*np.sqrt(1.-(1.+surface.conic)*curvature**2*radial_square))
+    coefficients=[(j+1)*v*radius**(2*j) for j,v in enumerate(surface.even_coefficients)]
+    # Pure conics returned at the single-interval test above.
+    lower,upper=_radial_polynomial_bounds(tuple(coefficients) or (0.,))
+    lower=lower+np.minimum(base[:-1],base[1:])
+    upper=upper+np.maximum(base[:-1],base[1:])
+    error=64*np.finfo(float).eps*max(abs(base[0]),abs(base[-1]))/min(1.,domain)
+    if np.min(lower) > error:
+        return 1
+    if np.max(upper) < -error:
         return -1
     return None
 
@@ -71,11 +106,17 @@ def _sphere_distance(front, rear, radius):
 def _curvature_bound(surface, radius):
     c = surface.curvature_mm_inv
     minimum_domain = min(1., 1-(1+surface.conic)*c*c*radius*radius)
-    total = abs(c)/minimum_domain**1.5
-    for k, coefficient in enumerate(surface.even_coefficients, start=1):
-        degree = 2*k
-        total += degree*(degree-1)*abs(coefficient)*radius**(degree-2)
-    return total
+    base = abs(c)/minimum_domain**1.5
+    if not any(surface.even_coefficients):
+        return base
+    radial_square = np.linspace(0.,radius**2,33)
+    conic = c/(1.-(1.+surface.conic)*c*c*radial_square)**1.5
+    terms=[(2*k)*(2*k-1)*v*radius**(2*k-2) for k,v in enumerate(surface.even_coefficients,1)]
+    lo,hi=_radial_polynomial_bounds(tuple(terms))
+    lo=lo+np.minimum(conic[:-1],conic[1:])
+    hi=hi+np.maximum(conic[:-1],conic[1:])
+    padding=128*np.finfo(float).eps*base/minimum_domain
+    return float(max(np.max(hi),-np.min(lo))+padding)
 
 
 def _polyline_distance(front, rear, radius, count):
@@ -126,7 +167,9 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at, *
     lower = 0.
     grids = (16,32,64,128,256,512,1024)
     if refine:
-        grids += (2048,4096)
+        # The CT solver asks for a ten-nanometre bracket. Strong outer
+        # aspheres can still have a larger chord error at 4096 segments.
+        grids += (2048,4096,8192,16384)
     for segments in grids:
         distance, p, q = _polyline_distance(front,rear,radius,segments)
         error = bound*(radius/segments)**2/8
@@ -136,7 +179,7 @@ def thickness_interval(front, rear, radius, required, axial_minimum, axial_at, *
             witness = float(np.linalg.norm(p-q))
             if witness < upper:
                 upper, best_p, best_q = witness,p,q
-        if lower >= required or upper < required or upper-lower <= 1.e-6:
+        if lower >= required or upper < required or (not refine and upper-lower <= 1.e-6):
             break
     return dict(method='bounded_asphere_chords', lower_mm=lower, upper_mm=upper,
                 segments=segments, front_rz_mm=best_p.tolist(), rear_rz_mm=best_q.tolist())

@@ -27,6 +27,54 @@ def policy():
 
 
 class MeniscusTests(unittest.TestCase):
+    def test_signed_aspheric_curvature_enclosure(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import _curvature_bound
+        # These coefficients give z'' = sign * (1 - (r/R)^2)^3.
+        radius = 8.
+        for sign in (-1., 1.):
+            coefficients = tuple(sign*term/((2*k)*(2*k-1)*radius**(2*k-2))
+                                 for k, term in enumerate((1., -3., 3., -1.), 1))
+            surface = Surface(0., even_coefficients=coefficients)
+            enclosure = _curvature_bound(surface, radius)
+            self.assertGreaterEqual(enclosure, 1.)
+            self.assertLess(enclosure, 1.2)
+
+    def test_refinement_proves_a_submicrometre_distance_margin(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import thickness_interval
+        # Nearest points of a plane and a positive paraboloid are on axis.
+        front=Surface(0.)
+        rear=Surface(2.,even_coefficients=(.15,))
+        target=2.-.0000007
+        bounds=thickness_interval(front,rear,40.,target,2.,0.,refine=True)
+        self.assertGreater(bounds['segments'],4096)
+        self.assertLessEqual(bounds['lower_mm'],2.)
+        self.assertGreaterEqual(bounds['lower_mm'],target)
+        self.assertGreaterEqual(bounds['upper_mm'],2.)
+
+    def test_opposed_asphere_sign_proof_preserves_true_reversals(self):
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import shape
+        # dz/d(r²) = offset + (1-r²)^2. With positive offset the rear
+        # slope stays positive throughout, while negative offset crosses zero.
+        front=Surface(0.,curvature_mm_inv=-.1)
+        for offset,expected in [(.2, 'opposed'),(-.2, 'possible_aspheric_meniscus')]:
+            rear=Surface(3.,even_coefficients=(offset+1.,-1.,1/3.))
+            self.assertEqual(shape(front,rear,1.),expected)
+
+    def test_oscillatory_polynomial_curvature_uses_a_closed_interval_bound(self):
+        from numpy.polynomial import Chebyshev, Polynomial
+        from scripts.ai_zemax.standalone import Surface
+        from scripts.ai_zemax.standalone_meniscus import _curvature_bound
+        # z'' = T9(2*r²/R²-1) has extrema inside the aperture as well as at the rim.
+        radius=47.
+        scaled=Chebyshev.basis(9,domain=[0.,1.]).convert(kind=Polynomial).coef
+        terms=tuple(v/((2*k)*(2*k-1)*radius**(2*k-2)) for k,v in enumerate(scaled,1))
+        bound=_curvature_bound(Surface(0.,even_coefficients=terms),radius)
+        self.assertGreaterEqual(bound,1.)
+        self.assertLess(bound,1.3)
+
     def test_unresolved_requested_bracket_blocks_an_otherwise_passing_lens(self):
         from unittest.mock import patch
         model = lens(thickness=2.)
