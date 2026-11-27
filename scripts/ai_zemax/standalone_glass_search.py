@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from time import perf_counter
 from numpy.linalg import LinAlgError
+from .standalone_design_requirements import DesignRequirements
 
 
 def _hash(value):
@@ -70,6 +71,10 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
     optimize(model, target, directory) -> (candidate, optimization metadata)
     validate(candidate, target) -> dict with a boolean passed
 
+    With target.designRequirements, screen returns a metrics mapping and may
+    set valid=False to reject a physical seed. A passing validator must return
+    independent metrics in the same units. See reusable-optimization-method.md.
+
     Independent validation alone can mark a branch passed. A numerical solver
     convergence flag has no acceptance authority. The target is deep-copied
     for every callback and checked against mutation after each branch.
@@ -86,6 +91,7 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
         ids.append(name)
     if len(set(ids)) != len(ids):
         raise ValueError("Material branch IDs must be unique")
+    req = DesignRequirements.from_dict(target['designRequirements']) if 'designRequirements' in target else None
     out = Path(output_directory)
     if out.exists() and (not out.is_dir() or any(out.iterdir())):
         raise ValueError("Use a fresh empty output directory; existing search evidence is never overwritten")
@@ -110,13 +116,21 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
                 try:
                     model = realize(deepcopy(seed), deepcopy(frozen), deepcopy(fixed_target))
                     screening = screen(deepcopy(model), deepcopy(fixed_target))
-                    score = float(screening["score"] if isinstance(screening, dict) else screening)
+                    if req is None:
+                        score = float(screening["score"] if isinstance(screening, dict) else screening)
+                        rank = score
+                    else:
+                        if isinstance(screening, dict) and screening.get('valid', True) is not True:
+                            raise ValueError('Screening rejected the physical seed')
+                        rank = req.screening_rank(screening)
+                        score = rank[-1]
+                        item['requirementRank'] = rank
                     if not __import__("math").isfinite(score):
                         raise ValueError("Nonfinite screening score")
                     item.update(status="physical_seed", score=score)
                     if isinstance(screening, dict):
                         item["screening"] = screening
-                    ranked.append((score, si, model))
+                    ranked.append((rank, si, model))
                 except (ValueError, RuntimeError, FloatingPointError, LinAlgError) as error:
                     item["error"] = str(error)
                 branch["seeds"].append(item)
@@ -135,6 +149,8 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
                     checked = validate(deepcopy(candidate), deepcopy(fixed_target))
                     if type(checked.get("passed")) is not bool:
                         raise ValueError("Independent validator requires a boolean passed")
+                    if req is not None:
+                        checked = req.validated(checked)
                     run.update(optimizer=metadata, validation=checked, passed=checked["passed"])
                     (run_folder / "CANDIDATE.json").write_text(json.dumps(candidate, indent=2, allow_nan=False), encoding="utf-8")
                 except (ValueError, RuntimeError, FloatingPointError, LinAlgError) as error:
@@ -143,7 +159,11 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
                 (run_folder / "RESULT.json").write_text(json.dumps(run, indent=2, allow_nan=False), encoding="utf-8")
             passed = [run for run in branch["runs"] if run["passed"]]
             branch["passed"] = bool(passed)
-            branch["selected_seed_index"] = min(passed, key=lambda r: r["validation"].get("wfe_worst_waves", float("inf")))["seed_index"] if passed else None
+            if req is None:
+                branch["selected_seed_index"] = min(passed, key=lambda r: r["validation"].get("wfe_worst_waves", float("inf")))["seed_index"] if passed else None
+            else:
+                branch['selection'] = req.select((r['seed_index'], r['validation']) for r in branch['runs'] if 'validation' in r)
+                branch['selected_seed_index'] = branch['selection']['candidate'] if passed else None
         except (KeyError, ValueError, RuntimeError, LinAlgError) as error:
             branch["error"] = str(error)
         if _hash(fixed_target) != target_hash:
@@ -159,5 +179,8 @@ def run_combination_search(*, index, combinations, seeds, target, output_directo
         "all_branches_passed": bool(branches) and all(branch["passed"] for branch in branches),
         "seconds": perf_counter() - started,
         "claim": "independently checked finite-sampled local solutions; no global optimum or universal seed-convergence guarantee"}
+    if req is not None:
+        result['selection'] = req.select(([b['id'], r['seed_index']], r['validation'])
+                                         for b in branches for r in b['runs'] if 'validation' in r)
     (out / "SEARCH.json").write_text(json.dumps(result, indent=2, allow_nan=False), encoding="utf-8")
     return result

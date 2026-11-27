@@ -7,20 +7,25 @@ import math
 from pathlib import Path
 from time import perf_counter
 import numpy as np
+from .standalone_design_requirements import DesignRequirements
 
 
 def _digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
 
 
-def _advance(advance,branch,state,additional_budget,target):
+def _advance(advance,branch,state,additional_budget,target,requirements=None):
     local_branch,local_target=deepcopy(branch),deepcopy(target)
     frozen,target_hash=_digest(local_branch),_digest(local_target)
     result=advance(local_branch,deepcopy(state),additional_budget,local_target)
     if _digest(local_branch)!=frozen or _digest(local_target)!=target_hash:raise ValueError('Frozen branch/target identity was mutated by continuation')
     if not isinstance(result,dict)or type(result.get('valid'))is not bool:
         raise ValueError('Branch continuation must return an explicit boolean valid')
-    if result['valid']and(not math.isfinite(float(result['score'])) or 'state'not in result):
-        raise ValueError('A valid branch requires finite score and a resumable state')
+    if result['valid']:
+        if requirements is not None:
+            rank = requirements.screening_rank(result)
+            result = {**result, 'score': rank[-1], 'requirementRank': rank}
+        if not math.isfinite(float(result['score'])) or 'state' not in result:
+            raise ValueError('A valid branch requires finite score and a resumable state')
     json.dumps(result,allow_nan=False)
     # A screened state is not an accepted optical design.
     result=dict(result);result['screening_only']=True
@@ -33,6 +38,8 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
     """Allocate ADDITIONAL work per rung; preserve each family and exploration.
 
     advance(branch,state,additional_budget,target) returns valid/score/state.
+    With target.designRequirements, valid rows return metrics instead of score;
+    the final validator returns independently recomputed metrics with passed.
     validate(branch,state,target) alone can mark a final candidate passed.
     Branch payloads should contain frozen real glass identities/dispersion and
     a physical seed; callbacks must restore thick-lens geometry and all gates.
@@ -48,6 +55,7 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
         or type(reduction)is not int or reduction<2 or type(workers)is not int or workers<1
         or type(explore_slots)is not int or explore_slots<0 or executor not in ('thread','process')):
         raise ValueError('Invalid branch schedule/budgets/worker settings')
+    req = DesignRequirements.from_dict(target['designRequirements']) if 'designRequirements' in target else None
     folder=Path(output_directory);folder.mkdir(parents=True,exist_ok=False)
     states={i:None for i in ids};specs=dict(zip(ids,branches));active=ids.copy()
     rng=np.random.default_rng(seed);history=[];start=perf_counter();total=0
@@ -55,7 +63,7 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
     pool_class=ThreadPoolExecutor if executor=='thread'else ProcessPoolExecutor
     with pool_class(max_workers=workers)as pool:
         for rung,budget in enumerate(budgets):
-            futures={i:pool.submit(_advance,advance,specs[i],states[i],budget,target)for i in active}
+            futures={i:pool.submit(_advance,advance,specs[i],states[i],budget,target,req)for i in active}
             records=[]
             for i in active:
                 try:
@@ -64,7 +72,7 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
                 except Exception as error:
                     row=dict(valid=False,error=f'{type(error).__name__}: {error}',screening_only=True)
                 records.append(dict(id=i,**row));total+=budget
-            ranked=sorted((r for r in records if r['valid']),key=lambda r:(float(r['score']),r['id']))
+            ranked=sorted((r for r in records if r['valid']),key=lambda r:(r['requirementRank'] if req else r['score'],r['id']))
             selected=[];explored=[]
             if rung==len(budgets)-1:
                 selected=[r['id']for r in ranked]
@@ -97,6 +105,11 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
         if _digest(local_state)!=_digest(states[i])and 'validated_state'not in checked:
             raise ValueError('A polished/changed state must be returned explicitly as validated_state')
         checked=dict(checked);final_state=checked.pop('validated_state',states[i]);json.dumps(final_state,allow_nan=False)
+        if req is not None:
+            try:
+                checked = req.validated(checked)
+            except ValueError as error:
+                checked = dict(passed=False, error=str(error))
         finals.append(dict(id=i,validation=checked,passed=checked['passed'],state=final_state,validated_state_sha256=_digest(final_state)))
     if _digest(target)!=target_hash or any(_digest(specs[i])!=frozen_hashes[i]for i in ids):
         raise ValueError('Frozen branch/target identity changed')
@@ -104,5 +117,7 @@ def run_budgeted_branches(branches, *, target, rung_budgets, advance, validate,
         allocated_work=total,equal_full_budget_work=len(branches)*sum(budgets),workers=workers,executor=executor,
         target_sha256=target_hash,branch_sha256=frozen_hashes,seconds=perf_counter()-start,
         global_optimum_certified=False,statistical_yield_estimated=False)
+    if req is not None:
+        result['selection'] = req.select((r['id'], r['validation']) for r in finals)
     (folder/'RESULT.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf8')
     return result
